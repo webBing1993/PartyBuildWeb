@@ -17,6 +17,7 @@
     display: inline-block;
     color: #666;
     position: relative;
+    width: 100%;
 }
 .content_tab li a span {
     display: inline-block;
@@ -27,7 +28,7 @@
     background: url("../images/right.png") no-repeat;
     background-size: 20px 20px;
     position: absolute;
-    left: -40%;
+    left: 22%;
     top: 10px;
 }
 .content_tab li.red {
@@ -39,7 +40,7 @@
 .content_tab li.red a span:first-of-type {
     background: url("../images/right_1.png") no-repeat;
     background-size: 20px 20px;
-    left: -60%;
+    left: 12%;
 }
 .tab_img {
     margin-top: 40px;
@@ -159,7 +160,7 @@
 }
 .totalPages span,
 .totalSize span {
-    color: #0073A9;
+    color: #cc1100;
     margin: 0 5px;
 }
 
