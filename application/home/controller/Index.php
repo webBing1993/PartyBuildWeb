@@ -7,13 +7,8 @@
  */
 
 namespace app\home\controller;
-use app\home\model\Message;
-use app\home\model\WechatUser;
-use com\wechat\TPQYWechat;
-use think\Config;
 use think\Controller;
-use app\user\controller\Index as APIIndex;
-use think\Log;
+
 
 /**
  * 党建主页
