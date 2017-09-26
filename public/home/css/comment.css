@@ -11,6 +11,7 @@
     line-height: 40px;
     height: 40px;
     font-size: 18px;
+    cursor: pointer;
 }
 .content_tab li a {
     display: inline-block;
@@ -44,6 +45,7 @@
     margin-top: 40px;
 }
 .tab_img>ul>li {
+    cursor: pointer;
     margin-top: 30px;
     padding: 0 3%;
 }
@@ -67,8 +69,15 @@
     width: 88%;
     margin-left: 5px;
 }
+.tab_img span a {
+    font-size: 16px;
+}
 .tab_img span:last-of-type a {
     color: #101010;
+}
+.tab_img span:last-of-type a:hover {
+    color: #cc1100;
+    text-decoration: underline;
 }
 /*content_title*/
 .content_title {

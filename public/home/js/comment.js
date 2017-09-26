@@ -10,6 +10,11 @@ $(function () {
         $(".content_text").eq($(this).index()).show();
         var html = $(this).children("a").children('span')[1].innerHTML;
         $(".content_title a:last-of-type").html(html);
+        if (html == "每日一课") {
+            $(".page_div").hide();
+        }else {
+            $(".page_div").show();
+        }
     });
     // 分页
     $("#page").paging({

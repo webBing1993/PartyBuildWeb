@@ -2,30 +2,21 @@
 /**
  * Created by PhpStorm.
  * User: Administrator
- * Date: 2017/9/25
- * Time: 18:06
+ * Date: 2017/9/26
+ * Time: 13:43
  */
 namespace app\home\controller;
 use think\Controller;
 /**
- * 两学一做
+ * 联系我们
  */
-class Learn extends Controller
+class Contact extends Controller
 {
     /**
      * 首页
      * @return mixed
      */
     public function index()
-    {
-
-        return $this->fetch();
-    }
-
-    /*
-     * 答题
-     * */
-    public function goon()
     {
 
         return $this->fetch();
