@@ -67,6 +67,9 @@
     width: 88%;
     margin-left: 5px;
 }
+.tab_img span a {
+    font-size: 16px;
+}
 .tab_img span:last-of-type a {
     color: #101010;
 }

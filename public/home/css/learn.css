@@ -31,3 +31,160 @@
 .content_text .fr {
     font-size: 16px;
 }
+.learn_title {
+    font-size: 22px;
+    color: #000000;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.list {
+    padding: 15px 0;
+    border-bottom: 1px solid #d7d7d7;
+}
+.list:last-of-type {
+    border-bottom: 0;
+}
+.list .list_title {
+    font-size: 18px;
+}
+.list form>label {
+    display: block;
+}
+.list form>label {
+    margin: 10px 0;
+}
+.list input {
+    -webkit-appearance: radio;
+    display: none;
+}
+.list .option {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #cc1100;
+    color: #cc1100;
+    line-height: 20px;
+    text-align: center;
+    margin-right: 5px;
+}
+.list .option.active {
+    background-color: #cc1100;
+    color: #fff;
+}
+.list .opt {
+    color: #333;
+    font-size: 17px;
+    font-weight: 400;
+}
+.list_btn {
+    padding: 15px 0;
+    width: 180px;
+    background-color: #cc1100;
+    color: #fff;
+    text-align: center;
+    margin: 40px auto;
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px #cc4400;
+    cursor: pointer;
+}
+.list_btn.active {
+    box-shadow: 2px 2px 1px #cc4400;
+    opacity: .95;
+}
+.goon {
+    background-color: #eee;
+    box-shadow: 0 0 0;
+}
+.answer {
+    border-top: 1px solid #d7d7d7;
+    margin-bottom: 50px;
+}
+.answer p {
+    margin: 20px 0;
+    color: #cc1100;
+    font-size: 17px;
+}
+.answer div {
+    font-size: 17px;
+    color: #333;
+}
+.answer div>span {
+    margin-right: 20px;
+}
+/*上传提示框*/
+.suc{
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.30);
+    position: fixed;
+    z-index: 19;
+    top:0;
+    display: none;
+}
+.timer{
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px #fff;
+    border-radius: 50%;
+    position: relative;
+    margin: 50% auto;
+}
+.timer:after, .timer:before{
+    position: absolute;
+    content:"";
+    background-color: #fff;
+}
+.timer:after{
+    width: 12px;
+    height: 2px;
+    top: 14px;
+    left: 14px;
+    -webkit-transform-origin: 1px 1px;
+    -moz-transform-origin: 1px 1px;
+    transform-origin: 1px 1px;
+    -webkit-animation: minhand 2s linear infinite;
+    -moz-animation: minhand 2s linear infinite;
+    animation: minhand 2s linear infinite;
+}
+
+.timer:before{
+    width: 10px;
+    height: 2px;
+    top: 14px;
+    left: 14px;
+    -webkit-transform-origin: 1px 1px;
+    -moz-transform-origin: 1px 1px;
+    transform-origin: 1px 1px;
+    -webkit-animation: hrhand 8s linear infinite;
+    -moz-animation: hrhand 8s linear infinite;
+    animation: hrhand 8s linear infinite;
+}
+
+@-webkit-keyframes minhand{
+    0%{-webkit-transform:rotate(0deg)}
+    100%{-webkit-transform:rotate(360deg)}
+}
+@keyframes minhand{
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+
+@-webkit-keyframes hrhand{
+    0%{-webkit-transform:rotate(0deg)}
+    100%{-webkit-transform:rotate(360deg)}
+}
+@keyframes hrhand{
+    0%{transform:rotate(0deg)}
+    100%{transform:rotate(360deg)}
+}
+.up{
+    width: 100%;
+    position: fixed;
+    top:43%;
+    color:#ffffff;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
