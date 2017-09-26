@@ -1,0 +1,16 @@
+.about_us {
+    margin-bottom: 50px;
+}
+.content_text .title {
+    font-size: 17px;
+    color: #cc1100;
+}
+.about_content p,
+.contact_content p {
+    font-size: 17px;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+.about_content p {
+    text-indent: 2em;
+}
