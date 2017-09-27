@@ -15,6 +15,7 @@ class News extends Admin {
      */
     public function index() {
         $map = array(
+            'pid' => 0,
             'status' => array('eq',1),  // 推送  未推送
         );
         $list = $this->lists('News',$map);
@@ -26,6 +27,23 @@ class News extends Admin {
         return $this->fetch();
     }
 
+    /**
+     * 二级页面
+     */
+    public function index2() {
+        $pid = input('pid');
+        $map = array(
+            'pid' => $pid,
+            'status' => 1
+        );
+        $list = $this->lists('News',$map);
+        int_to_string($list,array(
+            'status' => array(0=>"未审核",1=>'已发布'),
+        ));
+        $this->assign('list',$list);
+        $this->assign('pid',$pid);
+        return $this->fetch();
+    }
     /**
      * 新增
      */
@@ -39,14 +57,19 @@ class News extends Admin {
             $Model = new NewsModel();
             $info = $Model->validate(true)->save($data);
             if($info) {
-                return $this->success("新增成功",Url('News/index'));
+                if($data['pid']) {
+                    return $this->success("新增成功",Url('News/index2?pid='.$data['pid']));
+                }else {
+                    return $this->success("新增成功",Url('News/index'));
+                }
             }else{
                 return $this->get_update_error_msg($Model->getError());
             }
         }else{
             $this->default_pic();
             $this->assign('msg','');
-
+            $pid = input('pid');
+            $this->assign('pid',$pid);
             return $this->fetch('edit');
         }
     }
@@ -60,7 +83,11 @@ class News extends Admin {
             $Model = new NewsModel();
             $info = $Model->validate(true)->save($data,['id'=>input('id')]);
             if($info){
-                return $this->success("修改成功",Url("News/index"));
+                if($data['pid']) {
+                    return $this->success("修改成功",Url('News/index2?pid='.$data['pid']));
+                }else {
+                    return $this->success("修改成功",Url("News/index"));
+                }
             }else{
                 return $this->get_update_error_msg($Model->getError());
             }

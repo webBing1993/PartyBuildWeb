@@ -12,10 +12,10 @@
         <h2>新闻聚焦</h2>
         <ol class="breadcrumb">
             <li>
-                内容管理
+                <a href="{:Url('News/index')}">一级新闻</a>
             </li>
             <li class="active">
-                <strong><a href="{:Url('News/index')}">一级新闻</a></strong>
+                <strong><a href="{:Url('News/index2')}">二级新闻</a></strong>
             </li>
         </ol>
     </div>
@@ -30,9 +30,10 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>一级新闻列表</h5>
+                    <h5>详情列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('News/add')}">新增</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('News/add?pid='.$pid)}">新增</a>
+                        <a href="{:Url('News/index')}" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> 返回</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -53,7 +54,7 @@
                             {volist name="list" id="vo"}
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td><a href="{:Url('index2?pid='.$vo['id'])}">{$vo.title|msubstr=0,20}</a></td>
+                                <td>{$vo.title|msubstr=0,20}</td>
                                 <td>{$vo.publisher}</td>
                                 <td>{$vo->cuser->nickname}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d'}</td>

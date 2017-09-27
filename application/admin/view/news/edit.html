@@ -108,8 +108,12 @@
                                 <input type="text" placeholder="请输入发布人" class="form-control form_title" name="publisher" value="{$msg.publisher || default=''}">
                             </div>
                         </div>
-
                         <input type="hidden" name="id" value="{$msg.id || default=''}">
+                        {empty name="msg"}
+                        <input type="hidden" name="pid" value="{$pid}">
+                        {else/}
+                        <input type="hidden" name="pid" value="{$msg.pid}">
+                        {/empty}
                         <div class="form-group">
                             <div class="col-lg-11 col-lg-offset-1">
                                 <button class="btn btn-primary submit-btn post-put" type="button" target-form="form-horizontal" >发布</button>
@@ -194,6 +198,7 @@
             var it=$(this);
             var data = {
                 id:$("input[name='id']").val(),
+                pid:$("input[name='pid']").val(),
                 front_cover:$("input[name='front_cover']").val(),
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),
