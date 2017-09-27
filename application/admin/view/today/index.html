@@ -1,0 +1,223 @@
+{extend name="base/common"}
+
+{block name="style"}
+
+{/block}
+
+{block name="page-header"}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>党史上的今天</h2>
+        <ol class="breadcrumb">
+            <li>
+                内容管理
+            </li>
+            <li class="active">
+                <strong><a href="{:Url('Today/index')}">详情列表</a></strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+    </div>
+</div>
+{/block}
+
+{block name="main"}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>详情列表</h5>
+                    <div class="ibox-tools">
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="#modal-form" onclick="addMenu()">新增</a>
+                        <div id="modal-form" class="modal fade" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" method="post" action="{:Url('Today/add')}">
+                                            <p class="tt">添加时间</p>
+                                            <div class="form-group">
+                                                <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;">
+                                                    <label>内容:</label>
+                                                </div>
+                                                <div class="col-lg-10 col-sm-10" style="padding-right:35px;">
+                                                    <input type="text" placeholder="请输入事件内容" class="form-control account" name="title" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <button class="btn btn-primary post-put" type="button" target-form="form-horizontal">发布</button>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="id" value="">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th><input class="i-checks check-all" type="checkbox"></th>
+                                <th>内容</th>
+                                <th>创建时间</th>
+                                <th>创建人</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {volist name="list" id="vo"}
+                            <tr>
+                                <td><input type="checkbox" class="i-checks" name="input[]"></td>
+                                <td>{$vo.title|msubstr=0,20}</td>
+                                <td>{$vo.create_time|time_format}</td>
+                                <td>{$vo->cuser->nickname}</td>
+                                <td>{$vo.status_text}</td>
+                                <td>
+                                    <a data-toggle="modal" title="编辑" href="#modal-form" onclick="editMenu({$vo.id})">编辑</a>
+                                    <a href="{:Url('Today/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                </td>
+                            </tr>
+                            {/volist}
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="10">
+                                    <div class="page"></div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="/admin/js/plugins/iCheck/icheck.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+    function addMenu(){
+        $(".tt").html("新增");
+        $(".form-horizontal")[0].reset();
+        $(".form-horizontal").attr('action', '{:Url("Today/add")}');
+        //发布
+        $(".post-put").off("click").on("click",function(){
+            var it=$(this);
+            var data = {
+                title:$("input[name='title']").val(),
+                course_id:$("input[name='course_id']").val(),
+                id:$("input[name='id']").val(),
+                status:1
+            };
+            $.ajax({
+                type:"post",
+                url:$(".form-horizontal").attr("action"),
+                data:data,
+                success:function(data){
+                    if(data.code == 1){
+                        if (data.url) {
+                            updateAlert(data.msg + ' 页面即将自动跳转~','success');
+                        }else{
+                            updateAlert(data.msg ,'success');
+                        }
+                        it.prop('disabled','true');
+                        it.prev().prop('disabled','true');
+                        setTimeout(function(){
+                            if (data.url) {
+                                location.href=data.url;
+                            } else {
+                                location.reload();
+                            }
+                            it.removeAttr('disabled');
+                            it.prev().removeAttr('disabled')
+                        },2000);
+                    } else {
+                        updateAlert(data.msg, 'error');
+                        it.attr('disabled','true');
+                        it.prev().prop('disabled','true');
+                        setTimeout(function(){
+                            it.removeAttr('disabled');
+                            it.prev().removeAttr('disabled')
+                        },2000);
+                    }
+                }
+            });
+        });
+    }
+
+    function editMenu(Id) {
+        $.ajax({
+            type: "POST",
+            url: "{:Url('Today/getDetail')}",
+            data: {id: Id},
+            dataType: "json",
+            success: function (data) {
+                data = data.data;
+                $(".tt").html("编辑");
+                $("input[name='id']").val(data.id);
+                $("input[name='title']").val(data.title);
+                $(".form-horizontal").attr('action', '{:Url("Today/edit")}');
+
+                //发布
+                $(".post-put").off("click").on("click", function () {
+                    var it = $(this);
+                    var data = {
+                        title: $("input[name='title']").val(),
+                        course_id: $("input[name='course_id']").val(),
+                        id: $("input[name='id']").val(),
+                        status: 1
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: $(".form-horizontal").attr("action"),
+                        data: data,
+                        success: function (data) {
+                            if (data.code == 1) {
+                                if (data.url) {
+                                    updateAlert(data.msg + ' 页面即将自动跳转~', 'success');
+                                } else {
+                                    updateAlert(data.msg, 'success');
+                                }
+                                it.prop('disabled', 'true');
+                                it.prev().prop('disabled', 'true');
+                                setTimeout(function () {
+                                    if (data.url) {
+                                        location.href = data.url;
+                                    } else {
+                                        location.reload();
+                                    }
+                                    it.removeAttr('disabled');
+                                    it.prev().removeAttr('disabled')
+                                }, 2000);
+                            } else {
+                                updateAlert(data.msg, 'error');
+                                it.attr('disabled', 'true');
+                                it.prev().prop('disabled', 'true');
+                                setTimeout(function () {
+                                    it.removeAttr('disabled');
+                                    it.prev().removeAttr('disabled')
+                                }, 2000);
+                            }
+                        }
+                    });
+                });
+            }
+        })
+    }
+</script>
+{/block}
