@@ -1,14 +1,377 @@
 {extend name="public/common"}
 
 {block name="style"}
-
+<link rel="stylesheet" href="/home/css/index.css">
 {/block}
 
 {block name="body"}
-{include file="public/navbar"}
-
+{include file="public/header"}
+<div class="nav">
+    <div class="nav-header clearfix container">
+        <ul>
+            <li class="fl"><a href="/home/index/index.html" class="active">首页</a></li>
+            <li class="fl"><a href="/home/news/index.html">新闻聚焦</a></li>
+            <li class="fl"><a href="/home/topic/index.html">红色专题</a></li>
+            <li class="fl"><a href="/home/learn/index.html">两学一做</a></li>
+            <li class="fl"><a href="/home/build/index.html">支部建设</a></li>
+            <li class="fl"><a href="/home/pioneer/index.html">党员风采</a></li>
+            <li class="fl"><a href="/home/enshrined/index.html">红色珍藏</a></li>
+            <li class="fl"><a href="/home/interest/index.html">趣味视频</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 nowNew">
+        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 nowLeft">
+            <img src="/home/images/jyz.png" alt="党群加油站">
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 nowRight">
+            <div class="now_title clearfix">
+                <span class="pull-left"></span>
+                <span class="pull-right">党史上的今天</span>
+            </div>
+            <div class="now_lists">
+                <ul>
+                    <li><a href="#">中共中央发出《关于共产党参加政府问题的决定草案》</a></li>
+                    <li><a href="#">中共中央发出《关于共产党参加政府问题的决定草案》</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 new">
+        <div class="col-md-7 col-sm-7 col-lg-7 col-xs-7 newLeft">
+            <ul class="list1">
+                <li class="clearfix">
+                    <span class="yw">要闻</span><a href="/home/news/index.html">中办国办印发《意见》深化改革</a>
+                    <ul>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="clearfix">
+                    <a href="/home/news/index.html">中办国办印发《意见》深化改革</a>
+                    <ul>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="clearfix">
+                    <a href="/home/news/index.html">中办国办印发《意见》深化改革</a>
+                    <ul>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                        <li class="fl">
+                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 newRight">
+            <div class="build_title clearfix">
+                <span class="pull-left">支部建设</span>
+                <span class="pull-right"><a href="/home/build/index.html">获得更多</a></span>
+            </div>
+            <div class="build_content">
+                <div class="build_img clearfix">
+                    <ul>
+                        <li class="fl"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></li>
+                        <li class="fl"><a href="#"><img src="/home/images/b2.jpg" alt=""></a></li>
+                    </ul>
+                </div>
+                <div class="build_text">
+                    <ul>
+                        <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                        <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                        <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 sliders">
+        <div id="myCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="/home/images/slide1.png" alt="First slide">
+                </div>
+                <div class="item">
+                    <img src="/home/images/slide2.png" alt="Second slide">
+                </div>
+                <div class="item">
+                    <img src="/home/images/slide3.png" alt="Third slide">
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="carousel-control left" href="#myCarousel"
+               data-slide="prev"><img src="/home/images/left1.png" alt=""></a>
+            <a class="carousel-control right" href="#myCarousel"
+               data-slide="next"><img src="/home/images/right1.png" alt=""></a>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 learns">
+        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 learnsLeft">
+            <div class="learn">
+                <div class="learn_title clearfix">
+                    <span class="pull-left">两学一做</span>
+                    <span class="pull-right"><a href="/home/learn/index.html">获得更多</a></span>
+                </div>
+                <div class="learn_content">
+                    <div>
+                        <ul>
+                            <li class="clearfix">
+                                <div class="fl learnLeft">
+                                    <img src="/home/images/b1.jpg" alt="">
+                                </div>
+                                <div class="fr learnRight">
+                                    <div class="learnTitle"><a href="#">中办国印发《意见》深化教育改革</a></div>
+                                    <div class="learnContent">
+                                        <ul>
+                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <div class="fl learnLeft">
+                                    <img src="/home/images/b1.jpg" alt="">
+                                </div>
+                                <div class="fr learnRight">
+                                    <div class="learnTitle"><a href="#">中办国印发《意见》深化教育改革</a></div>
+                                    <div class="learnContent">
+                                        <ul>
+                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="redTopic col-md-12 col-sm-12 col-lg-12 col-xs-12">
+                <div class="movie col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <div class="movie_title clearfix">
+                        <span class="pull-left">红色电影</span>
+                        <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+                    </div>
+                    <div class="movie_content clearfix">
+                        <div class="imgs pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="/home/images/b1.jpg" alt="小兵张嘎"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b2.jpg" alt="地道战"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b1.jpg" alt="半夜鸡鸣"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b2.jpg" alt="小兵张嘎"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b1.jpg" alt="地道战"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b2.jpg" alt="半夜鸡鸣"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="name pull-right">
+                            <ul>
+                                <li><a href="#">《小兵张嘎》</a></li>
+                                <li><a href="#">《地道战》</a></li>
+                                <li><a href="#">《半夜鸡鸣》</a></li>
+                                <li><a href="#">《小兵张嘎》</a></li>
+                                <li><a href="#">《地道战》</a></li>
+                                <li><a href="#">《半夜鸡鸣》</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="letter col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <div class="letter_title clearfix">
+                        <span class="pull-left">红色文学</span>
+                        <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+                    </div>
+                    <div class="letter_content clearfix">
+                        <div class="imgs pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#"><img src="/home/images/b1.jpg" alt="小兵张嘎"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b2.jpg" alt="地道战"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b1.jpg" alt="半夜鸡鸣"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b2.jpg" alt="小兵张嘎"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b1.jpg" alt="地道战"></a>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/home/images/b2.jpg" alt="半夜鸡鸣"></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="name pull-right">
+                            <ul>
+                                <li><a href="#">《小兵张嘎》</a></li>
+                                <li><a href="#">《地道战》</a></li>
+                                <li><a href="#">《半夜鸡鸣》</a></li>
+                                <li><a href="#">《小兵张嘎》</a></li>
+                                <li><a href="#">《地道战》</a></li>
+                                <li><a href="#">《半夜鸡鸣》</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="song col-md-4 col-sm-4 col-lg-4 col-xs-4">
+                    <div class="song_title clearfix">
+                        <span class="pull-left">红色歌曲</span>
+                        <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+                    </div>
+                    <div class="song_content clearfix">
+                        <ul>
+                            <li><a href="#">《小兵张嘎》</a></li>
+                            <li><a href="#">《地道战》</a></li>
+                            <li><a href="#">《半夜鸡鸣》</a></li>
+                            <li><a href="#">《小兵张嘎》</a></li>
+                            <li><a href="#">《地道战》</a></li>
+                            <li><a href="#">《半夜鸡鸣》</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 learnsRight">
+            <div class="pioneer">
+                <div class="pioneer_title">党员风采</div>
+                <div class="pioneer_content">
+                    <ul>
+                        <li>
+                            <div class="pioneer_img">
+                                <a href="#"><img src="/home/images/b1.jpg" alt=""></a>
+                            </div>
+                            <div class="pioneer_name">韩晓泉</div>
+                            <div class="pioneer_text"><a href="#">2015年优秀共产党员</a></div>
+                        </li>
+                        <li>
+                            <div class="pioneer_img">
+                                <a href="#"><img src="/home/images/b1.jpg" alt=""></a>
+                            </div>
+                            <div class="pioneer_name">韩晓泉</div>
+                            <div class="pioneer_text"><a href="#">2015年优秀共产党员</a></div>
+                        </li>
+                        <li>
+                            <div class="pioneer_img">
+                                <a href="#"><img src="/home/images/b1.jpg" alt=""></a>
+                            </div>
+                            <div class="pioneer_name">韩晓泉</div>
+                            <div class="pioneer_text"><a href="#">2015年优秀共产党员</a></div>
+                        </li>
+                    </ul>
+                    <div class="pioneer_btn">
+                        <a href="/home/pioneer/index.html">获得更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 interest">
+        <div class="interest_title clearfix">
+            <span class="pull-left">趣味视频</span>
+            <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+        </div>
+        <div class="interest_content clearfix">
+            <ul>
+                <li class="fl">
+                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
+                    <div class="interest_text">
+                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
+                    </div>
+                </li>
+                <li class="fl">
+                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
+                    <div class="interest_text">
+                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
+                    </div>
+                </li>
+                <li class="fl">
+                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
+                    <div class="interest_text">
+                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
+                    </div>
+                </li>
+                <li class="fl">
+                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
+                    <div class="interest_text">
+                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 {/block}
 
 {block name="script"}
+<script>
+    $(function () {
+        // nav
+        $(".nav-header li").bind("mouseleave", function () {
+            $(".nav-header li a").removeClass("active");
+            $(".nav-header li:first-of-type a").addClass("active")
+        });
 
+        // 自动轮播
+        $('#myCarousel').on("mouseover", function () {
+            $(".carousel-control").show();
+        }).on("mouseleave", function () {
+            $(".carousel-control").hide();
+        });
+        $('#myCarousel').carousel({
+            interval: 2000,
+            carouselIndicators: true
+        });
+
+        // 红色电影 红色文学 切换
+        $(".movie_content .name li").on("mouseover", function () {
+            $(".movie_content .imgs li").hide();
+            $(".movie_content .imgs li").eq($(this).index()).show();
+        });
+        $(".letter_content .name li").on("mouseover", function () {
+            $(".letter_content .imgs li").hide();
+            $(".letter_content .imgs li").eq($(this).index()).show();
+        })
+    })
+</script>
 {/block}

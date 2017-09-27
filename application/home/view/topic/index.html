@@ -4,8 +4,21 @@
 <link rel="stylesheet" href="/home/css/redTopic.css">
 {/block}
 {block name="body"}
-<div class="header"></div>
-<div class="nav"></div>
+{include file="public/header"}
+<div class="nav">
+    <div class="nav-header clearfix container">
+        <ul>
+            <li class="fl"><a href="/home/index/index.html">首页</a></li>
+            <li class="fl"><a href="/home/news/index.html" class="active">新闻聚焦</a></li>
+            <li class="fl"><a href="/home/topic/index.html">红色专题</a></li>
+            <li class="fl"><a href="/home/learn/index.html">两学一做</a></li>
+            <li class="fl"><a href="/home/build/index.html">支部建设</a></li>
+            <li class="fl"><a href="/home/pioneer/index.html">党员风采</a></li>
+            <li class="fl"><a href="/home/enshrined/index.html">红色珍藏</a></li>
+            <li class="fl"><a href="/home/interest/index.html">趣味视频</a></li>
+        </ul>
+    </div>
+</div>
 <div class="container">
     <div class="content_title col-md-12 col-lg-12 col-sm-12 col-xs-12">
         <span class="glyphicon glyphicon-home"></span>
@@ -151,5 +164,13 @@
 </div>
 {/block}
 {block name="script"}
-
+<script>
+    $(function () {
+        // nav
+        $(".nav-header li").bind("mouseleave", function () {
+            $(".nav-header li a").removeClass("active");
+            $(".nav-header li:nth-of-type(3) a").addClass("active")
+        });
+    })
+</script>
 {/block}

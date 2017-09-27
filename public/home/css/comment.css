@@ -4,7 +4,44 @@
         width: 992px;
     }
 }
-/*left_tab*/
+
+/*header*/
+.header {
+    height: 102px;
+}
+.logo a {
+    display: inline-block;
+    margin-top: 21px;
+}
+.timeNow {
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    color: #333333;
+    font-size: 14px;
+    margin-top: 64px;
+}
+.nav {
+    height: 50px;
+    line-height: 50px;
+    background-color: #d43d3d;
+}
+.nav-header li {
+    width: 12.5%;
+}
+.nav-header li a {
+    display: inline-block;
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "黑体";
+    text-align: center;
+}
+.nav-header li a.active {
+    background-color: #c22d2c;
+}
+
+    /*left_tab*/
 .content_tab li {
     text-align: center;
     border-bottom: 1px solid #d7d7d7;
@@ -164,6 +201,105 @@
     margin: 0 5px;
 }
 
+/*评论*/
+.comment {
+    margin-top: 50px;
+    border-top: 1px solid #d7d7d7;
+}
+.commentList {
+    padding: 15px 5px;
+}
+.comment_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.comment_text {
+    width: 75%;
+}
+.comment_text .comment_name {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333333;
+}
+.isgood {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+.good {
+    background: url("/home/images/good.png") no-repeat;
+    background-size: 25px 25px;
+}
+.good_ {
+    background: url("/home/images/good_.png") no-repeat;
+    background-size: 25px 25px;
+}
+@keyframes good {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0;
+        top: 0;
+    }
+}
+@keyframes good_ {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    25% {
+        left: 1px;
+        top: 1px;
+    }
+    50% {
+        left: 0;
+        top: 0;
+    }
+    75% {
+        left: -1px;
+        top: -1px;
+    }
+    100% {
+        left: 0;
+        top: 0;
+    }
+}
+.comment_text .comment_content {
+    font-size: 17px;
+    color: #666666;
+}
+.comment_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.bottom {
+    margin: 20px auto;
+    padding: 0 20px;
+}
+.bottom input {
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #d7d7d7;
+    border-radius: 10px 0 0 10px;
+    font-size: 17px;
+    padding-left: 10px;
+}
+.bottom .btn {
+    width: 80px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 17px;
+    margin-left: -4px;
+    margin-top: -4px;
+}
+
 @media screen and (max-width: 1200px) {
     .totalPages,.totalSize {
         display: none;
@@ -171,4 +307,11 @@
     .page_div {
         text-align: center;
     }
+}
+/*footer*/
+footer {
+    margin-top: 40px;
+    width: 100%;
+    height: 150px;
+    background-color: #f1f1f1;
 }
