@@ -62,9 +62,6 @@ class Redcollection extends Admin {
     public function filmedit() {
         if(IS_POST) {
             $data = input('post.');
-            if($data['recommend'] == 0) {
-                $data['carousel_image'] = null;
-            }
             $data['update_time'] = time();
             $data['update_user'] = $_SESSION['think']['user_auth']['id'];
             $filmModel = new Redfilm();

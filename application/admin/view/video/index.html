@@ -9,13 +9,13 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>红色歌曲</h2>
+        <h2>趣味视频</h2>
         <ol class="breadcrumb">
             <li>
-                红色歌曲
+                内容管理
             </li>
             <li class="active">
-                <strong><a href="{:Url('Redcollection/music')}">列表页</a></strong>
+                <strong><a href="{:Url('Video/index')}">列表页</a></strong>
             </li>
         </ol>
     </div>
@@ -30,9 +30,9 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>红色歌曲</h5>
+                    <h5>详情列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Redcollection/musicadd')}">添加歌曲</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Video/add')}">新增</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -42,6 +42,7 @@
                             <tr>
                                 <th><input class="i-checks check-all" type="checkbox"></th>
                                 <th>标题</th>
+                                <th>简介</th>
                                 <th>创建人 </th>
                                 <th>创建时间</th>
                                 <th>更新时间</th>
@@ -54,13 +55,14 @@
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.title}</td>
+                                <td>{$vo.introduction|msubstr=0,20}</td>
                                 <td>{$vo->cuser->nickname}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
                                 <td>{$vo.update_time|time_format='Y-m-d H:i'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>
-                                    <a href="{:Url('Redcollection/musicedit?id='.$vo['id'])}">修改</a>
-                                    <a href="{:Url('Redcollection/musicdel?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                    <a href="{:Url('Video/edit?id='.$vo['id'])}">修改</a>
+                                    <a href="{:Url('Video/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
                             {/volist}
@@ -87,7 +89,7 @@
 <script src="/admin/js/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(document).ready(function(){
-        highlight_subnav("{:Url('Redcollection/music')}");
+        highlight_subnav("{:Url('Video/index')}");
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',

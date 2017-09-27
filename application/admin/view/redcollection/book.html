@@ -60,7 +60,7 @@
                                 <td>{$vo.press|msubstr=0,15}</td>
                                 <td>{$vo.publication_date}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
-                                <td>{$vo->user->nickname}</td>
+                                <td>{$vo->cuser->nickname}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>
                                     <a href="{:Url('Redcollection/bookedit?id='.$vo['id'])}">修改</a>

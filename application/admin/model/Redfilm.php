@@ -20,9 +20,4 @@ class Redfilm extends Base {
         'status' => 1,
     ];
 
-    //获取后台用户名称
-    public function user(){
-        return $this->hasOne('Member','id','create_user');
-    }
-
 }

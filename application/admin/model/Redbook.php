@@ -18,10 +18,5 @@ class Redbook extends Base {
         'views' => 0,
         'status' => 1,
     ];
-
-    //获取后台用户名称
-    public function user(){
-        return $this->hasOne('Member','id','create_user');
-    }
-
+    
 }

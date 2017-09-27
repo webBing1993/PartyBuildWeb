@@ -21,16 +21,23 @@
         top:0;
         opacity: 0;
     }
+    .preview{
+        color:#ffffff!important;
+        background: #1cb395!important;
+    }
+    .video{
+        margin: 10px;
+    }
 </style>
 {/block}
 
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>红色歌曲</h2>
+        <h2>趣味视频</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('Redcollection/music')}">歌曲列表</a>
+                <a href="{:Url('Video/index')}">主页</a>
             </li>
             <li class="active">
                 <strong>{eq name="msg" value=""}新增{else/}修改{/eq}</strong>
@@ -49,7 +56,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>红色歌曲</h5>
+                    <h5></h5>
                     <div class="ibox-tools">
                         <a href="javascript:window.history.go(-1);" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> 返回</a>
                     </div>
@@ -67,7 +74,7 @@
                                     <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
                                     <input type="hidden" name="front_cover" class="img"  value="{$front_pic}" required="">
                                 </div>
-                                <b>推荐尺寸：750*400px</b>
+                                <b>推荐尺寸：400*600px</b>
                             </div>
                             {else/}
                             <div class="col-lg-5">
@@ -76,9 +83,21 @@
                                     <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
                                     <input type="hidden" name="front_cover" class="img"  value="{$msg.front_cover}" required="">
                                 </div>
-                                <b>推荐尺寸：750*400px</b>
+                                <b>推荐尺寸：400*600px</b>
                             </div>
                             {/eq}
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>地址路径:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <div class="input-group">
+                                    <input type="text" placeholder="例：优酷、土豆、腾讯视频选择分享—>选择通用代码中的src地址" class="form-control form_title" name="net_path" value="{$msg.net_path || default=''}">
+                                    <div class="input-group-addon btn btn-primary preview">预&emsp;览</div>
+                                    <div class="input-group-addon btn btn-default remove">清&emsp;空</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
@@ -86,6 +105,14 @@
                             </div>
                             <div class="col-lg-11">
                                 <input type="text" placeholder="请输入标题" class="form-control form_title" name="title" value="{$msg.title || default=''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>简介:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <input type="text" placeholder="请输入视频简介" class="form-control form_title" name="introduction" value="{$msg.introduction || default=''}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -100,7 +127,35 @@
                                 </div>
                             </div>
                         </div>
-
+                        {eq name="msg" value=""}
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>是否推荐:</label>
+                            </div>
+                            <div class="col-lg-11 radio-box">
+                                <label class="i-checks">
+                                    <input type="radio" value="1" name="recommend">是
+                                </label>
+                                <label class="i-checks">
+                                    <input type="radio" checked="" value="0" name="recommend">否
+                                </label>
+                            </div>
+                        </div>
+                        {else/}
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>是否推荐:</label>
+                            </div>
+                            <div class="col-lg-11 radio-box">
+                                <label class="i-checks">
+                                    <input type="radio" value="1" name="recommend" {eq name="msg.recommend" value="1"}checked{/eq}>是
+                                </label>
+                                <label class="i-checks">
+                                    <input type="radio" value="0" name="recommend" {eq name="msg.recommend" value="0"}checked{/eq}>否
+                                </label>
+                            </div>
+                        </div>
+                        {/eq}
                         <input type="hidden" name="id" value="{$msg.id || default=''}">
                         <div class="form-group">
                             <div class="col-lg-11 col-lg-offset-1">
@@ -131,8 +186,22 @@
             radioClass: 'iradio_square-green'
         });
 
-        highlight_subnav("{:Url('Redcollection/music')}");
+        highlight_subnav("{:Url('Video/index')}");
 
+        //视频预览
+        $('.preview' ).on('click',function(){
+            $('.video' ).remove();
+            var path = $("input[name='net_path']").val();
+            var html =
+                    '<iframe height=250 width=480 src="'+path+'?autoPlay=true" frameborder=0 allowfullscreen class="video"></iframe>';
+            $(this).parents('.input-group').after(html);
+//            http://player.youku.com/embed/XMTQ5MTU4MzU1Mg==
+        });
+        //视频清空
+        $('.remove' ).on('click',function(){
+            $("input[name='net_path']").val('');
+            $('.video' ).remove();
+        });
         //上传图片
         var plus = $('.plus');
         var imgnum = 1;
@@ -188,8 +257,12 @@
             var data = {
                 id:$("input[name='id']").val(),
                 front_cover:$("input[name='front_cover']").val(),
+                introduction:$("input[name='introduction']").val(),
+                net_path:$("input[name='net_path']").val(),
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),
+                recommend:$("input[name='recommend']:checked").val(),
+                carousel_image:$("input[name='carousel_image']").val(),
             };
             $.ajax({
                 type:"post",
@@ -227,6 +300,25 @@
             return false;
         });
 
+        //轮播，切换radio
+        $(".radio-box").find(".i-checks").each(function(){
+            $(this).find("ins").on('click',function(){
+                var value = $(this).prev().val();
+                if(value == 0){
+                    $(".carousel").hide();
+                }else{
+                    $(".carousel").show();
+                }
+            });
+            $(this).on('click',function(){
+                var value = $(this).find("input").val();
+                if(value == 0){
+                    $(".carousel").hide();
+                }else{
+                    $(".carousel").show();
+                }
+            });
+        })
     })
 
 </script>

@@ -56,7 +56,7 @@
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.title}</td>
                                 <td>{$vo.introduction|msubstr=0,20}</td>
-                                <td>{$vo->user->nickname}</td>
+                                <td>{$vo->cuser->nickname}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d H:i'}</td>
                                 <td>{$vo.update_time|time_format='Y-m-d H:i'}</td>
                                 <td>{$vo.status_text}</td>
