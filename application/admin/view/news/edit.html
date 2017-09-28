@@ -58,6 +58,24 @@
                     <form id="form" class="form-horizontal" method="post">
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
+                                <label>类别:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                {neq name="msg" value=""}
+                                <select class="form-control" name="class">
+                                    <option value="1" {eq name="$msg.class" value="1"}selected{/eq}>图文</option>
+                                    <option value="2" {eq name="$msg.class" value="2"}selected{/eq}>视频</option>
+                                </select>
+                                {else/}
+                                <select class="form-control" name="class">
+                                    <option value="1" >图文</option>
+                                    <option value="2" >视频</option>
+                                </select>
+                                {/neq}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
                                 <label>封面图片:</label>
                             </div>
                             {eq name="msg" value=""}
@@ -79,6 +97,18 @@
                                 <b>推荐尺寸：750*400px</b>
                             </div>
                             {/eq}
+                        </div>
+                        <div class="form-group" id="path">
+                            <div class="col-lg-1 text-right control-label">
+                                <label>地址路径:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                <div class="input-group">
+                                    <input type="text" placeholder="例：优酷、土豆、腾讯视频选择分享—>选择通用代码中的src地址" class="form-control form_title" name="net_path" value="{$msg.net_path || default=''}">
+                                    <div class="input-group-addon btn btn-primary preview">预&emsp;览</div>
+                                    <div class="input-group-addon btn btn-default remove">清&emsp;空</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
@@ -142,8 +172,38 @@
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green'
         });
+        var sel = $("select[name='class']");
+        var val = sel.val();
+        if(val == 1){
+            $("#path").hide();
+        }else{
+            $("#path").show();
+        }
+        //选择类别
+        sel.on("change",function(){
+            val = $(this).val();
+            if(val == 1){
+                $("#path").hide();
+            }else {
+                $("#path").show();
+            }
+        });
 
         highlight_subnav("{:Url('News/index')}");
+        //视频预览
+        $('.preview' ).on('click',function(){
+            $('.video' ).remove();
+            var path = $("input[name='net_path']").val();
+            var html =
+                    '<iframe height=250 width=480 src="'+path+'?autoPlay=true" frameborder=0 allowfullscreen class="video"></iframe>';
+            $(this).parents('.input-group').after(html);
+//            http://player.youku.com/embed/XMTQ5MTU4MzU1Mg==
+        });
+        //视频清空
+        $('.remove' ).on('click',function(){
+            $("input[name='net_path']").val('');
+            $('.video' ).remove();
+        });
         //上传图片
         var plus = $('.plus');
         var imgnum = 1;
@@ -199,6 +259,8 @@
             var data = {
                 id:$("input[name='id']").val(),
                 pid:$("input[name='pid']").val(),
+                class:$("select[name='class']").val(),
+                net_path:$("input[name='net_path']").val(),
                 front_cover:$("input[name='front_cover']").val(),
                 title:$("input[name='title']").val(),
                 content:ue.getContent(),
