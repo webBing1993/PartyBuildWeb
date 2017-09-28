@@ -43,7 +43,12 @@ class Branch extends Admin {
                 unset($data['id']);
             }
             $Model = new BranchModel();
-            $info = $Model->validate(true)->save($data);
+            if($data['type'] == 3) {
+                $valid = 'Branch.video';
+            }else {
+                $valid = 'Branch.pic';
+            }
+            $info = $Model->validate($valid)->save($data);
             if($info) {
                 return $this->success("新增成功",Url('Branch/index'));
             }else{
@@ -64,7 +69,12 @@ class Branch extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $Model = new BranchModel();
-            $info = $Model->validate(true)->save($data,['id'=>input('id')]);
+            if($data['type'] == 3) {
+                $valid = 'Branch.video';
+            }else {
+                $valid = 'Branch.pic';
+            }
+            $info = $Model->validate($valid)->save($data,['id'=>input('id')]);
             if($info){
                 return $this->success("修改成功",Url("Branch/index"));
             }else{
