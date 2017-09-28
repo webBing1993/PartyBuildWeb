@@ -3,6 +3,23 @@
  */
 
 $(function () {
+
+    // 监听滚轮事件
+    $(window).scroll(function (e) {
+        var scrollTop = $(this).scrollTop();
+        if (scrollTop >= 102) {
+            $(".nav").css({
+                position: "fixed",
+                top: 0,
+                left: 0,
+                zIndex: 100,
+                width: "100%"
+            });
+        }else {
+            $(".nav").css("position", "relative");
+        }
+    });
+
     // nav
     $(".nav-header li").bind("mouseover", function () {
         $(".nav-header li a").removeClass("active");
@@ -18,6 +35,7 @@ $(function () {
         $(".textTitle").html(html);
         $(".content_title a:last-of-type").html(html);
         if (html == "每日一课") {
+            $(".content_text").eq($(this).index()).css("borderBottom",0);
             $(".page_div").hide();
         }else {
             $(".page_div").show();
