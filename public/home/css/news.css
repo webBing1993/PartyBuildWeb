@@ -1,11 +1,5 @@
-/*left_tab*/
-.content_tab {
-    height: 80px;
-}
-
 /*right_content */
 .content_text {
-    margin-top: 15px;
     padding-left: 20px;
 }
 .content_text ul {
@@ -15,13 +9,6 @@
     margin-bottom: 10px;
     font-size: 18px;
 }
-.content_text .circle {
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    border-radius: 50%;
-    background-color: #cc1100;
-}
 .content_text .contentText {
     margin-left: 5px;
 }
@@ -30,7 +17,7 @@
 }
 .content_text .contentText a:hover {
     text-decoration: underline;
-    color: #cc1100;
+    color: #1755cc;
 }
 .content_text .fr {
     font-size: 14px;
