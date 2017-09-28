@@ -26,6 +26,7 @@ class Learn extends Admin {
         $list = $this->lists('Learn',$map);
         int_to_string($list,array(
             'status' => array(0=>"未审核",1=>'已发布'),
+            'class' => array(1=>"图文",2=>'视频'),
         ));
         $this->assign('list',$list);
 
@@ -43,7 +44,12 @@ class Learn extends Admin {
                 unset($data['id']);
             }
             $Model = new LearnModel();
-            $info = $Model->validate(true)->save($data);
+            if($data['class'] == 1) {
+                $valid = 'Learn.pic';
+            }else {
+                $valid = 'Learn.video';
+            }
+            $info = $Model->validate($valid)->save($data);
             if($info) {
                 return $this->success("新增成功",Url('Learn/index'));
             }else{
@@ -64,7 +70,12 @@ class Learn extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $Model = new LearnModel();
-            $info = $Model->validate(true)->save($data,['id'=>input('id')]);
+            if($data['class'] == 1) {
+                $valid = 'Learn.pic';
+            }else {
+                $valid = 'Learn.video';
+            }
+            $info = $Model->validate($valid)->save($data,['id'=>input('id')]);
             if($info){
                 return $this->success("修改成功",Url("Learn/index"));
             }else{
