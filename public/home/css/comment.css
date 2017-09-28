@@ -4,57 +4,113 @@
         width: 992px;
     }
 }
+
+/*header*/
+.header {
+    height: 102px;
+}
+.logo a {
+    display: inline-block;
+    margin-top: 21px;
+}
+.timeNow {
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    color: #333333;
+    font-size: 14px;
+    margin-top: 64px;
+}
+.nav {
+    height: 50px;
+    line-height: 50px;
+    background-color: #d43d3d;
+}
+.nav-header li {
+    width: 12.5%;
+}
+.nav-header li a {
+    display: inline-block;
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    font-family: "黑体";
+    text-align: center;
+}
+.nav-header li a.active {
+    background-color: #c22d2c;
+}
+
+/*banner*/
+.banner {
+    margin-top: 25px;
+    padding: 0!important;
+    height: 120px;
+}
+.banner img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
 /*left_tab*/
+.content {
+    margin-top: 45px;
+    padding: 0!important;
+}
+.content>div:first-of-type {
+    padding-left: 0!important;
+}
+.content>div:last-of-type {
+    padding-right: 0!important;
+}
+.content_tab {
+    background-color: #f1f1f1;
+}
 .content_tab li {
     text-align: center;
-    border-bottom: 1px solid #d7d7d7;
-    line-height: 40px;
-    height: 40px;
-    font-size: 18px;
+    line-height: 62px;
+    height: 62px;
     cursor: pointer;
 }
 .content_tab li a {
     display: inline-block;
-    color: #666;
+    color: #333;
     position: relative;
     width: 100%;
+    font-size: 20px;
 }
 .content_tab li a span {
     display: inline-block;
 }
-.content_tab li a span:first-of-type {
-    width: 20px;
-    height: 20px;
-    background: url("../images/right.png") no-repeat;
-    background-size: 20px 20px;
-    position: absolute;
-    left: 22%;
-    top: 10px;
-}
+
 .content_tab li.red {
-    background-color: #cc1100;
+    background-color: #d43d3d;
 }
 .content_tab li.red a {
     color: #fff;
 }
-.content_tab li.red a span:first-of-type {
+.content_tab li.red a span:last-of-type {
+    position: absolute;
+    width: 20px;
+    height: 20px;
     background: url("../images/right_1.png") no-repeat;
     background-size: 20px 20px;
-    left: 12%;
-}
-.tab_img {
-    margin-top: 40px;
+    left: 70%;
+    top: 50%;
+    margin-top: -10px;
 }
 .tab_img>ul>li {
     cursor: pointer;
-    margin-top: 30px;
-    padding: 0 3%;
+    margin-top: 25px;
+    height: 165px;
 }
 .tab_img li li {
     margin-top: 10px;
 }
 .tab_img li img {
     width: 100%;
+    height: 100%;
     display: inline-block;
 }
 .tab_img .circle {
@@ -83,18 +139,40 @@
 /*content_title*/
 .content_title {
     line-height: 60px;
-    font-size: 18px;
-    padding-left: 45px;
+    font-size: 17px;
 }
 .content_title a {
-    color: #666;
+    color: #333;
 }
 .content_title a:hover {
-    color: #000;
     text-decoration: underline !important;
 }
-.content_title a:last-of-type {
-    color: #000;
+.buildLists {
+    border: 1px solid #d9d9d9;padding: 30px;
+}
+.content_text {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #d9d9d9;
+}
+.content_text span.fl {
+    display: inline-block;
+    width: 80%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.textTitle {
+    font-size: 20px;
+    color: #c12c2c;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.content_text .circle {
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #d9d9d9;
 }
 .sxt {
     position: relative;
@@ -114,22 +192,21 @@
 }
 /*分页*/
 .page_div {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    font-size: 15px;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 17px;
     font-family: "microsoft yahei";
     color: #666666;
     margin-right: 10px;
     padding-left: 20px;
     box-sizing: border-box;
 }
-/*
- * 页数按钮样式
- */
+.totalPages,.totalSize {
+    display: none;
+}
 .page_div a {
     min-width: 30px;
     height: 28px;
-    border: 1px solid #dce0e0!important;
     text-align: center;
     margin: 0 4px;
     cursor: pointer;
@@ -137,31 +214,125 @@
     color: #666666;
     font-size: 13px;
     display: inline-block;
+    border: 1px solid #bfbfbf!important;
+    background-color: #f3f3f3;
 }
 #firstPage,
 #lastPage {
     width: 50px;
-    color: #cc1100;
-    border: 1px solid #cc1100!important;
+    color: #666;
+    border: 1px solid #bfbfbf!important;
+    background-color: #f3f3f3;
 }
 #prePage,
 #nextPage {
     width: 70px;
-    color: #cc1100;
-    border: 1px solid #cc1100!important;
+    color: #666;
+    border: 1px solid #dce0e0!important;
 }
 .page_div .current {
-    background-color: #cc1100;
-    border-color: #cc1100;
+    background-color: #d43d3d;
+    border-color: #d43d3d !important;
     color: #FFFFFF;
 }
-.totalPages {
-    margin: 0 10px;
+
+/*评论*/
+.comment {
+    margin-top: 50px;
+    border-top: 1px solid #d7d7d7;
 }
-.totalPages span,
-.totalSize span {
-    color: #cc1100;
-    margin: 0 5px;
+.commentList {
+    padding: 15px 5px;
+}
+.comment_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.comment_text {
+    width: 75%;
+}
+.comment_text .comment_name {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #333333;
+}
+.isgood {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+}
+.good {
+    background: url("/home/images/good.png") no-repeat;
+    background-size: 25px 25px;
+}
+.good_ {
+    background: url("/home/images/good_.png") no-repeat;
+    background-size: 25px 25px;
+}
+@keyframes good {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0;
+        top: 0;
+    }
+}
+@keyframes good_ {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    25% {
+        left: 1px;
+        top: 1px;
+    }
+    50% {
+        left: 0;
+        top: 0;
+    }
+    75% {
+        left: -1px;
+        top: -1px;
+    }
+    100% {
+        left: 0;
+        top: 0;
+    }
+}
+.comment_text .comment_content {
+    font-size: 17px;
+    color: #666666;
+}
+.comment_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.bottom {
+    margin: 20px auto;
+    padding: 0 20px;
+}
+.bottom input {
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #d7d7d7;
+    border-radius: 10px 0 0 10px;
+    font-size: 17px;
+    padding-left: 10px;
+}
+.bottom .btn {
+    width: 80px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 17px;
+    margin-left: -4px;
+    margin-top: -4px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -171,4 +342,11 @@
     .page_div {
         text-align: center;
     }
+}
+/*footer*/
+footer {
+    margin-top: 40px;
+    width: 100%;
+    height: 150px;
+    background-color: #f1f1f1;
 }
