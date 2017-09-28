@@ -40,6 +40,7 @@ class News extends Admin {
         $list = $this->lists('News',$map);
         int_to_string($list,array(
             'status' => array(0=>"未审核",1=>'已发布'),
+            'class' => array(1=>"图文",2=>'视频'),
         ));
         $this->assign('list',$list);
         $this->assign('pid',$pid);

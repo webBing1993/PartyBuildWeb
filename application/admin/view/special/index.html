@@ -2,7 +2,22 @@
 
 {block name="style"}
 <style>
-    .shadow{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: rgba(0,0,0,0.4);z-index: 88;}
+    .imggroup{
+        position: relative;
+    }
+    .imgbox{
+        height: 100px;
+        width: 420px;
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+    .imgfile{
+        height: 100px;
+        width: 420px;
+        position: absolute;
+        top:0;
+        opacity: 0;
+    }
 </style>
 {/block}
 
@@ -15,7 +30,7 @@
                 内容管理
             </li>
             <li class="active">
-                <strong><a href="{:Url('Special/index')}">列表页</a></strong>
+                <strong><a href="{:Url('Special/index')}">专题列表</a></strong>
             </li>
         </ol>
     </div>
@@ -30,9 +45,55 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>详情列表</h5>
+                    <h5>专题列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Special/add')}">新增</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="#modal-form" onclick="addMenu()">新增专题</a>
+                        <div id="modal-form" class="modal fade" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" method="post" action="{:Url('Special/add')}">
+                                            <p class="tt">新增专题</p>
+                                            <div class="form-group">
+                                                <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;">
+                                                    <label>轮播封面图:</label>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <div class="imggroup">
+                                                        <img src="{$front_pic|get_cover='path'}" alt='图片' class='thumbnail imgbox'>
+                                                        <input type="file" class="imgfile" accept="image/jpg, image/png, image/gif, image/jpeg">
+                                                        <input type="hidden" name="front_cover" class="img"  value="{$front_pic}" required="">
+                                                    </div>
+                                                    <b>推荐尺寸：960*108px</b>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;">
+                                                    <label>专题名称:</label>
+                                                </div>
+                                                <div class="col-lg-10 col-sm-10" style="padding-right:35px;">
+                                                    <input type="text" placeholder="请输入专题名称" class="form-control account" name="name" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;">
+                                                    <label>简介:</label>
+                                                </div>
+                                                <div class="col-lg-10 col-sm-10" style="padding-right:35px;">
+                                                    <input type="text" placeholder="请输入简介(非必填)" class="form-control account" name="summary" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <button class="btn btn-primary post-put" type="button" target-form="form-horizontal">发布</button>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="id" value="">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -41,11 +102,10 @@
                             <thead>
                             <tr>
                                 <th><input class="i-checks check-all" type="checkbox"></th>
-                                <th>标题</th>
-                                <th>类型</th>
-                                <th>发布人</th>
-                                <th>创建人 </th>
+                                <th>专题名称</th>
+                                <th>简介</th>
                                 <th>创建时间</th>
+                                <th>创建人</th>
                                 <th>状态</th>
                                 <th>操作</th>
                             </tr>
@@ -54,14 +114,13 @@
                             {volist name="list" id="vo"}
                             <tr>
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                <td>{$vo.title|msubstr=0,20}</td>
-                                <td>{$vo.type_text}</td>
-                                <td>{$vo.publisher}</td>
+                                <td><a href="{:Url('Special/index2?pid='.$vo['id'])}">{$vo.name|msubstr=0,20}</a></td>
+                                <td>{empty name="vo.summary"}无{else/}{$vo.summary|msubstr=0,20}{/empty}</td>
+                                <td>{$vo.create_time|time_format}</td>
                                 <td>{$vo->cuser->nickname}</td>
-                                <td>{$vo.create_time|time_format='Y-m-d'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>
-                                    <a href="{:Url('Special/edit?id='.$vo['id'])}">修改</a>
+                                    <a data-toggle="modal" title="编辑" href="#modal-form" onclick="editMenu({$vo.id})">编辑</a>
                                     <a href="{:Url('Special/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
@@ -70,7 +129,7 @@
                             <tfoot>
                             <tr>
                                 <td colspan="10">
-                                    <div class="page">{$_page}</div>
+                                    <div class="page"></div>
                                 </td>
                             </tr>
                             </tfoot>
@@ -81,8 +140,6 @@
         </div>
     </div>
 </div>
-<iframe id="iframe" src="" style="height: 80%;width: 392px;z-index: 99;position: absolute;top: 10%;border: 0;left: 32%;background: #fff;display: none;" scrolling="auto" seamless></iframe>
-<div class="shadow" style="display: none"></div>
 {/block}
 
 {block name="script"}
@@ -93,7 +150,164 @@
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
-    });
 
+        //上传图片
+        var plus = $('.plus');
+        var imgnum = 1;
+        plus.on('click',function(){
+            var it = $(this);
+            it.hide().next().fadeIn();
+            imgnum = 3;
+            if(!it.hasClass('plus2')){
+                plus.eq(1).fadeIn();
+                imgnum = 2
+            }
+        });
+        $(".imgfile").on("change",function(){
+            var size = ($(this)[0].files[0].size / 1024).toFixed(2);
+            var imgBox = $(this);
+            if(size <= 2048){
+                var img = $(this)[0].files[0];
+                var formData = new FormData();
+                var pic=$(this);
+                formData.append("picture",img);
+                $.ajax({
+                    type:"post",
+                    url:"{:Url('File/uploadPicture')}",
+                    data:formData,
+                    processData : false,
+                    contentType : false,
+                    success:function(msg){
+                        var msg = $.parseJSON(msg);
+                        var path = msg.data.path;
+                        if(msg['code'] == 1){
+                            imgBox.siblings(".img").val(msg.data["id"]);
+                            //显示图片缩略图
+                            pic.parent().find("img" ).attr({src:path});
+                        } else {
+                            warning({msg:msg['msg']});
+                            return;
+                        }
+                    }
+                });
+            } else {
+                warning({msg:"您选择的图片超过2mb，请重新选择"});
+                return;
+            }
+        });
+    });
+    function addMenu(){
+        $(".tt").html("新增");
+        $(".form-horizontal")[0].reset();
+        $(".form-horizontal").attr('action', '{:Url("Special/add")}');
+        //发布
+        $(".post-put").off("click").on("click",function(){
+            var it=$(this);
+            var data = {
+                front_cover:$("input[name='front_cover']").val(),
+                name:$("input[name='name']").val(),
+                summary:$("input[name='summary']").val(),
+                id:$("input[name='id']").val(),
+                status:1
+            };
+            $.ajax({
+                type:"post",
+                url:$(".form-horizontal").attr("action"),
+                data:data,
+                success:function(data){
+                    if(data.code == 1){
+                        if (data.url) {
+                            updateAlert(data.msg + ' 页面即将自动跳转~','success');
+                        }else{
+                            updateAlert(data.msg ,'success');
+                        }
+                        it.prop('disabled','true');
+                        it.prev().prop('disabled','true');
+                        setTimeout(function(){
+                            if (data.url) {
+                                location.href=data.url;
+                            } else {
+                                location.reload();
+                            }
+                            it.removeAttr('disabled');
+                            it.prev().removeAttr('disabled')
+                        },2000);
+                    } else {
+                        updateAlert(data.msg, 'error');
+                        it.attr('disabled','true');
+                        it.prev().prop('disabled','true');
+                        setTimeout(function(){
+                            it.removeAttr('disabled');
+                            it.prev().removeAttr('disabled')
+                        },2000);
+                    }
+                }
+            });
+        });
+    }
+
+    function editMenu(Id) {
+        $.ajax({
+            type: "POST",
+            url: "{:Url('Special/getDetail')}",
+            data: {id: Id},
+            dataType: "json",
+            success: function (data) {
+                data = data.data;
+                $(".tt").html("编辑");
+                $("input[name='id']").val(data.id);
+                $(".imgbox").attr('src',data.path);
+                $("input[name='front_cover']").val(data.front_cover);
+                $("input[name='name']").val(data.name);
+                $("input[name='summary']").val(data.summary);
+                $(".form-horizontal").attr('action', '{:Url("Special/edit")}');
+
+                //发布
+                $(".post-put").off("click").on("click", function () {
+                    var it = $(this);
+                    var data = {
+                        front_cover:$("input[name='front_cover']").val(),
+                        name:$("input[name='name']").val(),
+                        summary:$("input[name='summary']").val(),
+                        id:$("input[name='id']").val(),
+                        status: 1
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: $(".form-horizontal").attr("action"),
+                        data: data,
+                        success: function (data) {
+                            if (data.code == 1) {
+                                if (data.url) {
+                                    updateAlert(data.msg + ' 页面即将自动跳转~', 'success');
+                                } else {
+                                    updateAlert(data.msg, 'success');
+                                }
+                                it.prop('disabled', 'true');
+                                it.prev().prop('disabled', 'true');
+                                setTimeout(function () {
+                                    if (data.url) {
+                                        location.href = data.url;
+                                    } else {
+                                        location.reload();
+                                    }
+                                    it.removeAttr('disabled');
+                                    it.prev().removeAttr('disabled')
+                                }, 2000);
+                            } else {
+                                updateAlert(data.msg, 'error');
+                                it.attr('disabled', 'true');
+                                it.prev().prop('disabled', 'true');
+                                setTimeout(function () {
+                                    it.removeAttr('disabled');
+                                    it.prev().removeAttr('disabled')
+                                }, 2000);
+                            }
+                        }
+                    });
+                });
+            }
+        })
+    }
 </script>
 {/block}

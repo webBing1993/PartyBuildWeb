@@ -9,13 +9,13 @@
 {block name="page-header"}
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
-        <h2>新闻聚焦</h2>
+        <h2>红色专题</h2>
         <ol class="breadcrumb">
             <li>
-                <a href="{:Url('News/index')}">一级新闻</a>
+                <a href="{:Url('Special/index')}">专题列表</a>
             </li>
             <li class="active">
-                <strong><a href="{:Url('News/index2')}">二级新闻</a></strong>
+                <strong><a href="{:Url('Special/index2')}">文章列表</a></strong>
             </li>
         </ol>
     </div>
@@ -30,10 +30,10 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>详情列表</h5>
+                    <h5>文章列表</h5>
                     <div class="ibox-tools">
-                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('News/add?pid='.$pid)}">新增</a>
-                        <a href="{:Url('News/index')}" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> 返回</a>
+                        <a data-toggle="modal" class="btn btn-sm btn-primary" href="{:Url('Special/dadd?pid='.$pid)}">新增文章</a>
+                        <a href="{:Url('Special/index')}" class="btn btn-white btn-sm"><i class="fa fa-reply"></i> 返回</a>
                     </div>
                 </div>
                 <div class="ibox-content">
@@ -62,8 +62,8 @@
                                 <td>{$vo.create_time|time_format='Y-m-d'}</td>
                                 <td>{$vo.status_text}</td>
                                 <td>
-                                    <a href="{:Url('News/edit?id='.$vo['id'])}">修改</a>
-                                    <a href="{:Url('News/del?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
+                                    <a href="{:Url('Special/dedit?id='.$vo['id'])}">修改</a>
+                                    <a href="{:Url('Special/ddel?id='.$vo['id'])}" class="confirm ajax-del">删除</a>
                                 </td>
                             </tr>
                             {/volist}
@@ -89,7 +89,7 @@
 {block name="script"}
 <script src="/admin/js/plugins/iCheck/icheck.min.js"></script>
 <script>
-    highlight_subnav("{:Url('News/index')}");
+    highlight_subnav("{:Url('Special/index')}");
     $(document).ready(function(){
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',

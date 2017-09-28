@@ -36,13 +36,13 @@
                                 <div class="modal-content">
                                     <div class="modal-body">
                                         <form class="form-horizontal" method="post" action="{:Url('Today/add')}">
-                                            <p class="tt">添加时间</p>
+                                            <p class="tt">新增</p>
                                             <div class="form-group">
                                                 <div class="col-lg-2 col-sm-2 no-padding text-right" style="text-align:center;line-height:30px;">
-                                                    <label>内容:</label>
+                                                    <label>事件名称:</label>
                                                 </div>
                                                 <div class="col-lg-10 col-sm-10" style="padding-right:35px;">
-                                                    <input type="text" placeholder="请输入事件内容" class="form-control account" name="title" value="">
+                                                    <input type="text" placeholder="请输入事件名称" class="form-control account" name="title" value="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -120,7 +120,6 @@
             var it=$(this);
             var data = {
                 title:$("input[name='title']").val(),
-                course_id:$("input[name='course_id']").val(),
                 id:$("input[name='id']").val(),
                 status:1
             };
@@ -178,7 +177,6 @@
                     var it = $(this);
                     var data = {
                         title: $("input[name='title']").val(),
-                        course_id: $("input[name='course_id']").val(),
                         id: $("input[name='id']").val(),
                         status: 1
                     };
