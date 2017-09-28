@@ -14,7 +14,8 @@ $(function () {
         $(this).addClass("red").siblings("li").removeClass("red");
         $(".content_text").removeClass("hidden").hide();
         $(".content_text").eq($(this).index()).show();
-        var html = $(this).children("a").children('span')[1].innerHTML;
+        var html = $(this).children("a").children('span')[0].innerHTML;
+        $(".textTitle").html(html);
         $(".content_title a:last-of-type").html(html);
         if (html == "每日一课") {
             $(".page_div").hide();
