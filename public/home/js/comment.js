@@ -24,6 +24,9 @@ $(function () {
     $(".nav-header li").bind("mouseover", function () {
         $(".nav-header li a").removeClass("active");
         $(this).children("a").addClass("active")
+    }).bind("click", function () {
+        $(".nav-header li a").removeClass("active");
+        $(this).children("a").addClass("active")
     });
 
     // left_tab

@@ -6,7 +6,7 @@
 
 {block name="body"}
 {include file="public/header"}
-<div class="nav">
+<!--<div class="nav">
     <div class="nav-header clearfix container">
         <ul>
             <li class="fl"><a href="/home/index/index.html" class="active">首页</a></li>
@@ -19,7 +19,7 @@
             <li class="fl"><a href="/home/interest/index.html">趣味视频</a></li>
         </ul>
     </div>
-</div>
+</div>-->
 <div class="container">
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 nowNew">
         <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 nowLeft">
@@ -347,6 +347,7 @@
 <script>
     $(function () {
         // nav
+        $(".nav-header li:first-of-type a").addClass("active");
         $(".nav-header li").bind("mouseleave", function () {
             $(".nav-header li a").removeClass("active");
             $(".nav-header li:first-of-type a").addClass("active")
