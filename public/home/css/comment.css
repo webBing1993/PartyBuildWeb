@@ -29,6 +29,9 @@
     line-height: 50px;
     background-color: #d43d3d;
 }
+.nav-header {
+    padding: 0!important;
+}
 .nav-header li {
     width: 12.5%;
 }
