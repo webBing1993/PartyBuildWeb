@@ -25,6 +25,13 @@ class Learn extends Controller
     /*
      * 答题
      * */
+    public function answer()
+    {
+
+        return $this->fetch();
+    }
+
+
     public function goon()
     {
 
