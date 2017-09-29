@@ -8,9 +8,9 @@
 namespace app\home\controller;
 use think\Controller;
 /**
- * 两学一做
+ * 趣味视频
  */
-class Interest extends Controller
+class Video extends Controller
 {
     /**
      * 首页

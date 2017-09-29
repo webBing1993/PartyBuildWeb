@@ -10,7 +10,7 @@ use think\Controller;
 /**
  * 先锋引领
  */
-class Pioneer extends Controller
+class Redcollection extends Controller
 {
     /**
      * 首页

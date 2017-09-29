@@ -9,6 +9,12 @@
 namespace app\admin\controller;
 
 use app\admin\model\News as NewsModel;
+
+/**
+ * Class News
+ * @package app\admin\controller
+ * 新闻聚焦
+ */
 class News extends Admin {
     /**
      * 主页列表

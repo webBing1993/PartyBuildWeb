@@ -9,6 +9,12 @@
 namespace app\admin\controller;
 
 use app\admin\model\Lead as LeadModel;
+
+/**
+ * Class Lead
+ * @package app\admin\controller
+ * 党员风采
+ */
 class Lead extends Admin {
     /**
      * 主页列表

@@ -3,14 +3,15 @@
  * Created by PhpStorm.
  * User: Administrator
  * Date: 2017/9/25
- * Time: 18:17
+ * Time: 17:59
  */
 namespace app\home\controller;
 use think\Controller;
+
 /**
- * 先锋引领
+ * 红色专题
  */
-class Enshrined extends Controller
+class Special extends Controller
 {
     /**
      * 首页
