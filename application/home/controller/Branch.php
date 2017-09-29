@@ -10,7 +10,7 @@ use think\Controller;
 /**
  * 支部建设
  */
-class Build extends Controller
+class Branch extends Controller
 {
     /**
      * 首页
