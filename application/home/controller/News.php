@@ -29,4 +29,13 @@ class News extends Controller {
         return $this->fetch();
     }
 
+
+    /*
+     *  总纲
+     * */
+    public function general(){
+
+        return $this->fetch();
+    }
+
 }

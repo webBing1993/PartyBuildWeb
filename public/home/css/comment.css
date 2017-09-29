@@ -244,7 +244,14 @@
 
 /*评论*/
 .comment {
-    margin-top: 50px;
+    margin-top: 15px;
+}
+.sum {
+    margin-bottom: 15px;
+    background-color: #d9d9d9;
+    line-height: 25px;
+    font-size: 12px;
+    padding-left: 5px;
 }
 .commentList {
     padding: 15px 5px;
@@ -310,8 +317,13 @@
     }
 }
 .comment_text .comment_content {
-    font-size: 17px;
+    font-size: 16px;
     color: #666666;
+}
+.comment_text .time {
+    font-size: 14px;
+    color: #999;
+    margin-top: 6px;
 }
 .comment_img img {
     width: 100%;
@@ -336,8 +348,8 @@
     height: 40px;
     color: #ffffff;
     font-size: 17px;
-    margin-left: -4px;
-    margin-top: -4px;
+    margin-left: -6px;
+    margin-top: -6px;
 }
 
 @media screen and (max-width: 1200px) {

@@ -18,8 +18,8 @@
             </div>
             <div class="tab_img">
                 <ul>
-                    <li><a href="#"><img src="/home/images/zg.png" alt=""></a></li>
-                    <li><a href="#"><img src="/home/images/dt.png" alt=""></a></li>
+                    <li><a href="/home/news/general.html"><img src="/home/images/zg.png" alt=""></a></li>
+                    <li><a href="/home/learn/answer.html"><img src="/home/images/dt.png" alt=""></a></li>
                     <li><a href="#"><img src="/home/images/dt.png" alt=""></a></li>
                 </ul>
             </div>
@@ -52,6 +52,7 @@
             </div>
             <!--评论-->
             <div class="comment">
+                <div class="sum">共<span>5</span>条评论</div>
                 <div class="comment_lists">
                     <div class="commentList clearfix">
                         <div class="comment_img fl"><img src="/home/images/grzx.png" alt=""></div>
@@ -79,74 +80,56 @@
         $(this).toggleClass("good_");
         $(this).css("animation","good_ 1s ease");
     });
-    function send(e,type,id) {
-        swal({
-            title: '',
-            text: '请输入您的评论！',
-            type: 'input',
-            showCancelButton: true,
-            closeOnConfirm: false,
-            cancelButtonText: "取消",
-            confirmButtonText: "确定",
-            animation: "slider-form-top"
-
-        }, function(inputValue) {
-            if (inputValue === false) return false;
-
-            if (inputValue.length < 15) {
-                swal.showInputError("评论字数不能少于15个字！");
-                return false
-            }
-
-            if (inputValue.length > 300) {
-                swal.showInputError("您输入的字超过了300！");
-                return false
-            }
+    var send = function(e,type,id){
+        var it = $(".bottom input");
+        if(it.val() != '' && it.val().length > 4){
             $.ajax({
-                type: "post",
-                url: "{:Url('Base/comment')}",
-                data: {
-                    type: type,
-                    aid: id,
-                    content: inputValue
+                type:"post",
+//                url:"{:Url('Base/comment')}",
+                data:{
+                    type:type,
+                    aid:id,
+                    content:it.val()
                 },
-                beforeSend: function () {
+                beforeSend:function(){
                     swal({
                         title: ' ',
                         text: '评论提交中...',
-                        showConfirmButton: false
+                        showConfirmButton:false
                     });
                 },
-                success: function (msg) {
+                success:function(msg){
                     var data = msg.data;
-                    var userid = "'" + data.create_user + "'";
+                    var userid = "'"+data.create_user+"'";
                     var html = '';
-                    html += '<div class="commentList clearfix">' +
-                            '<div class="fl comment_img">' +
-                            '<img src="' + data.header + '" alt="用户头像" class="user">' +
-                            '</div>' +
-                            '<div class="fl comment_text">' +
-                            '<p class="comment_name">' + data.nickname + '</p>' +
-                            '<p class="comment_content" >' + inputValue + '</p>' +
-                            '<p class="time">' + data.time + '</p>' +
-                            '</div>' +
-                            '<div class="fr isgood good" onclick="isGood(this,0,' + data.id + ')">' + data.likes + '</div>' +
+                    html += '<div class="commentList clearfix">'+
+                            '<div class="comment_img fl">'+
+                            '<img src="'+data.header+'" alt="用户头像">'+
+                            '</div>'+
+                            '<div class="comment_text fl">'+
+                            '<div class="comment_name">'+data.nickname+'</div>'+
+                            '<div class="comment_content" >'+it.val()+'</div>'+
+                            '<div class="time">'+data.time+'</div>'+
+                            '</div>'+
+                            '<div class="isgood fr good" onclick="isGood(this,0,'+data.id+')">'+data.likes+'</div>'+
                             '</div>';
-                    $('.lists').prepend(html);
-                    inputValue = "";
-                    var sum = $('.sum span');
-                    sum.text(parseInt(sum.text()) + 1);
+                    $('.comment_lists' ).append(html);
+                    it.val('');
+                    var sum = $('.sum span' );
+                    sum.text(parseInt(sum.text())+1);
                     swal({
                         title: ' ',
                         text: '评论成功',
                         type: 'success',
-                        confirmButtonText: '确定',
-                        timer: 3000
+                        confirmButtonText:'确定',
+                        timer:3000
                     });
                 }
             });
-        })
-    }
+        }else{
+            wAlert('您的评论少于5个字');
+        }
+    };
 
     // nav
     $(".nav-header li:nth-of-type(2) a").addClass("active");
