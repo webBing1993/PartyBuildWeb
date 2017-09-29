@@ -8,7 +8,7 @@
 namespace app\home\controller;
 use think\Controller;
 /**
- * 先锋引领
+ * 红色珍藏
  */
 class Redcollection extends Controller
 {
