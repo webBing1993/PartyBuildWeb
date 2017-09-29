@@ -14,15 +14,13 @@ use think\Validate;
 class Lead extends Validate {
     protected $rule = [
         'front_cover' => 'require',
-        'title' => 'require',
+        'name' => 'require',
         'content' => 'require',
-        'publisher' => 'require',
     ];
 
     protected $message = [
-        'front_cover' => '封面图片不能为空',
-        'title' =>  '标题不能为空',
+        'front_cover' => '照片不能为空',
+        'name' =>  '标题不能为空',
         'content'  =>  '内容不能为空',
-        'publisher' => '发布者不能为空',
     ];
 }

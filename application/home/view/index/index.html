@@ -6,20 +6,6 @@
 
 {block name="body"}
 {include file="public/header"}
-<!--<div class="nav">
-    <div class="nav-header clearfix container">
-        <ul>
-            <li class="fl"><a href="/home/index/index.html" class="active">首页</a></li>
-            <li class="fl"><a href="/home/news/index.html">新闻聚焦</a></li>
-            <li class="fl"><a href="/home/topic/index.html">红色专题</a></li>
-            <li class="fl"><a href="/home/learn/index.html">两学一做</a></li>
-            <li class="fl"><a href="/home/build/index.html">支部建设</a></li>
-            <li class="fl"><a href="/home/pioneer/index.html">党员风采</a></li>
-            <li class="fl"><a href="/home/enshrined/index.html">红色珍藏</a></li>
-            <li class="fl"><a href="/home/interest/index.html">趣味视频</a></li>
-        </ul>
-    </div>
-</div>-->
 <div class="container">
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 nowNew">
         <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 nowLeft">
@@ -32,8 +18,7 @@
             </div>
             <div class="now_lists">
                 <ul>
-                    <li><a href="#">中共中央发出《关于共产党参加政府问题的决定草案》</a></li>
-                    <li><a href="#">中共中央发出《关于共产党参加政府问题的决定草案》</a></li>
+                    <li><a href="#">{$today.title}</a></li>
                 </ul>
             </div>
         </div>
@@ -41,45 +26,18 @@
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 new">
         <div class="col-md-7 col-sm-7 col-lg-7 col-xs-7 newLeft">
             <ul class="list1">
+                {volist name="news" id="n" key="k"}
                 <li class="clearfix">
-                    <span class="yw">要闻</span><a href="/home/news/index.html">中办国办印发《意见》深化改革</a>
+                    {eq name="k" value="1"}<span class="yw">要闻</span>{/eq}<a href="{:Url('News/detail?id='.$n['id'])}">{$n.title}</a>
                     <ul>
+                        {volist name="n.son" id="s"}
                         <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
+                            <a href="{:Url('News/detail?id='.$s['id'])}">{$s.title}</a>
                         </li>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
+                        {/volist}
                     </ul>
                 </li>
-                <li class="clearfix">
-                    <a href="/home/news/index.html">中办国办印发《意见》深化改革</a>
-                    <ul>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="clearfix">
-                    <a href="/home/news/index.html">中办国办印发《意见》深化改革</a>
-                    <ul>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
-                        <li class="fl">
-                            <a href="/home/news/detail.html">中直机关大力加强党建成果集锦：中央统战部</a>
-                        </li>
-                    </ul>
-                </li>
+                {/volist}
             </ul>
         </div>
         <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 newRight">
@@ -90,15 +48,15 @@
             <div class="build_content">
                 <div class="build_img clearfix">
                     <ul>
-                        <li class="fl"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></li>
-                        <li class="fl"><a href="#"><img src="/home/images/b2.jpg" alt=""></a></li>
+                        <li class="fl"><img src="/home/images/b1.jpg" alt=""></li>
+                        <li class="fl"><img src="/home/images/b2.jpg" alt=""></li>
                     </ul>
                 </div>
                 <div class="build_text">
                     <ul>
-                        <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
-                        <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
-                        <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                        {volist name="branch" id="bra"}
+                        <li><a href="{:Url('Branch/detail?id='.$bra['id'])}">{$bra.title}</a></li>
+                        {/volist}
                     </ul>
                 </div>
             </div>
@@ -136,39 +94,26 @@
             <div class="learn">
                 <div class="learn_title clearfix">
                     <span class="pull-left">两学一做</span>
-                    <span class="pull-right"><a href="/home/learn/index.html">获得更多</a></span>
+                    <span class="pull-right"><a href="{:Url('Learn/index')}">获得更多</a></span>
                 </div>
                 <div class="learn_content">
                     <div>
                         <ul>
+                            {volist name="learn" id="le"}
                             <li class="clearfix">
                                 <div class="fl learnLeft">
-                                    <img src="/home/images/b1.jpg" alt="">
+                                    <img src="{$le.front_cover|get_cover='path'}" alt="">
                                 </div>
                                 <div class="fr learnRight">
-                                    <div class="learnTitle"><a href="#">中办国印发《意见》深化教育改革</a></div>
+                                    <div class="learnTitle"><a href="{:Url('Learn/detail?id='.$le['id'])}">{$le.title}</a></div>
                                     <div class="learnContent">
                                         <ul>
-                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
-                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
+                                            <li><a href="#">{$le.content}</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
-                            <li class="clearfix">
-                                <div class="fl learnLeft">
-                                    <img src="/home/images/b1.jpg" alt="">
-                                </div>
-                                <div class="fr learnRight">
-                                    <div class="learnTitle"><a href="#">中办国印发《意见》深化教育改革</a></div>
-                                    <div class="learnContent">
-                                        <ul>
-                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
-                                            <li><a href="#">中直机关大力加强党建成果集锦：中央统战部</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
+                            {/volist}
                         </ul>
                     </div>
                 </div>
@@ -277,30 +222,18 @@
                 <div class="pioneer_title">党员风采</div>
                 <div class="pioneer_content">
                     <ul>
+                        {volist name="lead" id="leader"}
                         <li>
                             <div class="pioneer_img">
-                                <a href="#"><img src="/home/images/dy1.png" alt=""></a>
+                                <a href="{:Url('Lead/detail?id='.$leader['id'])}"><img src="{$leader.front_cover|get_cover='path'}" alt=""></a>
                             </div>
-                            <div class="pioneer_name">李建明</div>
-                            <div class="pioneer_text"><a href="#">2015年优秀共产党员</a></div>
+                            <div class="pioneer_name">{$leader.name}</div>
+                            <div class="pioneer_text"><a href="#">{$leader.summary}</a></div>
                         </li>
-                        <li>
-                            <div class="pioneer_img">
-                                <a href="#"><img src="/home/images/dy2.png" alt=""></a>
-                            </div>
-                            <div class="pioneer_name">杨泽中</div>
-                            <div class="pioneer_text"><a href="#">2004年优秀共产党员</a></div>
-                        </li>
-                        <li>
-                            <div class="pioneer_img">
-                                <a href="#"><img src="/home/images/dy3.png" alt=""></a>
-                            </div>
-                            <div class="pioneer_name">姚家扬</div>
-                            <div class="pioneer_text"><a href="#">2010年优秀共产党员</a></div>
-                        </li>
+                        {/volist}
                     </ul>
                     <div class="pioneer_btn">
-                        <a href="/home/pioneer/index.html">获得更多</a>
+                        <a href="{:Url('Lead/index')}">获得更多</a>
                     </div>
                 </div>
             </div>
