@@ -43,7 +43,7 @@
         <div class="col-md-5 col-sm-5 col-lg-5 col-xs-5 newRight">
             <div class="build_title clearfix">
                 <span class="pull-left">支部建设</span>
-                <span class="pull-right"><a href="/home/build/index.html">获得更多</a></span>
+                <span class="pull-right"><a href="{:Url('Branch/index')}">获得更多</a></span>
             </div>
             <div class="build_content">
                 <div class="build_img clearfix">
@@ -108,7 +108,7 @@
                                     <div class="learnTitle"><a href="{:Url('Learn/detail?id='.$le['id'])}">{$le.title}</a></div>
                                     <div class="learnContent">
                                         <ul>
-                                            <li><a href="#">{$le.content}</a></li>
+                                            <li><a href="#">{$le.summary}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -122,39 +122,23 @@
                 <div class="movie col-md-4 col-sm-4 col-lg-4 col-xs-4">
                     <div class="movie_title clearfix">
                         <span class="pull-left">红色电影</span>
-                        <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+                        <span class="pull-right"><a href="{:Url('Redcollection/index?tag=1')}">获得更多</a></span>
                     </div>
                     <div class="movie_content clearfix">
                         <div class="imgs pull-left">
                             <ul>
+                                {volist name="film" id="f"}
                                 <li>
-                                    <a href="#"><img src="/home/images/b1.jpg" alt="小兵张嘎"></a>
+                                    <a href="{:Url('Redcollection/detail?id='.$f['id'])}"><img src="{$f.front_cover|get_cover='path'}" alt="{$f.title}"></a>
                                 </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b2.jpg" alt="地道战"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b1.jpg" alt="半夜鸡鸣"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b2.jpg" alt="小兵张嘎"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b1.jpg" alt="地道战"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b2.jpg" alt="半夜鸡鸣"></a>
-                                </li>
+                                {/volist}
                             </ul>
                         </div>
                         <div class="name pull-right">
                             <ul>
-                                <li><a href="#">《小兵张嘎》</a></li>
-                                <li><a href="#">《地道战》</a></li>
-                                <li><a href="#">《半夜鸡鸣》</a></li>
-                                <li><a href="#">《小兵张嘎》</a></li>
-                                <li><a href="#">《地道战》</a></li>
-                                <li><a href="#">《半夜鸡鸣》</a></li>
+                                {volist name="film" id="f"}
+                                <li> <a href="{:Url('Redcollection/detail?id='.$f['id'])}">{$f.title}</a></li>
+                                {/volist}
                             </ul>
                         </div>
                     </div>
@@ -162,39 +146,23 @@
                 <div class="letter col-md-4 col-sm-4 col-lg-4 col-xs-4">
                     <div class="letter_title clearfix">
                         <span class="pull-left">红色文学</span>
-                        <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+                        <span class="pull-right"><a href="{:Url('Redcollection/index?tag=2')}">获得更多</a></span>
                     </div>
                     <div class="letter_content clearfix">
                         <div class="imgs pull-left">
                             <ul>
+                                {volist name="book" id="b"}
                                 <li>
-                                    <a href="#"><img src="/home/images/b1.jpg" alt="小兵张嘎"></a>
+                                    <a href="{:Url('Redcollection/detail?id='.$b['id'])}"><img src="{$b.front_cover|get_cover='path'}" alt="{$b.title}"></a>
                                 </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b2.jpg" alt="地道战"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b1.jpg" alt="半夜鸡鸣"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b2.jpg" alt="小兵张嘎"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b1.jpg" alt="地道战"></a>
-                                </li>
-                                <li>
-                                    <a href="#"><img src="/home/images/b2.jpg" alt="半夜鸡鸣"></a>
-                                </li>
+                                {/volist}
                             </ul>
                         </div>
                         <div class="name pull-right">
                             <ul>
-                                <li><a href="#">《小兵张嘎》</a></li>
-                                <li><a href="#">《地道战》</a></li>
-                                <li><a href="#">《半夜鸡鸣》</a></li>
-                                <li><a href="#">《小兵张嘎》</a></li>
-                                <li><a href="#">《地道战》</a></li>
-                                <li><a href="#">《半夜鸡鸣》</a></li>
+                                {volist name="book" id="b"}
+                                <li> <a href="{:Url('Redcollection/detail?id='.$b['id'])}">{$b.title}</a></li>
+                                {/volist}
                             </ul>
                         </div>
                     </div>
@@ -202,16 +170,13 @@
                 <div class="song col-md-4 col-sm-4 col-lg-4 col-xs-4">
                     <div class="song_title clearfix">
                         <span class="pull-left">红色歌曲</span>
-                        <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+                        <span class="pull-right"><a href="{:Url('Redcollection/index?tag=3')}">获得更多</a></span>
                     </div>
                     <div class="song_content clearfix">
                         <ul>
-                            <li><a href="#">《小兵张嘎》</a></li>
-                            <li><a href="#">《地道战》</a></li>
-                            <li><a href="#">《半夜鸡鸣》</a></li>
-                            <li><a href="#">《小兵张嘎》</a></li>
-                            <li><a href="#">《地道战》</a></li>
-                            <li><a href="#">《半夜鸡鸣》</a></li>
+                            {volist name="music" id="m"}
+                            <li> <a href="{:Url('Redcollection/detail?id='.$m['id'])}">{$m.title}</a></li>
+                            {/volist}
                         </ul>
                     </div>
                 </div>
@@ -242,34 +207,18 @@
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 interest">
         <div class="interest_title clearfix">
             <span class="pull-left">趣味视频</span>
-            <span class="pull-right"><a href="/home/topic/index.html">获得更多</a></span>
+            <span class="pull-right"><a href="{:Url('Video/index')}">获得更多</a></span>
         </div>
         <div class="interest_content clearfix">
             <ul>
+                {volist name="video" id="vi"}
                 <li class="fl">
-                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
+                    <div class="interest_img"><a href="#"><img src="{$vi.front_cover|get_cover='path'}" alt=""></a></div>
                     <div class="interest_text">
-                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
+                        <a href="{:Url('Video/detail?id='.$vi['id'])}">{$vi.title}</a>
                     </div>
                 </li>
-                <li class="fl">
-                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
-                    <div class="interest_text">
-                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
-                    </div>
-                </li>
-                <li class="fl">
-                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
-                    <div class="interest_text">
-                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
-                    </div>
-                </li>
-                <li class="fl">
-                    <div class="interest_img"><a href="#"><img src="/home/images/b1.jpg" alt=""></a></div>
-                    <div class="interest_text">
-                        <a href="#">黑龙江互联网共建共融把城市基层党建推向深入</a>
-                    </div>
-                </li>
+                {/volist}
             </ul>
         </div>
     </div>

@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Lxx<779219930@qq.com>
- * Date: 2017/9/29
- * Time: 15:03
+ * Date: 2017/9/30
+ * Time: 9:15
  */
 
 namespace app\home\model;
@@ -12,11 +12,11 @@ namespace app\home\model;
 use think\Model;
 
 /**
- * Class Video
+ * Class Redfilm
  * @package app\home\model
- * 趣味视频
+ * 红色电影
  */
-class Video extends Model {
+class Redfilm extends Model {
     /**
      * 获取主页列表
      */
@@ -24,8 +24,8 @@ class Video extends Model {
         $map = array(
             'status' => 1
         );
-        $order = array('create_time desc');
-        $res = $this->where($map)->order($order)->limit(4)->select();
+        $order = array('recommend desc,create_time desc');
+        $res = $this->where($map)->order($order)->limit(6)->select();
         return $res;
     }
 }

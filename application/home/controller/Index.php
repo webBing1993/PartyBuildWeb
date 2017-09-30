@@ -11,8 +11,12 @@ use app\home\model\Branch;
 use app\home\model\Lead;
 use app\home\model\Learn;
 use app\home\model\News;
+use app\home\model\Redbook;
+use app\home\model\Redfilm;
+use app\home\model\Redmusic;
 use app\home\model\Special;
 use app\home\model\Today;
+use app\home\model\Video;
 use think\Controller;
 
 
@@ -50,6 +54,24 @@ class Index extends Controller {
         $leadModel = new Lead();
         $lead = $leadModel->getIndexList();
         $this->assign('lead',$lead);
+        
+        //红色电影
+        $filmModel = new Redfilm();
+        $film = $filmModel->getIndexList();
+        $this->assign('film',$film);
+        //红色书籍
+        $bookModel = new Redbook();
+        $book = $bookModel->getIndexList();
+        $this->assign('book',$book);
+        //红色音乐
+        $musicModel = new Redmusic();
+        $music = $musicModel->getIndexList();
+        $this->assign('music',$music);
+        
+        //趣味视频
+        $videoModel = new Video();
+        $video = $videoModel->getIndexList();
+        $this->assign('video',$video);
         return $this->fetch();
     }
 }
