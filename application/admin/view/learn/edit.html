@@ -195,6 +195,21 @@
             }
         });
 
+        //视频预览
+        $('.preview' ).on('click',function(){
+            $('.video' ).remove();
+            var path = $("input[name='net_path']").val();
+            var html =
+                    '<iframe height=250 width=480 src="'+path+'?autoPlay=true" frameborder=0 allowfullscreen class="video"></iframe>';
+            $(this).parents('.input-group').after(html);
+//            http://player.youku.com/embed/XMTQ5MTU4MzU1Mg==
+        });
+        //视频清空
+        $('.remove' ).on('click',function(){
+            $("input[name='net_path']").val('');
+            $('.video' ).remove();
+        });
+
         //上传图片
         var plus = $('.plus');
         var imgnum = 1;
