@@ -66,21 +66,17 @@
         <div id="myCarousel" class="carousel slide">
             <!-- 轮播（Carousel）指标 -->
             <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
+                {volist name="special" id="spe" key="k"}
+                <li data-target="#myCarousel" data-slide-to="{$k-1}" ></li>
+                {/volist}
             </ol>
             <!-- 轮播（Carousel）项目 -->
             <div class="carousel-inner">
-                <div class="item active">
-                    <img src="/home/images/slide1.png" alt="First slide">
-                </div>
+                {volist name="special" id="spe"}
                 <div class="item">
-                    <img src="/home/images/slide2.png" alt="Second slide">
+                    <a href="#"><img src="{$spe.front_cover|get_cover='path'}" alt="{$spe.title}"></a>
                 </div>
-                <div class="item">
-                    <img src="/home/images/slide3.png" alt="Third slide">
-                </div>
+                {/volist}
             </div>
             <!-- 轮播（Carousel）导航 -->
             <a class="carousel-control left" href="#myCarousel"
@@ -105,12 +101,14 @@
                                     <img src="{$le.front_cover|get_cover='path'}" alt="">
                                 </div>
                                 <div class="fr learnRight">
-                                    <div class="learnTitle"><a href="{:Url('Learn/detail?id='.$le['id'])}">{$le.title}</a></div>
-                                    <div class="learnContent">
-                                        <ul>
-                                            <li><a href="#">{$le.summary}</a></li>
-                                        </ul>
-                                    </div>
+                                    <a href="{:Url('Learn/detail?id='.$le['id'])}">
+                                        <div class="learnTitle">{$le.title}</div>
+                                        <div class="learnContent">
+                                            <ul>
+                                                <li>{$le.summary}</li>
+                                            </ul>
+                                        </div>
+                                    </a>
                                 </div>
                             </li>
                             {/volist}
@@ -189,11 +187,13 @@
                     <ul>
                         {volist name="lead" id="leader"}
                         <li>
-                            <div class="pioneer_img">
-                                <a href="{:Url('Lead/detail?id='.$leader['id'])}"><img src="{$leader.front_cover|get_cover='path'}" alt=""></a>
-                            </div>
-                            <div class="pioneer_name">{$leader.name}</div>
-                            <div class="pioneer_text"><a href="#">{$leader.summary}</a></div>
+                            <a href="{:Url('Lead/detail?id='.$leader['id'])}">
+                                <div class="pioneer_img">
+                                    <img src="{$leader.front_cover|get_cover='path'}" alt="">
+                                </div>
+                                <div class="pioneer_name">{$leader.name}</div>
+                                <div class="pioneer_text"><p>{$leader.summary}</p></div>
+                            </a>
                         </li>
                         {/volist}
                     </ul>
@@ -213,10 +213,12 @@
             <ul>
                 {volist name="video" id="vi"}
                 <li class="fl">
-                    <div class="interest_img"><a href="#"><img src="{$vi.front_cover|get_cover='path'}" alt=""></a></div>
-                    <div class="interest_text">
-                        <a href="{:Url('Video/detail?id='.$vi['id'])}">{$vi.title}</a>
-                    </div>
+                    <a href="{:Url('Video/detail?id='.$vi['id'])}">
+                        <div class="interest_img"><img src="{$vi.front_cover|get_cover='path'}" alt=""></div>
+                        <div class="interest_text">
+                            {$vi.title}
+                        </div>
+                    </a>
                 </li>
                 {/volist}
             </ul>
@@ -236,6 +238,8 @@
         });
 
         // 自动轮播
+        $(".carousel-inner .item:first-of-type").addClass("active");
+        $(".carousel-indicators li:first-of-type").addClass("active");
         $('#myCarousel').on("mouseover", function () {
             $(".carousel-control").show();
         }).on("mouseleave", function () {

@@ -21,9 +21,9 @@
     overflow: hidden;
 }
 .nowNew .nowRight .now_lists {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    /*display: -webkit-box;*/
+    /*-webkit-box-orient: vertical;*/
+    /*-webkit-line-clamp: 3;*/
     overflow: hidden;
     height: 54px;
 }
@@ -40,7 +40,6 @@
 }
 .nowNew .now_lists a:hover {
     color: #1755cc;
-    text-decoration: underline;
 }
 /*new*/
 .new {
@@ -66,11 +65,17 @@
     padding: 3px 8px;
     margin-right: 20px;
     color: #fff;
+    display: inline-block;
 }
 .newLeft .list1>li>a {
     color: #000;
     font-size: 28px;
     margin-top: 1px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 87%;
+    display: inline-block;
 }
 .newLeft .list1>li ul {
     margin-top: 5px;
@@ -115,7 +120,7 @@
     padding: 15px 10px;
 }
 .build_img li {
-    width: 48.6%;
+    width: 48.2%;
     height: 122px;
     margin-right: 10px;
 }
@@ -142,7 +147,6 @@
 }
 .build_text li a:hover {
     color: #1755cc;
-    text-decoration: underline;
 }
 /*slide*/
 .sliders {
@@ -235,6 +239,8 @@
 }
 .learnRight {
     width: 62%;
+    position: relative;
+    height: 159px;
 }
 .learnLeft img {
     display: inline-block;
@@ -251,6 +257,14 @@
 }
 .learnRight a {
     color: #333;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.learnContent {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 .learnContent li {
     line-height: 26px;
@@ -330,6 +344,9 @@
 .name li a,.song_content li a {
     color: #333;
     font-size: 15px;
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
 }
 .name li a:hover,.song_content li a:hover {
     color: #1755cc;
@@ -339,6 +356,7 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+    height: 236px;
 }
 .song_content li {
     line-height: 26px;
@@ -369,17 +387,29 @@
     width: 100%;
     height: 100%;
 }
-.pioneer_name,.pioneer_text a {
+.pioneer_name,.pioneer_text {
     display: block;
     text-align: center;
     font-size: 15px;
     color: #333;
 }
+.pioneer_content a:hover .pioneer_name,
+.pioneer_content a:hover .pioneer_text {
+    color: #1755cc;
+}
 .pioneer_name {
     margin-top: 5px;
+    color: #333;
 }
 .pioneer_text {
+    text-align: center;
+    color: #333;
     margin-bottom: 15px;
+}
+.pioneer_text p {
+    width: auto;
+    display: inline-block;
+    text-align: left;
 }
 .pioneer_btn {
     width: 100%;
@@ -419,6 +449,7 @@
     margin-top: 25px;
     height: 54px;
     overflow: hidden;
+    color: #333;
 }
 .interest_text a {
     display: inline-block;
@@ -427,7 +458,6 @@
     color: #333;
     font-size: 15px;
 }
-.interest_text a:hover {
+.interest_content li a:hover .interest_text {
     color: #1755cc;
-    text-decoration: underline;
 }
