@@ -137,7 +137,7 @@
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText sxt"><a href="javascript:;">一月份活动通知</a></span>
+                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
                                 </span>
                                 <span class="fr">
                                     [ <span class="time">2017-2-28</span> ]
@@ -175,7 +175,7 @@
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText sxt"><a href="javascript:;">一月份活动通知</a></span>
+                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
                                 </span>
                                 <span class="fr">
                                     [ <span class="time">2017-2-28</span> ]
@@ -270,6 +270,9 @@
     $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
     $(".content_text").removeClass("hidden").hide();
     $(".content_text").eq(c1-1).show();
+    var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
+    $(".textTitle").html(html);
+    $(".content_title a:last-of-type").html(html);
 
 
 </script>

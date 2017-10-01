@@ -1,33 +1,115 @@
-
-/*right_content */
-.content_text {
-    margin-top: 15px;
-    padding-left: 20px;
+.container {
+    padding: 0!important;
 }
-.content_text ul {
-    margin-bottom: 20px;
+/*轮播*/
+.carousel-inner {
+    height: 440px;
 }
-.content_text li {
-    margin-bottom: 10px;
-    font-size: 18px;
+.carousel-indicators {
+    top: 50%;
+    left: auto;
+    bottom: auto;
+    right: 20px;
+    margin-top: -120px;
+    padding: 9px;
+    border: 1px solid rgba(0,0,0,.6);
+    border-radius: 10px;
+    width: auto;
+    margin-left: 0;
 }
-.content_text .circle {
-    width: 10px;
-    height: 10px;
+.carousel-indicators li {
+    float: none;
+    display: block;
+    width: 222px;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 0;
+    background-color: rgba(0,0,0,.6);
+    text-indent: 0;
+    text-align: left;
+    padding-left: 15px;
+    border: 0;
+    color: #d6d6d6;
+    font-size: 15px;
+    margin: 0;
+}
+.carousel-indicators li.active {
+    width: 222px;
+    height: 48px;
+    background-color: #c22d2c;
+    color: #fff;
+}
+/*video_*/
+.video_ {
+    color: #fff;
+    margin-top: 26px;
+    height: 87px;
+    text-align: center;
+    line-height: 87px;
+    font-size: 15px;
+    background-color: #d6d6d6;
+}
+/*videoList*/
+.video_title {
+    margin-top: 29px;
+    margin-bottom: 15px;
+    height: 28px;
+}
+.video_title span:first-of-type {
+    font-size: 20px;
+    color: #c12c2c;
+    font-weight: 600;
+}
+.video_title span:last-of-type {
+    padding-top: 8px;
     display: inline-block;
-    border-radius: 50%;
-    background-color: #cc1100;
 }
-.content_text .contentText {
-    margin-left: 5px;
+.video_title span:last-of-type a {
+    font-size: 15px;
+    color: #333;
 }
-.content_text .contentText a {
+.video_title span:last-of-type a:hover {
+    color: #1755cc;
+}
+.lists li {
+    width: 23.3%;
+    margin-right: 22px;
+    margin-bottom: 34px;
+}
+.lists li:nth-of-type(4n) {
+    margin-right: 0;
+}
+.lists li:nth-of-type(n+5) {
+    margin-bottom: 0;
+}
+.lists li .video_img {
+    width: 100%;
+    height: 135px;
+}
+.lists li .video_img img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.lists li .video_name {
+    margin-top: 12px;
+    font-size: 15px;
+    text-align: center;
+    color: #333;
+}
+.lists li .video_time {
+    font-size: 12px;
     color: #666;
+    text-align: center;
 }
-.content_text .contentText a:hover {
-    text-decoration: underline;
-    color: #cc1100;
+.lists li a:hover .video_img {
+    box-shadow: 2px 2px 2px #d9d9d9;
 }
-.content_text .fr {
-    font-size: 16px;
+.lists li a:hover .video_name {
+    color: #1755cc;
+}
+@media screen and (min-width: 1200px) {
+    .lists li {
+        width: 23.58%;
+    }
 }

@@ -10,13 +10,6 @@
     margin-bottom: 10px;
     font-size: 18px;
 }
-.content_text .circle {
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    border-radius: 50%;
-    background-color: #cc1100;
-}
 .content_text .contentText {
     margin-left: 5px;
 }
@@ -25,7 +18,7 @@
 }
 .content_text .contentText a:hover {
     text-decoration: underline;
-    color: #cc1100;
+    color: #1755cc;
 }
 .content_text .fr {
     font-size: 16px;
@@ -34,6 +27,11 @@
     margin-right: 30px;
     width: 47%;
     margin-bottom: 30px;
+}
+@media screen and (min-width: 1200px) {
+    .movieList li {
+        width: 47.8%;
+    }
 }
 .movieList li:nth-of-type(2n) {
     margin-right: 0;
@@ -70,6 +68,11 @@
     width: 29.5%;
     margin-right: 30px;
     margin-bottom: 30px;
+}
+@media screen and (min-width: 1200px) {
+    .bookList li {
+        width: 30.4%;
+    }
 }
 .bookList li:nth-of-type(3n) {
     margin-right: 0;
