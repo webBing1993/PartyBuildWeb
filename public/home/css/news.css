@@ -1,13 +1,13 @@
 /*right_content */
 .content_text {
-    padding-left: 20px;
+    /*padding-left: 20px;*/
 }
 .content_text ul {
     margin-bottom: 20px;
 }
 .content_text li {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 16px;
 }
 .content_text .contentText {
     margin-left: 5px;

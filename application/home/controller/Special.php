@@ -24,4 +24,14 @@ class Special extends Controller
     }
 
 
+    /**
+     * 详细页
+     * @return mixed
+     */
+    public function detail()
+    {
+
+        return $this->fetch();
+    }
+
 }

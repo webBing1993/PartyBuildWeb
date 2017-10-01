@@ -51,7 +51,7 @@
 .banner {
     margin-top: 25px;
     padding: 0!important;
-    height: 120px;
+    height: 86px;
 }
 .banner img {
     width: 100%;
@@ -153,7 +153,7 @@
 .content_title a:hover {
     text-decoration: underline !important;
 }
-.buildLists,.learnLists,.learnList,.redLists {
+.buildLists,.learnLists,.learnList,.redLists,.specialList,.specialDetail,.comment,.newsDetail {
     border: 1px solid #d9d9d9;padding: 30px;
 }
 .content_text {
@@ -242,114 +242,122 @@
     color: #FFFFFF;
 }
 
+/* dz*/
+.dz {
+    text-align: center;
+}
+.dz_cl {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d24040;
+    padding: 4px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.dz_img {
+    width: 15px;
+    height: 15px;
+    margin: 0 auto;
+}
+.dz_cl p {
+    font-size: 12px;
+    color: #fff;
+}
+.dz_cn {
+    font-size: 12px;
+    color: #666;
+    margin-top: 3px;
+}
 /*评论*/
 .comment {
-    margin-top: 15px;
+    padding: 0 20px 40px;
+    margin-top: 20px;
 }
 .sum {
-    margin-bottom: 15px;
-    background-color: #d9d9d9;
-    line-height: 25px;
-    font-size: 12px;
-    padding-left: 5px;
-}
-.commentList {
-    padding: 15px 5px;
-}
-.comment_img {
-    width: 50px;
+    font-size: 15px;
+    color: #333;
     height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
+    line-height: 50px;
+    font-weight: 600;
 }
-.comment_text {
-    width: 75%;
+.commentLists .list {
+    height: 50px;
+    line-height: 50px;
+    border-top: 1px solid #ebebeb;
 }
-.comment_text .comment_name {
-    font-size: 18px;
-    margin-bottom: 5px;
-    color: #333333;
+.commentLists .list .list_img {
+    width: 20px;
+    height: 20px;
+    margin: 15px 10px 15px 5px;
 }
-.isgood {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    position: relative;
-}
-.good {
-    background: url("/home/images/good.png") no-repeat;
-    background-size: 25px 25px;
-}
-.good_ {
-    background: url("/home/images/good_.png") no-repeat;
-    background-size: 25px 25px;
-}
-@keyframes good {
-    0% {
-        left: 0;
-        top: 0;
-    }
-    100% {
-        left: 0;
-        top: 0;
-    }
-}
-@keyframes good_ {
-    0% {
-        left: 0;
-        top: 0;
-    }
-    25% {
-        left: 1px;
-        top: 1px;
-    }
-    50% {
-        left: 0;
-        top: 0;
-    }
-    75% {
-        left: -1px;
-        top: -1px;
-    }
-    100% {
-        left: 0;
-        top: 0;
-    }
-}
-.comment_text .comment_content {
-    font-size: 16px;
-    color: #666666;
-}
-.comment_text .time {
-    font-size: 14px;
-    color: #999;
-    margin-top: 6px;
-}
-.comment_img img {
+.commentLists .list .list_img img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    display: inline-block;
 }
-.bottom {
-    margin: 20px auto;
-    padding: 0 20px;
+.commentLists .list .list_name,.commentLists .list .list_content {
+    font-size: 15px;
+    color: #666;
 }
-.bottom input {
-    width: 80%;
-    height: 40px;
-    line-height: 40px;
-    border: 1px solid #d7d7d7;
-    border-radius: 10px 0 0 10px;
-    font-size: 17px;
+.commentLists .list .list_content {
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.comment_say {
+    margin-top: 10px;
+}
+.comment_say span:first-of-type {
+    display: inline-block;
+    font-size: 15px;
+    color: #333;
+    line-height: 50px;
+    font-weight: 600;
+}
+.comment_say input {
     padding-left: 10px;
+    border: 1px solid #d9d9d9;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    color: #666;
+    width: 80%;
+    margin-left: 10px;
 }
-.bottom .btn {
-    width: 80px;
-    height: 40px;
-    color: #ffffff;
-    font-size: 17px;
-    margin-left: -6px;
-    margin-top: -6px;
+@media screen and (min-width: 1200px){
+    .comment_say input {
+        width: 84.4%;
+    }
+}
+.comment_say input::-webkit-input-placeholder  {
+    color: #999;
+    font-size:14px;
+}
+.comment_say input:-moz-placeholder {
+    color: #999;
+    font-size:14px;
+}
+.comment_say input::-moz-placeholder {
+    color: #999;
+    font-size:14px;
+}
+.comment_say input:-ms-input-placeholder {
+    color: #999;
+    font-size:14px;
+}
+.comment_say .comment_btn {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    background-color: #d24040;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 10px;
+    margin-left: -4px;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1200px) {

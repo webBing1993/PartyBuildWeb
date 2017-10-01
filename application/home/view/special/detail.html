@@ -1,0 +1,189 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/redTopic.css">
+{/block}
+{block name="body"}
+{include file="public/header"}
+<div class="container">
+    <div class="content col-md-12 col-lg-12 col-xs-12">
+        <div class="col-md-3 col-lg-3 col-xs-3">
+            <div class="tabs clearfix">
+                <ul>
+                    <li class="fl">
+                        <div class="tab_name"></div>
+                        <div class="tab_content">十九大专题</div>
+                    </li>
+                    <li class="fl">
+                        <div class="tab_name"></div>
+                        <div class="tab_content">十八大专题</div>
+                    </li>
+                    <li class="fl">
+                        <div class="tab_name">习大大</div>
+                        <div class="tab_content">7.26讲话</div>
+                    </li>
+                    <li class="fl last"></li>
+                </ul>
+            </div>
+            <div class="tab_img">
+                <ul>
+                    <li><a href="/home/news/general.html"><img src="/home/images/zg.png" alt=""></a></li>
+                    <li><a href="/home/learn/answer.html"><img src="/home/images/dt.png" alt=""></a></li>
+                    <li><a href="/home/video/index.html"><img src="/home/images/ht.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-9 col-xs-9">
+            <div class="content_title">
+                <span>您的当前位置：</span>
+                <a href="/home/index/index.html">首页</a>
+                <span> > </span>
+                <a href="/home/special/index.html">红色专题</a>
+                <span> > </span>
+                <a href="/home/special/index.html">十八大专题</a>
+            </div>
+            <div class="specialDetail">
+                <p class="specialTitle">十八大闭幕会</p>
+                <div class="detail_img"><img src="/home/images/b2.jpg" alt=""></div>
+                <div class="detail_content">
+                    <p>中国共产党第十八次全国代表大会闭幕会14日在北京人民大会堂举行，胡锦涛主持十八大闭幕会，2307名代表和特邀代表出席会议</p>
+                    <p>大会选举产生了大师八届中央委员会和中央纪律检查委员会 ，通过了关于十七届中央委员会报告的决议，通过率关于中央纪律检查委员会工作报告的决议，通过了关于...</p>
+                </div>
+                <div class="dz">
+                    <div class="dz_cl">
+                        <div class="dz_img">
+                            <img src="/home/images/xx.png" alt="">
+                        </div>
+                        <p>赞</p>
+                    </div>
+                    <div class="dz_cn">共有 <span>4154654</span>人点赞</div>
+                </div>
+            </div>
+            <div class="comment">
+                <div class="sum">共 <span>4</span>条评论</div>
+                <div class="commentLists">
+                    <div class="list clearfix">
+                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
+                        <div class="list_name fl">游客：</div>
+                        <div class="list_content fl">评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块</div>
+                    </div>
+                    <div class="list clearfix">
+                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
+                        <div class="list_name fl">游客：</div>
+                        <div class="list_content fl">评论区的内容模块</div>
+                    </div>
+                    <div class="list clearfix">
+                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
+                        <div class="list_name fl">游客：</div>
+                        <div class="list_content fl">评论区的内容模块</div>
+                    </div>
+                    <div class="list clearfix">
+                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
+                        <div class="list_name fl">游客：</div>
+                        <div class="list_content fl">评论区的内容模块</div>
+                    </div>
+                </div>
+                <div class="comment_say">
+                    <span>我来评论</span>
+                    <input type="text" placeholder="点击输入您想说的内容...">
+                    <span class="comment_btn" onclick="send()">发送</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    $(function () {
+        // nav
+        $(".nav-header li:nth-of-type(3) a").addClass("active");
+        $(".nav-header li").bind("mouseleave", function () {
+            $(".nav-header li a").removeClass("active");
+            $(".nav-header li:nth-of-type(3) a").addClass("active")
+        });
+
+        // 判断tabs li 的奇偶数
+        var len = $(".tabs li").length;
+        if (len % 2 == 1) {
+            $(".tabs li.last").remove();
+        }
+        if (len >= 9) {
+            $(".tab_img").hide();
+        }else {
+            $(".tab_img").show();
+        }
+
+
+        $(".tabs li").on("click", function () {
+            window.location.href = "/home/special/index/tag/" + ($(this).index() + 1) + ".html";
+            if ($(this).hasClass("last")) {
+                return
+            }
+            $(".tabs li").css("animation","click_ 1s ease");
+            $(this).css("animation","click 1s ease");
+            $(".content_text").removeClass("hidden").hide();
+            $(".content_text").eq($(this).index()).show();
+            var html = $(this).children(".tab_name")[0].innerHTML + $(this).children(".tab_content")[0].innerHTML;
+            $(".textTitle").html(html);
+            $(".content_title a:last-of-type").html(html);
+        });
+
+        // 点赞
+        $(".dz_cl").one("click", function () {
+            $(this).css("backgroundColor","#c2c2c2");
+            var val = parseInt($(".dz_cn").children("span")[0].innerHTML);
+            val++;
+            $(".dz_cn").children("span")[0].innerHTML = val;
+        })
+
+        var send = function(e,type,id){
+            var it = $(".comment_say input");
+            if(it.val() != '' && it.val().length > 4){
+                $.ajax({
+                    type:"post",
+//                url:"{:Url('Base/comment')}",
+                    data:{
+                        type:type,
+                        aid:id,
+                        content:it.val()
+                    },
+                    beforeSend:function(){
+                        swal({
+                            title: ' ',
+                            text: '评论提交中...',
+                            showConfirmButton:false
+                        });
+                    },
+                    success:function(msg){
+                        var data = msg.data;
+                        var userid = "'"+data.create_user+"'";
+                        var html = '';
+                        html += '<div class="list clearfix">'+
+                                '<div class="list_img fl">'+
+                                '<img src="'+data.header+'" alt="用户头像">'+
+                                '</div>'+
+                                '<div class="comment_name fl">'+data.nickname+'</div>'+
+                                '<div class="comment_content fl" >'+it.val()+'</div>'+
+                                '</div>';
+                        $('.commentLists' ).append(html);
+                        it.val('');
+                        var sum = $('.sum span' );
+                        sum.text(parseInt(sum.text())+1);
+                        swal({
+                            title: ' ',
+                            text: '评论成功',
+                            type: 'success',
+                            confirmButtonText:'确定',
+                            timer:3000
+                        });
+                    }
+                });
+            }else{
+                wAlert('您的评论少于5个字');
+            }
+        };
+
+    })
+</script>
+{/block}
