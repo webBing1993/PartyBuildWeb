@@ -62,7 +62,7 @@
 /*left_tab*/
 .content {
     margin-top: 45px;
-    padding: 0!important;
+    padding: 0;
 }
 .content>div:first-of-type {
     padding-left: 0!important;
