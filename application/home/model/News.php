@@ -37,4 +37,27 @@ class News extends Model {
         }
         return $res;
     }
+
+    /**
+     * 获取主页
+     */
+    public function getIndex() {
+        $map = array(
+            'status' => 1,
+        );
+        $order = array('create_time desc');
+        $field = array('id,title,create_time');
+        $res = $this->where($map)->order($order)->limit(12)->field($field)->select();
+        return $res;
+    }
+    
+    /**
+     * 获取详情
+     * $id
+     */
+    public function getDetail($id) {
+        $this->where('id',$id)->setInc('views');
+        $res = $this->get($id);
+        return $res;
+    }
 }

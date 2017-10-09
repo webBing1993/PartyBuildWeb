@@ -9,6 +9,7 @@
 namespace app\home\model;
 
 
+use app\home\controller\Base;
 use think\Model;
 
 class Comment extends Model {
@@ -37,9 +38,15 @@ class Comment extends Model {
         );
         $comment = $this->where($map)->order('likes desc,create_time desc')->limit(7)->select();
         foreach ($comment as $value) {
-            $user = WechatUser::where('userid',$value['uid'])->find();
-            $value['nickname'] = $user['name'];
-            $value['header'] = $user['avatar'];
+            if($uid == 0) {
+                $base = new Base();
+                $value['nickname'] = $base->getRandom();
+                $value['header'] = "/home/images/grzx.png";
+            }else {
+                $user = WechatUser::where('userid',$value['uid'])->find();
+                $value['nickname'] = $user['name'];
+                $value['header'] = $user['avatar'];
+            }
             $map1 = array(
                 'type' => 0,
                 'aid' => $value['id'],
