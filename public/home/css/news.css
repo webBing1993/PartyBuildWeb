@@ -22,3 +22,59 @@
 .content_text .fr {
     font-size: 14px;
 }
+
+/*general*/
+.tab {
+    background-color: #f1f1f1;
+}
+.tab li {
+    height: 62px;
+    cursor: pointer;
+}
+.tab li a {
+    padding-left: 15px;
+    display: inline-block;
+    color: #333;
+    position: relative;
+    width: 100%;
+    font-size: 15px;
+    line-height: 62px;
+}
+.tab li a>span:first-of-type {
+    /*width: 72%;*/
+    line-height: 31px;
+}
+.tab li a>span:first-of-type span {
+    display: inline-block;
+}
+.tab li a>span:first-of-type span:last-of-type {
+    width: 61%;
+    margin-left: 8px;
+}
+.tab li.red {
+    background-color: #d43d3d;
+}
+.tab li.red a {
+    color: #fff;
+}
+.tab li.red a>span:last-of-type {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: url("../images/right_1.png") no-repeat;
+    background-size: 20px 20px;
+    left: 82%;
+    top: 50%;
+    margin-top: -10px;
+}
+.zgTitle {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 25px 0;
+}
+.zg p {
+    text-indent: 2em;
+    color: #333;
+    font-size: 14px;
+}
