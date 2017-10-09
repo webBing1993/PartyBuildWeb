@@ -35,7 +35,8 @@
             </div>
             <div class="newsDetail">
                 <p class="newsTitle">{$detail.title}</p>
-                <div class="detail_img"><img src="{$detail.front_cover|get_cover='path'}" alt=""></div>
+                <p class="time clearfix"><span class="fr">{$detail.time|time_format='Y-m-d'}</span></p>
+                <!--<div class="detail_img"><img src="{$detail.front_cover|get_cover='path'}" alt=""></div>-->
                 <div class="detail_content">
                    {$detail.content}
                 </div>
@@ -105,7 +106,7 @@
                             '<div class="list_img fl">'+
                             '<img src="'+data.header+'" alt="用户头像">'+
                             '</div>'+
-                            '<div class="comment_name fl">'+data.nickname+'</div>'+
+                            '<div class="comment_name fl">'+data.nickname+'：</div>'+
                             '<div class="comment_content fl" >'+it.val()+'</div>'+
                             '</div>';
                     $('.commentLists' ).append(html);
