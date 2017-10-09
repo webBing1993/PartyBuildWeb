@@ -37,7 +37,7 @@ $(function () {
         var html = $(this).children("a").children('span')[0].innerHTML;
         $(".textTitle").html(html);
         $(".content_title a:last-of-type").html(html);
-        if (html == "每日一课") {
+        if (html == "红色音乐") {
             $(".content_text").eq($(this).index()).css("borderBottom",0);
             $(".page_div").hide();
         }else {
