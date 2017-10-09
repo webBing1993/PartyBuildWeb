@@ -404,15 +404,6 @@
 <script>
     $(function () {
 
-        // 首页指定跳转过来
-        var c = window.location.href.split("index/tag/")[1];
-        var c1 = c.split(".html")[0];
-        $(".content_text").removeClass("hidden").hide();
-        $(".content_text").eq($(this).index()).show();
-        var html = $(".tabs li").eq(c1-1).children(".tab_name")[0].innerHTML + $(".tabs li").eq(c1-1).children(".tab_content")[0].innerHTML;
-        $(".textTitle").html(html);
-        $(".content_title a:last-of-type").html(html);
-
         // nav
         $(".nav-header li:nth-of-type(3) a").addClass("active");
         $(".nav-header li").bind("mouseleave", function () {
@@ -440,7 +431,14 @@
             $(".content_title a:last-of-type").html(html);
         });
 
-
+        // 首页指定跳转过来
+        var c = window.location.href.split("index/tag/")[1];
+        var c1 = c.split(".html")[0];
+        $(".content_text").removeClass("hidden").hide();
+        $(".content_text").eq($(this).index()).show();
+        var html = $(".tabs li").eq(c1-1).children(".tab_name")[0].innerHTML + $(".tabs li").eq(c1-1).children(".tab_content")[0].innerHTML;
+        $(".textTitle").html(html);
+        $(".content_title a:last-of-type").html(html);
     })
 </script>
 {/block}
