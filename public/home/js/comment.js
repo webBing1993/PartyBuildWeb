@@ -40,6 +40,7 @@ $(function () {
         if (html == "红色音乐") {
             $(".content_text").eq($(this).index()).css("borderBottom",0);
             $(".page_div").hide();
+            $(".textTitle").css("marginBottom",0);
         }else {
             $(".page_div").show();
         }
