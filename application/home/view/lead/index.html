@@ -9,9 +9,9 @@
     <div class="col-md-12 col-lg-12  col-sm-12 col-xs-12 pioneer">
         <div class="content_title">
             <span>您的当前位置：</span>
-            <a href="/home/index/index.html">首页</a>
+            <a href="{:Url('Index/index')}">首页</a>
             <span> > </span>
-            <a href="/home/lead/index.html">党员风采</a>
+            <a href="{:Url('Lead/index')}">党员风采</a>
         </div>
     </div>
     <div class="banner col-md-12 col-lg-12  col-sm-12 col-xs-12">
@@ -22,116 +22,16 @@
         <div class="col-md-1 col-lg-1 col-xs-1"></div>
         <div class="col-md-10 col-lg-10 col-xs-10 pioneerLists">
             <ul class="clearfix">
+                {volist name="list" id="vo"}
                 <li class=" list fl">
-                    <div class="list_img"><img src="/home/images/ljm.png" alt=""></div>
+                    <div class="list_img"><img src="{$vo.front_cover|get_cover='path'}" alt=""></div>
                     <div class="list_content">
-                        <p class="list_name">李建明</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text"></p>
+                        <p class="list_name">{$vo.name}</p>
+                        <p class="list_js">{$vo.summary}</p>
+                        <p class="list_text">{$vo.content}</p>
                     </div>
                 </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/sj.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">沈杰</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1957年5月生，于1994年9月加入中国共产党， 系武汉测绘科技大学测绘科学技术研究专业2000级在职研究生，2017年8月加入杭州之图网络科技有限公司，任总经理一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/dw.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">代文</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1977年12月生，于2001年7月加入中国共产党，系武汉大学计算机软件专业95级学生，2016年6月加入杭州之图网络科技有限公司，任副总经理一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/yzz.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">杨泽中</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1956年12月生，于2004年7月加入中国共产党，系黑龙江省建筑工程学院工业与民用建筑专业1985级学生，2016年11月加入杭州之图网络科技有限公司，任专家顾问一职。</p>
-                    </div>
-                </li>
-            </ul>
-            <ul class="clearfix">
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/yjy.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">姚家扬</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1990年9月生，于2010年12月加入中国共产党， 系杭州电子科技大学自动化专业09级学生，2016年5月加入杭州之图网络科技有限公司，任产品总监一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/qyx.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">齐永兴</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1991年4月生，于2011年12月加入中国共产党，浙江科技学院物流工程专业2009级学生，2016年4月加入杭州之图网络科技有限公司，任运营经理一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/rt.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">任通</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1991年10月生，于2012年4月加入中国共产党，系杭州电子科技大学自动化专业2009级学生，2016年6月加入杭州之图网络科技有限公司，任产品经理一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/zl.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">张琳</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1993年1月生，于2013年6月加入中国共产党，系杭州师范大学理论物理专业2014级学生，2017年7月加入杭州之图网络科技有限公司，任GIS开发工程师一职。</p>
-                    </div>
-                </li>
-            </ul>
-            <ul class="clearfix">
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/hh.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">何换</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1987年9月生，于2008年11月加入中国共产党，系浙江工商大学杭州商学院工商管理专业2006级学生，于2016年3月加入杭州之图网络科技有限公司，任人事主管一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/tyf.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">汤银帆</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1994年7月生，于2014年6月加入中国共产党，浙江理工大学科技与艺术学院大学市场营销专业2012级学生，2017年2月加入杭州之图网络科技有限公司，任渠道专员一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/ln.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">李娜</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1994年12月生，于2014年11月加入中国共产党，系杭州师范大学电子信息工程专业2012级学生，2016年7月加入杭州之图网络科技有限公司，任UI设计工程师一职。</p>
-                    </div>
-                </li>
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/lfp.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">刘飞鹏</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1984年11月生，于2008年7月加入中国共产党，系武警北京特警学院武警特战指挥专业2004级学生，2017年2月加入杭州之图网络科技有限公司，任渠道部经理一职。</p>
-                    </div>
-                </li>
-            </ul>
-            <ul class="clearfix">
-                <li class="list fl">
-                    <div class="list_img"><img src="/home/images/xgq.png" alt=""></div>
-                    <div class="list_content">
-                        <p class="list_name">熊纲强</p>
-                        <p class="list_js">之图党支部优秀党员</p>
-                        <p class="list_text">1992年6月生，于2015年5月加入中国共产党，系江西理工大学金属材料工程专业2011级学生，2017年7月加入杭州之图网络科技有限公司，任后端开发工程师一职。</p>
-                    </div>
-                </li>
+                {/volist}
             </ul>
         </div>
         <div class="col-md-1 col-lg-1 col-xs-1"></div>

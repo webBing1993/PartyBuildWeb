@@ -29,4 +29,16 @@ class Lead extends Model {
         $res = $this->where($map)->order($order)->limit(3)->select();
         return $res;
     }
+
+    /**
+     * 获取频道主页
+     */
+    public function getIndex() {
+        $map = array(
+            'status' => 1,
+        );
+        $order = array('create_time,recommend desc');
+        $res = $this->where($map)->order($order)->select();
+        return $res;
+    }
 }
