@@ -28,4 +28,17 @@ class Learn extends Model {
         $res = $this->where($map)->order($order)->limit(2)->select();
         return $res;
     }
+
+    /**
+     * 获取主页
+     */
+    public function getIndex() {
+        $map = array(
+            'status' => 1,
+        );
+        $order = array('create_time desc');
+        $field = array('id,title,class,create_time');
+        $res = $this->where($map)->order($order)->limit(12)->field($field)->select();
+        return $res;
+    }
 }
