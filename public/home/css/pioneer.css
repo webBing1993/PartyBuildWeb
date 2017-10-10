@@ -47,7 +47,7 @@
     display: none;
     margin-top: 15px;
 }
-.list_content div {
+.list_content div p {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 6;
