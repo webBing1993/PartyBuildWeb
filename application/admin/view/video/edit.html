@@ -89,6 +89,24 @@
                         </div>
                         <div class="form-group">
                             <div class="col-lg-1 text-right control-label">
+                                <label>类别:</label>
+                            </div>
+                            <div class="col-lg-11">
+                                {neq name="msg" value=""}
+                                <select class="form-control" name="type">
+                                    <option value="1" {eq name="$msg.type" value="1"}selected{/eq}>原创视频</option>
+                                    <option value="2" {eq name="$msg.type" value="2"}selected{/eq}>转载视频</option>
+                                </select>
+                                {else/}
+                                <select class="form-control" name="type">
+                                    <option value="1" >原创视频</option>
+                                    <option value="2" >转载视频</option>
+                                </select>
+                                {/neq}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-1 text-right control-label">
                                 <label>地址路径:</label>
                             </div>
                             <div class="col-lg-11">
@@ -257,6 +275,7 @@
             var data = {
                 id:$("input[name='id']").val(),
                 front_cover:$("input[name='front_cover']").val(),
+                type:$("select[name='type']").val(),
                 introduction:$("input[name='introduction']").val(),
                 net_path:$("input[name='net_path']").val(),
                 title:$("input[name='title']").val(),

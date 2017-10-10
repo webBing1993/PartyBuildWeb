@@ -45,7 +45,7 @@ class Video extends Admin {
             if($info) {
                 return $this->success('添加成功',Url('Video/index'));
             }else{
-                return $this->get($filmModel->getError());
+                return $this->get_update_error_msg($filmModel->getError());
             }
         }else {
             $this->default_pic();
