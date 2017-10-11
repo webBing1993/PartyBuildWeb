@@ -28,6 +28,7 @@
     height: 50px;
     line-height: 50px;
     background-color: #d43d3d;
+    margin-top: 4px;
 }
 .nav-header {
     padding: 0!important;
@@ -392,4 +393,10 @@ footer .container p {
 footer a {
     color: #333;
     font-size: 15px;
+}
+
+
+.h38 {
+    height: 38px;
+    width: 100%;
 }

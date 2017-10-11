@@ -13,7 +13,8 @@ $(function () {
                 top: 0,
                 left: 0,
                 zIndex: 100,
-                width: "100%"
+                width: "100%",
+                marginTop: 0
             });
         }else {
             $(".nav").css("position", "relative");
