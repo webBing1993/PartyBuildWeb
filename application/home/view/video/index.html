@@ -9,29 +9,17 @@
     <div id="myCarousel" class="carousel slide">
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active" >之图党建一体机</li>
-            <li data-target="#myCarousel" data-slide-to="1" >之图党建1</li>
-            <li data-target="#myCarousel" data-slide-to="2" >之图党建2</li>
-            <li data-target="#myCarousel" data-slide-to="3" >之图党建3</li>
-            <li data-target="#myCarousel" data-slide-to="4" >之图党建4</li>
+            {volist name="list.top" id="top" key="k"}
+            <li data-target="#myCarousel" data-slide-to="k-1" >{$top.title}</li>
+            {/volist}
         </ol>
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
+            {volist name="list.top" id="top"}
             <div class="item active">
-                <a href="#"><img src="/home/images/b2.jpg" alt=""></a>
+                <a href="{:Url('Video/detail?id='.$top['id'])}"><img src="{$top.front_cover|get_cover='path'}" alt=""></a>
             </div>
-            <div class="item">
-                <a href="#"><img src="/home/images/b1.jpg" alt=""></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/home/images/b2.jpg" alt=""></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/home/images/b1.jpg" alt=""></a>
-            </div>
-            <div class="item">
-                <a href="#"><img src="/home/images/b2.jpg" alt=""></a>
-            </div>
+            {/volist}
         </div>
     </div>
     <div class="video_">每周更新，看不停</div>
@@ -39,95 +27,29 @@
         <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr"><a href="#">换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
+                {volist name="list.one" id="one"}
                 <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
+                    <a href="{:Url('Video/detail?id='.$one['id'])}">
+                        <div class="video_img"><img src="{$one.front_cover|get_cover='path'}" alt=""></div>
+                        <div class="video_name">{$one['title']}</div>
+                        <div class="video_time">更新时间：{$one['create_time']|time_format='Y-m-d'}</div>
                     </a>
                 </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
+                {/volist}
             </ul>
         </div>
         <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr"><a href="#">换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
+                {volist name="list.two" id="two"}
                 <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
+                    <a href="{:Url('Video/detail?id='.$two['id'])}">
+                        <div class="video_img"><img src="{$two.front_cover|get_cover='path'}" alt=""></div>
+                        <div class="video_name">{$two['title']}</div>
+                        <div class="video_time">更新时间：{$two['create_time']|time_format='Y-m-d'}</div>
                     </a>
                 </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
-                <li class="fl">
-                    <a href="#">
-                        <div class="video_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                        <div class="video_name">之图科技一体机</div>
-                        <div class="video_time">更新时间：2017-09-30</div>
-                    </a>
-                </li>
+                {/volist}
             </ul>
         </div>
     </div>

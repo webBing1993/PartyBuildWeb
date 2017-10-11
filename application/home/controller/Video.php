@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 use think\Controller;
+use app\home\model\Video as VideoModel;
 /**
  * 趣味视频
  */
@@ -16,9 +17,10 @@ class Video extends Controller
      * 首页
      * @return mixed
      */
-    public function index()
-    {
-
+    public function index() {
+        $Model = new VideoModel();
+        $list = $Model->getIndex();
+        $this->assign('list',$list);
         return $this->fetch();
     }
 
