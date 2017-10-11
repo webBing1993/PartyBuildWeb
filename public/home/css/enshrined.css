@@ -230,9 +230,10 @@
     height: 100%;
     background: url("/home/images/play.png") center center no-repeat;
     background-color: rgba(0,0,0,.4);
+    display: none;
 }
 .list4 li:hover .play {
-    background-color: rgba(0,0,0,.6);
+    display: block;
 }
 .list4 li.ts {
     width: 58%;
