@@ -374,4 +374,22 @@ footer {
     width: 100%;
     height: 150px;
     background-color: #f1f1f1;
+    font-size: 15px;
+}
+footer .container {
+    position: relative;
+    height: 100%;
+}
+footer .container div {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    margin-left: -10%;
+}
+footer .container p {
+    line-height: 30px;
+}
+footer a {
+    color: #333;
+    font-size: 15px;
 }
