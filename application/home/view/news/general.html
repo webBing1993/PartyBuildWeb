@@ -5,7 +5,7 @@
 {/block}
 {block name="body"}
 {include file="public/header"}
-<div class="container">
+<div class="container" id="top">
     <div class="banner col-md-12 col-lg-12  col-sm-12 col-xs-12">
         <img src="/home/images/slide2.png" alt="">
     </div>
@@ -283,6 +283,7 @@
             </div>
         </div>
     </div>
+    <div class="top"><a href="#top"><img src="/home/images/top.png" alt=""></a></div>
 </div>
 {/block}
 {block name="script"}
@@ -301,6 +302,7 @@
             console.log($(window).scrollTop());
             window.scroll(0, $(window).scrollTop() - 108);
         },0);
-    })
+    });
+
 </script>
 {/block}

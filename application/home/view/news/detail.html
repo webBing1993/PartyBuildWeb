@@ -41,7 +41,7 @@
                    {$detail.content}
                 </div>
                 <div class="dz">
-                    <div class="dz_cl">
+                    <div class="dz_cl" onclick="isGood(this,0,{$detail.id})">
                         <div class="dz_img">
                             <img src="/home/images/xx.png" alt="">
                         </div>
@@ -74,14 +74,52 @@
 {block name="script"}
 <script>
     // 点赞
-    $(".dz_cl").one("click", function () {
+   /* $(".dz_cl").one("click", function () {
         $(this).css("backgroundColor","#c2c2c2");
         var val = parseInt($(".dz_cn").children("span")[0].innerHTML);
         val++;
         $(".dz_cn").children("span")[0].innerHTML = val;
-    });
+        $.ajax({
+            type:"post",
+//            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+
+            }
+        })
+    });*/
+    var isGood = function(e,type,id){
+
+        $(e).addClass("active");
+        var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
+        $(e).addClass("active").next(".dz_cn").children("span")[0]?n++:n;
+        $(".dz_cn").children("span")[0].innerHTML = n;
+        $.ajax({
+            type:"post",
+//            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
+
+            }
+        })
+    };
     var send = function(e,type,id){
         var it = $(".comment_say input");
+        if (it.val() == "") {
+            swal({
+                title: ' ',
+                text: '您还未评论！',
+                type: 'warning',
+                confirmButtonText:'确定',
+                timer:3000
+            });
+        }
         if(it.val() != '' && it.val().length > 4){
             $.ajax({
                 type:"post",
@@ -122,8 +160,14 @@
                     });
                 }
             });
-        }else{
-            wAlert('您的评论少于5个字');
+        }else if(it.val() != '' && it.val().length <= 4) {
+            swal({
+                title: ' ',
+                text: '您的评论少于5个字',
+                type: 'error',
+                confirmButtonText:'确定',
+                timer:3000
+            });
         }
     };
 

@@ -82,15 +82,17 @@
 }
 .newLeft .list1>li li {
     margin-right: 15px;
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
     width: 45%;
 }
 .newLeft .list1>li li a {
     font-size: 14px;
     color: #333;
     line-height: 26px;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .newLeft .list1 a:hover {
     color: #1755cc;
@@ -136,14 +138,16 @@
     margin-top: 15px;
 }
 .build_text li {
-    overflow: hidden;
-    text-overflow:ellipsis;
-    white-space: nowrap;
-    line-height: 26px;
     font-size: 17px;
+    line-height: 26px;
 }
 .build_text li a {
     color: #333;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
 }
 .build_text li a:hover {
     color: #1755cc;
@@ -347,6 +351,8 @@
     width: 100%;
     display: inline-block;
     overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .name li a:hover,.song_content li a:hover {
     color: #1755cc;

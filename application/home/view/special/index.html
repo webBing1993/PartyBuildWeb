@@ -413,8 +413,15 @@
 
         // 判断tabs li 的奇偶数
         var len = $(".tabs li").length;
+        console.log(len);
         if (len % 2 == 1) {
             $(".tabs li.last").remove();
+        }
+        if (len >= 6) {
+            $(".tab_img").hide();
+        }
+        if (len >= 13) {
+            $(".tabs li:nth-of-type(n+13)").remove();
         }
 
 
