@@ -16,11 +16,13 @@ $(function () {
                 width: "100%",
                 marginTop: 0
             });
+            $(".top").show();
         }else {
             $(".nav").css({
                 position: "relative",
                 marginTop: "4px"
             });
+            $(".top").hide();
         }
     });
 
