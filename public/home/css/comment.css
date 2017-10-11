@@ -257,6 +257,9 @@
     margin: 0 auto;
     cursor: pointer;
 }
+.dz_cl.active {
+    background-color : #c2c2c2;
+}
 .dz_img {
     width: 15px;
     height: 15px;
