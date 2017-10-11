@@ -139,6 +139,15 @@
 
         var send = function(e,type,id){
             var it = $(".comment_say input");
+            if(it.val() == '') {
+                swal({
+                    title: ' ',
+                    text: '您还未评论！',
+                    type: 'warning',
+                    confirmButtonText:'确定',
+                    timer:3000
+                });
+            }
             if(it.val() != '' && it.val().length > 4){
                 $.ajax({
                     type:"post",
@@ -179,8 +188,14 @@
                         });
                     }
                 });
-            }else{
-                wAlert('您的评论少于5个字');
+            }else if(it.val() != '' && it.val().length <= 4){
+                swal({
+                    title: ' ',
+                    text: '您的评论少于5个字',
+                    type: 'error',
+                    confirmButtonText:'确定',
+                    timer:3000
+                });
             }
         };
 
