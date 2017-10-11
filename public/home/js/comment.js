@@ -17,7 +17,10 @@ $(function () {
                 marginTop: 0
             });
         }else {
-            $(".nav").css("position", "relative");
+            $(".nav").css({
+                position: "relative",
+                marginTop: "4px"
+            });
         }
     });
 
@@ -45,16 +48,24 @@ $(function () {
         }else {
             $(".page_div").show();
         }
+        pag($(this).index());
     });
-    // 分页
-    $("#page").paging({
-        pageNo:4,
-        totalPage: 10,
-        totalSize: 300,
-        callback: function(num) {
 
-        }
-    });
+    // 分页
+    pag(0);
+    function pag(b) {
+        var len = $(".content_text").eq(b).find("li").length;
+        // 向上取整
+        var page = Math.ceil(len / 12);
+        $("#page").paging({
+            pageNo:1,
+            totalPage: page,
+            totalSize: 300,
+            callback: function(num) {
+
+            }
+        });
+    }
 
 });
 

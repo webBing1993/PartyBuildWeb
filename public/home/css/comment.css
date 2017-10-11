@@ -110,7 +110,7 @@
 .tab_img>ul>li {
     cursor: pointer;
     margin-top: 25px;
-    height: 165px;
+    height: 134px;
 }
 .tab_img li li {
     margin-top: 10px;
@@ -399,7 +399,7 @@ footer a {
 }
 
 
-.h40 {
-    height: 40px;
+.h38 {
+    height: 38px;
     width: 100%;
 }
