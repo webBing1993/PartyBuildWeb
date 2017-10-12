@@ -64,11 +64,21 @@ $(function () {
             totalPage: page,
             totalSize: 300,
             callback: function(num) {
+                console.log(num);
+                $.ajax({
+                    type: "post",
+                    //url: ,
+                    date: {
+                        type: num
+                    },
+                    success: function (date) {
 
+                    }
+                })
             }
         });
     }
-
+    
 });
 
 $(function () {

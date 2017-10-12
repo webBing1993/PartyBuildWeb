@@ -24,7 +24,7 @@
     </div>
     <div class="video_">每周更新，看不停</div>
     <div class="videoList">
-        <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr"><a href="#">换一批</a></span></div>
+        <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr" onclick="change()"><a href="#">换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
                 {volist name="list.one" id="one"}
@@ -38,7 +38,7 @@
                 {/volist}
             </ul>
         </div>
-        <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr"><a href="#">换一批</a></span></div>
+        <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr" onclick="change()"><a href="#">换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
                 {volist name="list.two" id="two"}
@@ -82,9 +82,32 @@
 
 
     // 换一批
+   /* var n = 0;
     $(".video_title .fr").on("click", function (e) {
         e.preventDefault();
-        console.log($(this));
-    })
+        console.log($(this)[0]);
+        n++;
+        console.log(n);
+    });*/
+    var n = 0;
+    function change(e,type,id) {
+        n++;
+        console.log(n);
+       /* var c = $(e);
+        type++;
+        console.log(c);
+        $.ajax({
+            type: "post",
+//            url: ,
+            date: {
+                type: type,
+                aid: id
+            },
+            success: function (date) {
+                
+            }
+        })*/
+    }
+
 </script>
 {/block}
