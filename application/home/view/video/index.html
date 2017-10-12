@@ -10,13 +10,13 @@
         <!-- 轮播（Carousel）指标 -->
         <ol class="carousel-indicators">
             {volist name="list.top" id="top" key="k"}
-            <li data-target="#myCarousel" data-slide-to="k-1" >{$top.title}</li>
+            <li data-target="#myCarousel" data-slide-to="{$k-1}" >{$top.title}</li>
             {/volist}
         </ol>
         <!-- 轮播（Carousel）项目 -->
         <div class="carousel-inner">
             {volist name="list.top" id="top"}
-            <div class="item active">
+            <div class="item">
                 <a href="{:Url('Video/detail?id='.$top['id'])}"><img src="{$top.front_cover|get_cover='path'}" alt=""></a>
             </div>
             {/volist}
@@ -65,8 +65,8 @@
     });
 
     // 自动轮播
-//    $(".carousel-inner .item:first-of-type").addClass("active");
-//    $(".carousel-indicators li:first-of-type").addClass("active");
+    $(".carousel-inner .item:first-of-type").addClass("active");
+    $(".carousel-indicators li:first-of-type").addClass("active");
     $('#myCarousel').on("mouseover", function () {
         $(".carousel-control").show();
     }).on("mouseleave", function () {
@@ -78,6 +78,13 @@
     });
     $(".carousel-indicators li").on("mouseover", function () {
         $("#myCarousel").carousel($(this).index());
+    });
+
+
+    // 换一批
+    $(".video_title .fr").on("click", function (e) {
+        e.preventDefault();
+        console.log($(this));
     })
 </script>
 {/block}
