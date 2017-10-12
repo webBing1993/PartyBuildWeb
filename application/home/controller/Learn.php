@@ -40,7 +40,6 @@ class Learn extends Base {
         $this->assign('comment',$comment);
         return $this->fetch();
     }
-    
     /*
      * 答题
      * */

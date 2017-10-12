@@ -22,5 +22,14 @@ class Branch extends Controller
         return $this->fetch();
     }
 
+    /**
+     * 详情页
+     * @return mixed
+     */
+    public function detail()
+    {
+
+        return $this->fetch();
+    }
 
 }
