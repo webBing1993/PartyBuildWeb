@@ -30,4 +30,27 @@ class Branch extends Model {
         return $res;
     }
 
+    /**
+     * 获取主页
+     */
+    public function getIndex() {
+        $map = array(
+            'status' => 1
+        );
+        $order = array("create_time desc");
+        $field = array("id,title,create_time");
+        $map['type'] = 1;
+        $one = $this->where($map)->order($order)->field($field)->limit(12)->select();
+        $map['type'] = 2;
+        $two = $this->where($map)->order($order)->field($field)->limit(12)->select();
+        $map['type'] = 3;
+        $three = $this->where($map)->order($order)->field($field)->limit(12)->select();
+        $res = array(
+            'one' => $one,
+            'two' => $two,
+            'three' => $three
+        );
+        return $res;
+    }
+
 }

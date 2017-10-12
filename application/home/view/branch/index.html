@@ -37,350 +37,55 @@
                 <p class="textTitle">通知公告</p>
                 <div class="content_text text1">
                     <ul>
+                        {volist name="list.one" id="vo1" key="k"}
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
+                                    <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo1['id'])}">{$vo1.title}</a></span>
                                 </span>
                                 <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
+                                    [ <span class="time">{$vo1.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
+                            {eq name="k%4" value="0"}
+                            <p class="h38"></p>
+                            {/eq}
                         </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
+                        {/volist}
                     </ul>
                 </div>
                 <div class="content_text text2 hidden">
                     <ul>
+                        {volist name="list.two" id="vo2" key="k"}
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
+                                    <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo2['id'])}">{$vo2.title}</a></span>
                                 </span>
                                 <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
+                                    [ <span class="time">{$vo2.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
+                            {eq name="k%4" value="0"}
+                            <p class="h38"></p>
+                            {/eq}
                         </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
+                        {/volist}
                     </ul>
                 </div>
                 <div class="content_text text3 hidden">
-                    <ul>
+                    <ul> {volist name="list.three" id="vo3" key="k"}
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">三月份活动通知</a></span>
+                                    <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo3['id'])}">{$vo3.title}</a></span>
                                 </span>
                                 <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
+                                    [ <span class="time">{$vo3.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
+                            {eq name="k%4" value="0"}
+                            <p class="h38"></p>
+                            {/eq}
                         </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
+                        {/volist}
                     </ul>
                 </div>
                 <!--分页-->

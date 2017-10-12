@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 use think\Controller;
+use app\home\model\Branch as BranchModel;
 /**
  * 支部建设
  */
@@ -16,9 +17,10 @@ class Branch extends Controller
      * 首页
      * @return mixed
      */
-    public function index()
-    {
-
+    public function index() {
+        $Model = new BranchModel();
+        $list = $Model->getIndex();
+        $this->assign('list',$list);
         return $this->fetch();
     }
 
