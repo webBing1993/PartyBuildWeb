@@ -23,6 +23,21 @@ class Video extends Controller
         $this->assign('list',$list);
         return $this->fetch();
     }
+    
+    /**
+     * 换一批
+     * $type ,$n = 1
+     */
+    public function more() {
+        $data = input('post.');
+        $Model = new VideoModel();
+        $res = $Model->getIndexMore($data['type'],$data['n']);
+        if($res) {
+            $this->success("获取成功","",$res);
+        }else {
+            $this->error("获取失败");
+        }
+    }
 
 
 }

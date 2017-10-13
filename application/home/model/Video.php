@@ -61,4 +61,26 @@ class Video extends Model {
         );
         return $res;
     }
+
+    /**
+     * 获取换一批数据
+     */
+    public function getIndexMore($type,$n) {
+        $map = array(
+            'status' => 1,
+            'type' => $type
+        );
+        $order = array("create_time desc,recommend desc");
+        $field = array("id,title,type,front_cover,create_time");
+        if($type == 1) {
+            $limit = $n*8;
+            $c = 8;
+        } else {
+            $limit = $n*4;
+            $c = 4;
+        }
+        $res = $this->where($map)->order($order)->field($field)->limit($limit,$c)->select();
+        return $res;
+    }
+
 }
