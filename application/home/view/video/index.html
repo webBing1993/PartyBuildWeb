@@ -24,7 +24,7 @@
     </div>
     <div class="video_">每周更新，看不停</div>
     <div class="videoList">
-        <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr" onclick="change(this,1,{$top.id})"><a href="#">换一批</a></span></div>
+        <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr" onclick="change(this,1)"><a href="#">换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
                 {volist name="list.one" id="one"}
@@ -38,7 +38,7 @@
                 {/volist}
             </ul>
         </div>
-        <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr" onclick="change(this,2,{$top.id})"><a href="#">换一批</a></span></div>
+        <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr" onclick="change(this,2)"><a href="#">换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
                 {volist name="list.two" id="two"}
@@ -82,22 +82,20 @@
 
 
     // 换一批
-    function change(e,type,n) {
-        var c = $(e);
-        n++;
-        console.log(n);
+    var change = function (e,type) {
         $.ajax({
             type: "post",
-            url: " {:Url('Video/more')}",
-            date: {
-                type: type,
-                aid: n
+//            url: "{:Url('Video/more')}",
+            data: {
+                type: type
             },
             success: function (date) {
-                console.log(date);
-            },
-            error: function (date) {
-                n = 0;
+                var n = 0;
+                if (date.code == 1) {
+                    n++;
+                }else {
+
+                }
                 console.log(date);
             }
         })

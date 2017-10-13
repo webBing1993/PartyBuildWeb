@@ -19,10 +19,14 @@
     position: absolute;
     left: 50%;
     top: 12px;
-    width: 80px;
-    margin-left: -40px;
+    width: 100%;
+    margin-left: -50%;
+    height: 32px;
+    overflow: hidden;
 }
 .tabs .tab_content {
+    height: 110px;
+    overflow: hidden;
     line-height: 110px;
 }
 .tabs li:hover {
