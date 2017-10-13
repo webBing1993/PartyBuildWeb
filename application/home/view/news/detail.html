@@ -35,13 +35,13 @@
             </div>
             <div class="newsDetail">
                 <p class="newsTitle">{$detail.title}</p>
-                <p class="time clearfix"><span class="fr">{$detail.time|time_format='Y-m-d'}</span></p>
+                <p class="time clearfix"><span class="fr">{$detail.create_time|time_format='Y-m-d'}</span></p>
                 <!--<div class="detail_img"><img src="{$detail.front_cover|get_cover='path'}" alt=""></div>-->
                 <div class="detail_content">
                    {$detail.content}
                 </div>
                 <div class="dz">
-                    <div class="dz_cl" onclick="isGood(this,0,{$detail.id})">
+                    <div class="dz_cl" onclick="isGood(this,1,{$detail.id})">
                         <div class="dz_img">
                             <img src="/home/images/xx.png" alt="">
                         </div>
@@ -99,7 +99,7 @@
         $(".dz_cn").children("span")[0].innerHTML = n;
         $.ajax({
             type:"post",
-//            url:"{:Url('Base/like')}",
+            url:"{:Url('Base/like')}",
             data:{
                 type:type,
                 aid:id,

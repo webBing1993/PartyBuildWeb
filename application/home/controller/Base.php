@@ -57,6 +57,15 @@ class Base extends Controller {
             case 0:
                 $table = "comment";
                 break;
+            case 1:
+                $table = "news";
+                break;
+            case 2:
+                $table = "special_detail";
+                break;
+            case 3:
+                $table = "learn";
+                break;
             default:
                 return $this->error("无该数据表");
                 break;
@@ -68,8 +77,8 @@ class Base extends Controller {
             'uid' => $uid,
         );
         $likeModel = new Like();
-        $like = $likeModel->where($data)->find();
-        if(empty($like)) {  //点赞
+//        $like = $likeModel->where($data)->find();
+//        if(empty($like)) {  //点赞
             $res = $likeModel->create($data);
             if($res) {
 //                //点赞成功积分+1
@@ -80,17 +89,17 @@ class Base extends Controller {
             }else {
                 return $this->error("点赞失败");
             }
-        }else { //取消
-            $result = $likeModel::where($data)->delete();
-            if($result) {
-//                //取消成功积分-1
-//                WechatUser::where('userid',$uid)->setDec('score',1);
-                Db::name($table)->where('id',$aid)->setDec('likes');
-                return $this->success("取消成功");
-            }else {
-                return $this->error("取消失败");
-            }
-        }
+//        }else { //取消
+//            $result = $likeModel::where($data)->delete();
+//            if($result) {
+////                //取消成功积分-1
+////                WechatUser::where('userid',$uid)->setDec('score',1);
+//                Db::name($table)->where('id',$aid)->setDec('likes');
+//                return $this->success("取消成功");
+//            }else {
+//                return $this->error("取消失败");
+//            }
+//        }
     }
 
     /**
@@ -107,6 +116,12 @@ class Base extends Controller {
             switch ($type) {    //根据类别获取表明
                 case 1:
                     $table = "news";
+                    break;
+                case 2:
+                    $table = "special_detail";
+                    break;
+                case 3:
+                    $table = "learn";
                     break;
                 default:
                     return $this->error("无该数据表");

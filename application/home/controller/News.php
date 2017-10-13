@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 use app\home\model\Comment;
+use app\home\model\Like;
 use think\Controller;
 use app\home\model\News as NewsModel;
 /**
@@ -32,6 +33,11 @@ class News extends Base {
         $id = input('id');
         $Model = new NewsModel;
         $detail = $Model->getDetail($id);
+
+        //获取 文章点赞
+//        $likeModel = new Like();
+//        $like = $likeModel->getLike(1,$id,0);
+//        $detail['is_like'] = $like;
         $this->assign('detail',$detail);
 
         //获取 评论
@@ -39,6 +45,7 @@ class News extends Base {
         $comment = $commentModel->getComment(1,$id,0);
         $this->assign('comment',$comment);
         return $this->fetch();
+
     }
 
     /**
