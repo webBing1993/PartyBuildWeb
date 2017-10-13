@@ -10,19 +10,21 @@
         <div class="col-md-3 col-lg-3 col-xs-3">
             <div class="tabs clearfix">
                 <ul>
+                    {volist name="list" id="vo"}
                     <li class="fl">
                         <div class="tab_name"></div>
-                        <div class="tab_content">十九大专题</div>
+                        <div class="tab_content">{$vo.name}</div>
                     </li>
-                    <li class="fl">
-                        <div class="tab_name"></div>
-                        <div class="tab_content">十八大专题</div>
-                    </li>
-                    <li class="fl">
-                        <div class="tab_name">习大大</div>
-                        <div class="tab_content">7.26讲话</div>
-                    </li>
-                    <li class="fl last"></li>
+                    {/volist}
+                    <!--<li class="fl">-->
+                        <!--<div class="tab_name"></div>-->
+                        <!--<div class="tab_content">十八大专题</div>-->
+                    <!--</li>-->
+                    <!--<li class="fl">-->
+                        <!--<div class="tab_name">习大大</div>-->
+                        <!--<div class="tab_content">7.26讲话</div>-->
+                    <!--</li>-->
+                    <!--<li class="fl last">xxxx</li>-->
                 </ul>
             </div>
             <div class="tab_img">
@@ -42,11 +44,15 @@
                 <span> > </span>
                 <a href="/home/special/index.html">十九大专题</a>
             </div>
-            <div class="specialImg"><img src="#" alt=""></div>
+            {volist name="list" id="vo"}
+            <div class="specialImg"><img src="{$vo.front_cover|get_cover='path'}" alt=""></div>
+            {/volist}
             <div class="specialList">
                 <p class="textTitle">十九大专题</p>
+                {volist name="list" id="vo"}
                 <div class="content_text text1">
                     <ul>
+                        {volist name="vo.con" id="con"}
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
@@ -56,111 +62,10 @@
                                     [ <span class="time">2017-2-28</span> ]
                                 </span>
                         </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">一月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">关于参加三会一课的通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">之图全体员工参加党建活动</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
-                        <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="javascript:;">二月份活动通知</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
-                                </span>
-                        </li>
+                        {/volist}
                     </ul>
                 </div>
+                {/volist}
                 <div class="content_text text2 hidden">
                     <ul>
                         <li class="clearfix">

@@ -28,4 +28,24 @@ class Special extends Model {
         $res = $this->where($map)->order($order)->limit(3)->select();
         return $res;
     }
+
+    /**
+     * 获取主页列表
+     */
+    public function getIndex() {
+        $map = array(
+            'status' => 1
+        );
+        $order = array('create_time desc');
+        $res = $this->where($map)->order($order)->limit(12)->select();
+        foreach ($res as $value) {
+            $info = array(
+                'pid' => $value['id'],
+                'status' => 1
+            );
+            $detail = SpecialDetail::where($info)->order($order)->limit(12)->select();
+            $value['con'] = $detail;
+        }
+        return $res;
+    }
 }

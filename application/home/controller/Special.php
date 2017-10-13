@@ -7,6 +7,7 @@
  */
 namespace app\home\controller;
 use think\Controller;
+use app\home\model\Special as SpecialModel;
 
 /**
  * 红色专题
@@ -17,9 +18,10 @@ class Special extends Controller
      * 首页
      * @return mixed
      */
-    public function index()
-    {
-
+    public function index() {
+        $Model = new SpecialModel();
+        $list = $Model->getIndex();
+        $this->assign('list',$list);
         return $this->fetch();
     }
 

@@ -74,7 +74,7 @@
             <div class="carousel-inner">
                 {volist name="special" id="spe"}
                 <div class="item">
-                    <a href="#"><img src="{$spe.front_cover|get_cover='path'}" alt="{$spe.title}"></a>
+                    <a href="{:Url('Special/index?id='.$spe['id'])}"><img src="{$spe.front_cover|get_cover='path'}" alt="{$spe.title}"></a>
                 </div>
                 {/volist}
             </div>
