@@ -12,8 +12,8 @@
                 <ul>
                     {volist name="list" id="vo"}
                     <li class="fl">
-                        <div class="tab_name"></div>
-                        <div class="tab_content">{$vo.name}</div>
+                        <div class="tab_name">{$vo.name}</div>
+                        <div class="tab_content">{$vo.summary}</div>
                     </li>
                     {/volist}
                 </ul>
@@ -47,7 +47,7 @@
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText"><a href="/home/special/detail.html">一月份活动通知</a></span>
+                                    <span class="contentText"><a href="/home/special/detail.html">{$con.title}</a></span>
                                 </span>
                                 <span class="fr">
                                     [ <span class="time">2017-2-28</span> ]

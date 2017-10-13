@@ -80,6 +80,12 @@ class Video extends Model {
             $c = 4;
         }
         $res = $this->where($map)->order($order)->field($field)->limit($limit,$c)->select();
+        foreach ($res as $key=>$value) {
+            $pic =  Picture::get($value['front_cover']);
+            $value['path'] = $pic['path'];
+            $value['time'] = date("Y-m-d",$value['create_time']);
+            $res[$key] = $value;
+        }
         return $res;
     }
 

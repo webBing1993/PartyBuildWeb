@@ -33,9 +33,9 @@ class Video extends Controller
         $Model = new VideoModel();
         $res = $Model->getIndexMore($data['type'],$data['n']);
         if($res) {
-            $this->success("获取成功","",$res);
+            return $this->success("获取成功","",$res);
         }else {
-            $this->error("获取失败");
+            return $this->error("获取失败");
         }
     }
 
