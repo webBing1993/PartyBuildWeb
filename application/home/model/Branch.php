@@ -53,4 +53,27 @@ class Branch extends Model {
         return $res;
     }
 
+    /**
+     * 获取详情
+     * $id
+     */
+    public function getDetail($id) {
+        $this->where('id',$id)->setInc('views');
+        $res = $this->get($id);
+        switch ($res['type']) {
+            case 1:
+                $res['type_name'] = "通知公告";
+                break;
+            case 2:
+                $res['type_name'] = "活动报道";
+                break;
+            case 3:
+                $res['type_name'] = "支部内刊";
+                break;
+            default:
+                break;
+        }
+        return $res;
+    }
+
 }

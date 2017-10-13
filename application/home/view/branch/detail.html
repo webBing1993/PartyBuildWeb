@@ -13,7 +13,7 @@
         <div class="col-md-3 col-lg-3  col-sm-3 col-xs-3">
             <div class="content_tab">
                 <ul>
-                    <li class="red"><a href="javascript:;"> <span>新闻聚焦</span><span>  </span></a></li>
+                    <li class="red"><a href="javascript:;"> <span>{$detail.type_name}</span><span>  </span></a></li>
                 </ul>
             </div>
             <div class="tab_img">
@@ -29,19 +29,19 @@
                 <span>您的当前位置：</span>
                 <a href="{:Url('Index/index')}">首页</a>
                 <span> > </span>
-                <a href="{:Url('News/index')}">新闻聚焦</a>
+                <a href="{:Url('Branch/index')}">{$detail.type_name}</a>
                 <span> > </span>
                 <a href="">{$detail.title}</a>
             </div>
             <div class="newsDetail">
                 <p class="newsTitle">{$detail.title}</p>
-                <p class="time clearfix"><span class="fr">{$detail.time|time_format='Y-m-d'}</span></p>
+                <p class="time clearfix"><span class="fr">{$detail.create_time|time_format='Y-m-d'}</span></p>
                 <!--<div class="detail_img"><img src="{$detail.front_cover|get_cover='path'}" alt=""></div>-->
                 <div class="detail_content">
                     {$detail.content}
                 </div>
                 <div class="dz">
-                    <div class="dz_cl" onclick="isGood(this,0,{$detail.id})">
+                    <div class="dz_cl" onclick="isGood(this,4,{$detail.id})">
                         <div class="dz_img">
                             <img src="/home/images/xx.png" alt="">
                         </div>
@@ -64,7 +64,7 @@
                 <div class="comment_say">
                     <span>我来评论</span>
                     <input type="text" placeholder="点击输入您想说的内容...">
-                    <span class="comment_btn" onclick="send(this,1,{$detail.id})">发送</span>
+                    <span class="comment_btn" onclick="send(this,4,{$detail.id})">发送</span>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
         $(".dz_cn").children("span")[0].innerHTML = n;
         $.ajax({
             type:"post",
-//            url:"{:Url('Base/like')}",
+            url:"{:Url('Base/like')}",
             data:{
                 type:type,
                 aid:id,

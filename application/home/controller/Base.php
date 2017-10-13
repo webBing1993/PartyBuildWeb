@@ -66,6 +66,9 @@ class Base extends Controller {
             case 3:
                 $table = "learn";
                 break;
+            case 4:
+                $table = "branch";
+                break;
             default:
                 return $this->error("无该数据表");
                 break;
@@ -122,6 +125,9 @@ class Base extends Controller {
                     break;
                 case 3:
                     $table = "learn";
+                    break;
+                case 4:
+                    $table = "branch";
                     break;
                 default:
                     return $this->error("无该数据表");
