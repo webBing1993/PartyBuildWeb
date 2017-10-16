@@ -2,6 +2,14 @@
 
 {block name="style"}
 <link rel="stylesheet" href="/home/css/redTopic.css">
+<style>
+    .time {
+        padding-right: 80px;
+        font-size: 12px;
+        color: #666;
+        margin: 10px 0;
+    }
+</style>
 {/block}
 {block name="body"}
 {include file="public/header"}
@@ -37,11 +45,12 @@
             </div>
             <div class="specialDetail">
                 <p class="specialTitle">{$detail.title}</p>
+                <p class="time clearfix"><span class="fr">{$detail.create_time|time_format='Y-m-d'}</span></p>
                 <div class="detail_content">
                     {$detail.content}
                 </div>
                 <div class="dz">
-                    <div class="dz_cl">
+                    <div class="dz_cl" onclick="isGood(this,2,{$detail.id})">
                         <div class="dz_img">
                             <img src="/home/images/xx.png" alt="">
                         </div>
@@ -73,110 +82,125 @@
 {/block}
 {block name="script"}
 <script>
-    $(function () {
-        // nav
-        $(".nav-header li:nth-of-type(3) a").addClass("active");
-        $(".nav-header li").bind("mouseleave", function () {
-            $(".nav-header li a").removeClass("active");
-            $(".nav-header li:nth-of-type(3) a").addClass("active")
-        });
+    // 点赞
+    var isGood = function(e,type,id){
 
-        // 判断tabs li 的奇偶数
-        var len = $(".tabs li").length;
-        if (len % 2 == 1) {
-            $(".tabs li.last").remove();
-        }
-        if (len >= 5) {
-            $(".tab_img").hide();
-        }else {
-            $(".tab_img").show();
-        }
+        $(e).addClass("active");
+        var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
+        $(e).addClass("active").next(".dz_cn").children("span")[0]?n++:n;
+        $(".dz_cn").children("span")[0].innerHTML = n;
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id,
+            },
+            success:function(data){
 
-
-        $(".tabs li").on("click", function () {
-            window.location.href = "/home/special/index/tag/" + ($(this).index() + 1) + ".html";
-            if ($(this).hasClass("last")) {
-                return
             }
-            $(".tabs li").css("animation","click_ 1s ease");
-            $(this).css("animation","click 1s ease");
-            $(".content_text").removeClass("hidden").hide();
-            $(".content_text").eq($(this).index()).show();
-            var html = $(this).children(".tab_name")[0].innerHTML + $(this).children(".tab_content")[0].innerHTML;
-            $(".textTitle").html(html);
-            $(".content_title a:last-of-type").html(html);
-        });
-
-        // 点赞
-        $(".dz_cl").one("click", function () {
-            $(this).css("backgroundColor","#c2c2c2");
-            var val = parseInt($(".dz_cn").children("span")[0].innerHTML);
-            val++;
-            $(".dz_cn").children("span")[0].innerHTML = val;
         })
+    };
+    // nav
+    $(".nav-header li:nth-of-type(3) a").addClass("active");
+    $(".nav-header li").bind("mouseleave", function () {
+        $(".nav-header li a").removeClass("active");
+        $(".nav-header li:nth-of-type(3) a").addClass("active")
+    });
 
-        var send = function(e,type,id){
-            var it = $(".comment_say input");
-            if(it.val() == '') {
-                swal({
-                    title: ' ',
-                    text: '您还未评论！',
-                    type: 'warning',
-                    confirmButtonText:'确定',
-                    timer:3000
-                });
-            }
-            if(it.val() != '' && it.val().length > 4){
-                $.ajax({
-                    type:"post",
-                    url:"{:Url('Base/comment')}",
-                    data:{
-                        type:type,
-                        aid:id,
-                        content:it.val()
-                    },
-                    beforeSend:function(){
-                        swal({
-                            title: ' ',
-                            text: '评论提交中...',
-                            showConfirmButton:false
-                        });
-                    },
-                    success:function(msg){
-                        var data = msg.data;
-                        var userid = "'"+data.create_user+"'";
-                        var html = '';
-                        html += '<div class="list clearfix">'+
-                                '<div class="list_img fl">'+
-                                '<img src="'+data.header+'" alt="用户头像">'+
-                                '</div>'+
-                                '<div class="comment_name fl">'+data.nickname+'</div>'+
-                                '<div class="comment_content fl" >'+it.val()+'</div>'+
-                                '</div>';
-                        $('.commentLists' ).append(html);
-                        it.val('');
-                        var sum = $('.sum span' );
-                        sum.text(parseInt(sum.text())+1);
-                        swal({
-                            title: ' ',
-                            text: '评论成功',
-                            type: 'success',
-                            confirmButtonText:'确定',
-                            timer:3000
-                        });
-                    }
-                });
-            }else if(it.val() != '' && it.val().length <= 4){
-                swal({
-                    title: ' ',
-                    text: '您的评论少于5个字',
-                    type: 'error',
-                    confirmButtonText:'确定',
-                    timer:3000
-                });
-            }
-        };
+    // 判断tabs li 的奇偶数
+    var len = $(".tabs li").length;
+    if (len % 2 == 1) {
+        $(".tabs li.last").remove();
+    }
+    if (len >= 6) {
+        $(".tab_img li:first-of-type").hide();
+    }
+    if (len >= 8) {
+        $(".tab_img li:nth-of-type(2)").hide();
+    }
+    if (len >= 13) {
+        $(".tabs li:nth-of-type(n+13)").remove();
+    }
 
-    })
+
+    $(".tabs li").on("click", function () {
+        window.location.href = "/home/special/index/tag/" + ($(this).index() + 1) + ".html";
+        if ($(this).hasClass("last")) {
+            return
+        }
+        $(".tabs li").css("animation","click_ 1s ease");
+        $(this).css("animation","click 1s ease");
+        $(".content_text").removeClass("hidden").hide();
+        $(".content_text").eq($(this).index()).show();
+        var html = $(this).children(".tab_name")[0].innerHTML + $(this).children(".tab_content")[0].innerHTML;
+        $(".textTitle").html(html);
+        $(".content_title a:last-of-type").html(html);
+    });
+
+
+
+    var send = function(e,type,id){
+        var it = $(".comment_say input");
+        if(it.val() == '') {
+            swal({
+                title: ' ',
+                text: '您还未评论！',
+                type: 'warning',
+                confirmButtonText:'确定',
+                timer:3000
+            });
+        }
+        if(it.val() != '' && it.val().length > 4){
+            $.ajax({
+                type:"post",
+                url:"{:Url('Base/comment')}",
+                data:{
+                    type:type,
+                    aid:id,
+                    content:it.val()
+                },
+                beforeSend:function(){
+                    swal({
+                        title: ' ',
+                        text: '评论提交中...',
+                        showConfirmButton:false
+                    });
+                },
+                success:function(msg){
+                    var data = msg.data;
+                    var userid = "'"+data.create_user+"'";
+                    var html = '';
+                    html += '<div class="list clearfix">'+
+                            '<div class="list_img fl">'+
+                            '<img src="'+data.header+'" alt="用户头像">'+
+                            '</div>'+
+                            '<div class="comment_name fl">'+data.nickname+'</div>'+
+                            '<div class="comment_content fl" >'+it.val()+'</div>'+
+                            '</div>';
+                    $('.commentLists' ).append(html);
+                    it.val('');
+                    var sum = $('.sum span' );
+                    sum.text(parseInt(sum.text())+1);
+                    swal({
+                        title: ' ',
+                        text: '评论成功',
+                        type: 'success',
+                        confirmButtonText:'确定',
+                        timer:3000
+                    });
+                }
+            });
+        }else if(it.val() != '' && it.val().length <= 4){
+            swal({
+                title: ' ',
+                text: '您的评论少于5个字',
+                type: 'error',
+                confirmButtonText:'确定',
+                timer:3000
+            });
+        }
+    };
+
 </script>
 {/block}
