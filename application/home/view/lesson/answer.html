@@ -24,7 +24,7 @@
             <div class="tab_img">
                 <ul>
                     <li><a href="/home/news/general.html"><img src="/home/images/zg.png" alt=""></a></li>
-                    <li><a href="/home/learn/answer.html"><img src="/home/images/dt.png" alt=""></a></li>
+                    <li><a href="/home/lesson/answer.html"><img src="/home/images/dt.png" alt=""></a></li>
                     <li><a href="/home/video/index.html"><img src="/home/images/qw.png" alt=""></a></li>
                 </ul>
             </div>
@@ -77,20 +77,25 @@
         $(".list_btn").on("click", function () {
             $(this).addClass("active");
             submitAnswer();
-        });
+         });
         //提交
         function submitAnswer(){
-            isAll = true;
+            var data = [];
+            $('.list').each(function(){
+                var id = $(this ).attr('data-tab');
+                var answer = $(this ).find('.checked' ).index();
+                data.push([id,answer]);
+            });
+            var isAll = true;
             var up = $('.up');
             var suc = $('.suc');
             var timer = $('.timer');
-            var answer = getAnswer();
-            objNow=null;
+            var objNow=null;
             if(isAll){
                 $.ajax({
                     type:"post",
-//                    url:"{:Url('Constitution/submits')}",
-                    data:{arr:answer,arrId:getDataID()},
+                    url: "{:Url('Lesson/commit')}",
+                    data:{arr:data},
                     success:function(e){
                         suc.fadeIn();
                         setTimeout(function(){
@@ -98,7 +103,7 @@
                             timer.fadeOut();
                             up.text('提交成功');
                             setTimeout(function(){
-//                                window.location.href= "{:Url('Constitution/score')}";
+                                window.location.href= "/home/lesson/goon.html";
                             },1000)
                         },2000);
                     }
@@ -108,8 +113,8 @@
                 if(msg){
                     $.ajax({
                         type:"post",
-//                        url:"{:Url('Constitution/submits')}",
-                        data:{arr:answer,arrId:getDataID()},
+                        url: "{:Url('Lesson/commit')}",
+                        data:{arr: data},
                         success:function(e){
                             suc.fadeIn();
                             setTimeout(function(){
@@ -117,7 +122,7 @@
                                 timer.fadeOut();
                                 up.text('提交成功');
                                 setTimeout(function(){
-//                                    window.location.href= "{:Url('Constitution/goon')}";
+                                    window.location.href= "/home/lesson/goon.html";
                                 },1000)
                             },2000);
                         }
@@ -126,37 +131,6 @@
                     objNow=1;
                 }
             }
-        }
-        function getDataID(){
-            var list=$('.list');
-            var arr=[];
-            for(var i=0;i<list.length;i++){
-                arr.push(list.eq(i).attr('data-id'));
-            }
-            return arr;
-        }
-        //返回答案的数组
-        function getAnswer(){
-            var answer = [];
-            var list = $('.list' );
-            var len = list.length;
-            for(var i = 0;i < len ;i++){
-                var checked = list.eq(i).find('input:checked');
-                var len_a = checked.length;
-                if(len_a === 0){
-                    isAll = false;
-                    answer.push(0);
-                }else if(len_a === 1){
-                    answer.push(checked.val())
-                }else{
-                    var it = [];
-                    checked.each(function(){
-                        it.push($(this).val());
-                    });
-                    answer.push(it)
-                }
-            }
-            return answer;
         }
     });
 
