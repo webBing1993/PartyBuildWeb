@@ -39,7 +39,7 @@
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText"><a href="{:Url('News/detail?id='.$vo['id'])}">{$vo.title}</a></span>
+                                    <span class="contentText {eq name='$vo.class' value='2'}sxt{/eq}"><a href="{:Url('News/detail?id='.$vo['id'])}">{$vo.title}</a></span>
                                 </span>
                                 <span class="fr">
                                     [ <span class="time">{$vo.create_time|time_format='Y-m-d'}</span> ]

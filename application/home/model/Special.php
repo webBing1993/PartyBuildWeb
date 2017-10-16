@@ -48,4 +48,16 @@ class Special extends Model {
         }
         return $res;
     }
+    
+    /**
+     * 获取专题列表
+     */
+    public function getSpecialList() {
+        $map = array(
+            'status' => 1
+        );
+        $order = array('create_time desc');
+        $res = $this->where($map)->order($order)->limit(12)->select();
+        return $res;
+    }
 }

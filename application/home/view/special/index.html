@@ -29,9 +29,9 @@
         <div class="col-md-9 col-lg-9 col-xs-9">
             <div class="content_title">
                 <span>您的当前位置：</span>
-                <a href="/home/index/index.html">首页</a>
+                <a href="{:Url('Index/index')}">首页</a>
                 <span> > </span>
-                <a href="/home/special/index.html">红色专题</a>
+                <a href="{:Url('Special/index')}">红色专题</a>
                 <span> > </span>
                 <a href="#"></a>
             </div>
@@ -47,10 +47,10 @@
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
-                                    <span class="contentText"><a href="/home/special/detail.html">{$con.title}</a></span>
+                                    <span class="contentText {eq name='$con.class' value='2'}sxt{/eq}"><a href="{:Url('Special/detail?id='.$con['id'])}">{$con.title}</a></span>
                                 </span>
                                 <span class="fr">
-                                    [ <span class="time">2017-2-28</span> ]
+                                    [ <span class="time">{$con.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
                         </li>
                         {/volist}

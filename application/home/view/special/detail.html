@@ -10,19 +10,12 @@
         <div class="col-md-3 col-lg-3 col-xs-3">
             <div class="tabs clearfix">
                 <ul>
+                    {volist name="list" id="vo"}
                     <li class="fl">
-                        <div class="tab_name"></div>
-                        <div class="tab_content">十九大专题</div>
+                        <div class="tab_name">{$vo.name}</div>
+                        <div class="tab_content">{$vo.summary}</div>
                     </li>
-                    <li class="fl">
-                        <div class="tab_name"></div>
-                        <div class="tab_content">十八大专题</div>
-                    </li>
-                    <li class="fl">
-                        <div class="tab_name">习大大</div>
-                        <div class="tab_content">7.26讲话</div>
-                    </li>
-                    <li class="fl last"></li>
+                    {/volist}
                 </ul>
             </div>
             <div class="tab_img">
@@ -36,18 +29,16 @@
         <div class="col-md-9 col-lg-9 col-xs-9">
             <div class="content_title">
                 <span>您的当前位置：</span>
-                <a href="/home/index/index.html">首页</a>
+                <a href="{:Url('Index/index')}">首页</a>
                 <span> > </span>
-                <a href="/home/special/index.html">红色专题</a>
+                <a href="{:Url('Special/index')}">红色专题</a>
                 <span> > </span>
-                <a href="/home/special/index.html">十八大专题</a>
+                <a href="#">{$detail.title}</a>
             </div>
             <div class="specialDetail">
-                <p class="specialTitle">十八大闭幕会</p>
-                <div class="detail_img"><img src="/home/images/b2.jpg" alt=""></div>
+                <p class="specialTitle">{$detail.title}</p>
                 <div class="detail_content">
-                    <p>中国共产党第十八次全国代表大会闭幕会14日在北京人民大会堂举行，胡锦涛主持十八大闭幕会，2307名代表和特邀代表出席会议</p>
-                    <p>大会选举产生了大师八届中央委员会和中央纪律检查委员会 ，通过了关于十七届中央委员会报告的决议，通过率关于中央纪律检查委员会工作报告的决议，通过了关于...</p>
+                    {$detail.content}
                 </div>
                 <div class="dz">
                     <div class="dz_cl">
@@ -56,37 +47,24 @@
                         </div>
                         <p>赞</p>
                     </div>
-                    <div class="dz_cn">共有 <span>4154654</span>人点赞</div>
+                    <div class="dz_cn">共有 <span>{$detail.likes}</span>人点赞</div>
                 </div>
             </div>
             <div class="comment">
-                <div class="sum">共 <span>4</span>条评论</div>
+                <div class="sum">共 <span>{$detail.comments}</span>条评论</div>
                 <div class="commentLists">
+                    {volist name="comment" id="com"}
                     <div class="list clearfix">
                         <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
-                        <div class="list_name fl">游客：</div>
-                        <div class="list_content fl">评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块评论区的内容模块</div>
+                        <div class="list_name fl">{$com.nickname}：</div>
+                        <div class="list_content fl">{$com.content}</div>
                     </div>
-                    <div class="list clearfix">
-                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
-                        <div class="list_name fl">游客：</div>
-                        <div class="list_content fl">评论区的内容模块</div>
-                    </div>
-                    <div class="list clearfix">
-                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
-                        <div class="list_name fl">游客：</div>
-                        <div class="list_content fl">评论区的内容模块</div>
-                    </div>
-                    <div class="list clearfix">
-                        <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
-                        <div class="list_name fl">游客：</div>
-                        <div class="list_content fl">评论区的内容模块</div>
-                    </div>
+                    {/volist}
                 </div>
                 <div class="comment_say">
                     <span>我来评论</span>
                     <input type="text" placeholder="点击输入您想说的内容...">
-                    <span class="comment_btn" onclick="send()">发送</span>
+                    <span class="comment_btn" onclick="send(this,2,{$detail.id})">发送</span>
                 </div>
             </div>
         </div>
@@ -151,7 +129,7 @@
             if(it.val() != '' && it.val().length > 4){
                 $.ajax({
                     type:"post",
-//                url:"{:Url('Base/comment')}",
+                    url:"{:Url('Base/comment')}",
                     data:{
                         type:type,
                         aid:id,

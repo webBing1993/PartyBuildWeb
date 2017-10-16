@@ -12,5 +12,12 @@ namespace app\home\model;
 use think\Model;
 
 class SpecialDetail extends  Model {
+    /**
+     * 获取详情页
+     */
+    public function getDetail($id) {
+        $res = $this->get($id);
+        return $res;
+    }
 
 }

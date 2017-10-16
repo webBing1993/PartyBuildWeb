@@ -6,6 +6,8 @@
  * Time: 17:59
  */
 namespace app\home\controller;
+use app\home\model\Comment;
+use app\home\model\SpecialDetail;
 use think\Controller;
 use app\home\model\Special as SpecialModel;
 
@@ -30,9 +32,21 @@ class Special extends Controller
      * 详细页
      * @return mixed
      */
-    public function detail()
-    {
+    public function detail() {
+        //获取专题列表
+        $SpecialModel = new SpecialModel();
+        $list = $SpecialModel->getSpecialList();
+        $this->assign('list',$list);
+        
+        $id = input('id');
+        $DetailModel = new SpecialDetail();
+        $detail = $DetailModel->getDetail($id);
+        $this->assign('detail',$detail);
 
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(2,$id,0);
+        $this->assign('comment',$comment);
         return $this->fetch();
     }
 
