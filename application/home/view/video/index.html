@@ -24,7 +24,7 @@
     </div>
     <div class="video_">每周更新，看不停</div>
     <div class="videoList">
-        <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr" onclick="change(this,1)"><a href="#">换一批</a></span></div>
+        <div class="video_title clearfix"><span class="fl">原创视频</span><span class="fr" onclick="change(this,1)"><a>换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
                 {volist name="list.one" id="one"}
@@ -38,7 +38,7 @@
                 {/volist}
             </ul>
         </div>
-        <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr" onclick="change(this,2)"><a href="#">换一批</a></span></div>
+        <div class="video_title clearfix"><span class="fl">转载视频</span><span class="fr" onclick="change(this,2)"><a>换一批</a></span></div>
         <div class="lists clearfix">
             <ul>
                 {volist name="list.two" id="two"}
@@ -91,23 +91,26 @@
                 n : n
             },
             success: function (date) {
+                console.log(date.code);
                 if (date.code == 1) {
+                    var len = $(e).parent(".video_title").next(".lists").find("li").length;
                     $(e).parent(".video_title").next(".lists").find("li").remove();
                     n++;
-                    for(var i = 0;i <= $(e).parent(".video_title").next(".lists").find("li").length; i++) {
-                        var html;
+                    var html = "";
+                    for(var i = 0;i < len; i++) {
+                        var msg = date.data[i];
                         html = '<li class="fl">'
                                 +'<a href="'
                                 +"{:Url('Video/detail?id='.$one['id'])}"
                                 +'">'
                                 +'<div class="video_img"><img src="' 
-                                +date.data[i].path
+                                +msg.path
                                 +'" alt=""></div>'
                                 +'<div class="video_name">' 
-                                +date.data[i].title
+                                +msg.title
                                 +'</div>'
                                 +'<div class="video_time">更新时间：'
-                                +date.data[i].time
+                                +msg.time
                                 +'</div>'
                                 +'</a>'
                                 +'</li>';
@@ -115,7 +118,7 @@
                     }
 
                 }else if(date.code == 0) {
-                    n = 0;
+                    n = 1;
                 }
             }
         })
