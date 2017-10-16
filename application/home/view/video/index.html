@@ -92,8 +92,29 @@
             },
             success: function (date) {
                 if (date.code == 1) {
+                    $(e).parent(".video_title").next(".lists").find("li").remove();
                     n++;
-                }else {
+                    for(var i = 0;i <= $(e).parent(".video_title").next(".lists").find("li").length; i++) {
+                        var html;
+                        html = '<li class="fl">'
+                                +'<a href="'
+                                +"{:Url('Video/detail?id='.$one['id'])}"
+                                +'">'
+                                +'<div class="video_img"><img src="' 
+                                +date.data[i].path
+                                +'" alt=""></div>'
+                                +'<div class="video_name">' 
+                                +date.data[i].title
+                                +'</div>'
+                                +'<div class="video_time">更新时间：'
+                                +date.data[i].time
+                                +'</div>'
+                                +'</a>'
+                                +'</li>';
+                        $(e).parent(".video_title").next(".lists").children("ul").append(html);
+                    }
+
+                }else if(date.code == 0) {
                     n = 0;
                 }
             }
