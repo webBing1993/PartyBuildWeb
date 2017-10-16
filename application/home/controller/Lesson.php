@@ -117,6 +117,7 @@ class Lesson extends Base {
             $re[$key]['right'] = $rights[$key];
         }
         $this->assign('question',$re);
+        $this->assign('score',$Answers['score']);
         return $this->fetch();
     }
 }

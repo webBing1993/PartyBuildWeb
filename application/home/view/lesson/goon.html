@@ -10,7 +10,7 @@
         <div class="col-md-3 col-lg-3  col-sm-3 col-xs-3">
             <div class="content_tab">
                 <ul>
-                    <li class="red"><a href="javascript:;"> <span>在线答题</span><span>  </span></a></li>
+                    <li class="red"><a href="javascript:;"> <span>每日一课</span><span>  </span></a></li>
                 </ul>
             </div>
             <div class="tab_img">
@@ -26,118 +26,31 @@
                 <span>您的当前位置：</span>
                 <a href="/home/index/index.html">首页</a>
                 <span> > </span>
-                <a href="/home/learn/goon.html">在线答题</a>
+                <a href="/home/lesson/goon.html">每日一课</a>
             </div>
             <div class="content_text">
                 <div class="learn_title">党章党规全掌握</div>
                 <div class="lists">
-                    <div class="list">
-                        <p class="list_title">1、在新的历史条件下，我们党面临着执政、改革开放、（）外部环境“四大考验”。</p>
+                    {volist name="question" id="vo" key="n"}
+                    <div class="list" data-tab="{$vo.id}">
+                        <p class="list_title">{$n}、{$vo.title}</p>
                         <form>
+                            {volist name="vo->Option" id="value" key="k"}
                             <label>
-                                <input type="radio" name="" value="1" style="width: 10px; height: 10px; border: 1px solid;">
-                                <label class="option">A</label>
-                                <span class="opt">商品经济</span>
+                                <input type="radio" name="" value="{$k}">
+                                <label class="option">{if condition="($k eq 1) AND ($value neq ' ')"}A{elseif condition="($k eq 2) AND ($value neq ' ')"}B{elseif condition="($k eq 3 )AND ($value neq ' ')"}C{elseif condition="($k eq 4 )AND ($value neq ' ')"/}D{/if}</label>
+                                <span class="opt">{$value|substr=###,'2'}</span>
                             </label>
-                            <label for="">
-                                <input type="radio" name="" value="2">
-                                <label class="option">B</label>
-                                <label class="opt">外部环境</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="3">
-                                <label class="option">C</label>
-                                <label class="opt">市场经济</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="4">
-                                <label class="option">D</label>
-                                <label class="opt">执政能力</label>
-                            </label>
+                            {/volist}
                         </form>
+                        <p>正确答案</p>:<span>{$vo->Right|implode=###,"&nbsp;&nbsp;&nbsp;"}</span>
                     </div>
-                    <div class="list">
-                        <p class="list_title">2、在新的历史条件下，我们党面临着执政、改革开放、（）外部环境“四大考验”。</p>
-                        <form>
-                            <label>
-                                <input type="radio" name="" value="1" style="width: 10px; height: 10px; border: 1px solid;">
-                                <label class="option">A</label>
-                                <span class="opt">商品经济</span>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="2">
-                                <label class="option">B</label>
-                                <label class="opt">外部环境</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="3">
-                                <label class="option">C</label>
-                                <label class="opt">市场经济</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="4">
-                                <label class="option">D</label>
-                                <label class="opt">执政能力</label>
-                            </label>
-                        </form>
-                    </div>
-                    <div class="list">
-                        <p class="list_title">3、在新的历史条件下，我们党面临着执政、改革开放、（）外部环境“四大考验”。</p>
-                        <form>
-                            <label>
-                                <input type="radio" name="" value="1" style="width: 10px; height: 10px; border: 1px solid;">
-                                <label class="option">A</label>
-                                <span class="opt">商品经济</span>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="2">
-                                <label class="option">B</label>
-                                <label class="opt">外部环境</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="3">
-                                <label class="option">C</label>
-                                <label class="opt">市场经济</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="4">
-                                <label class="option">D</label>
-                                <label class="opt">执政能力</label>
-                            </label>
-                        </form>
-                    </div>
-                    <div class="list">
-                        <p class="list_title">4、在新的历史条件下，我们党面临着执政、改革开放、（）外部环境“四大考验”。</p>
-                        <form>
-                            <label>
-                                <input type="radio" name="" value="1" style="width: 10px; height: 10px; border: 1px solid;">
-                                <label class="option">A</label>
-                                <span class="opt">商品经济</span>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="2">
-                                <label class="option">B</label>
-                                <label class="opt">外部环境</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="3">
-                                <label class="option">C</label>
-                                <label class="opt">市场经济</label>
-                            </label>
-                            <label for="">
-                                <input type="radio" name="" value="4">
-                                <label class="option">D</label>
-                                <label class="opt">执政能力</label>
-                            </label>
-                        </form>
-                    </div>
+                    {/volist}
                 </div>
                 <div class="list_btn goon">确认提交</div>
                 <div class="answer">
-                    <p>正确答案</p>
-                    <div><span>1、<span>C</span></span><span>2、<span>B</span></span><span>3、<span>A</span></span><span>4、<span>C</span></span><span>5、<span>D</span></span></div>
                     <p>本次得分</p>
-                    <div><span><span>5</span>分</span></div>
+                    <div><span><span>{$score}</span>分</span></div>
                 </div>
             </div>
         </div>
