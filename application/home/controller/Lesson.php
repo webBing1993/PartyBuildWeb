@@ -49,7 +49,7 @@ class Lesson extends Base {
     public function commit(){
         // 获取用户提交数据
         $data = input('post.');
-        $arr = $data['data'];
+        $arr = $data['arr'];
         $question = array();
         $status = array();
         $options = array();
