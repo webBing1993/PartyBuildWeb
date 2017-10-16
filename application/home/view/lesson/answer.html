@@ -73,6 +73,12 @@
         $(".opt").on("click",function () {
             $(this).parents('form').children("label").children(".option").removeClass("active");
             $(this).prev().addClass("active");
+            $(this).prev().prev("input").attr("checked","checked");
+        });
+        $("label").on("click",function () {
+            $(this).parent("form").children("label").children(".option").removeClass("active");
+            $(this).children(".option").toggleClass("active");
+            $(this).prev("input").attr("checked","checked");
         });
         $(".list_btn").on("click", function () {
             $(this).addClass("active");
@@ -83,7 +89,10 @@
             var data = [];
             $('.list').each(function(){
                 var id = $(this ).attr('data-tab');
-                var answer = $(this ).find('.checked' ).index();
+                var answer = $(this ).find("input[checked]").val();
+                if (answer == undefined) {
+                    answer = -1;
+                }
                 data.push([id,answer]);
             });
             var isAll = true;
@@ -103,7 +112,7 @@
                             timer.fadeOut();
                             up.text('提交成功');
                             setTimeout(function(){
-                                window.location.href= "/home/lesson/goon.html";
+//                                window.location.href= "/home/lesson/goon.html";
                             },1000)
                         },2000);
                     }
