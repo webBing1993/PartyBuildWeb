@@ -87,15 +87,16 @@
         //提交
         function submitAnswer(){
             var data = [];
+            var isAll = true;
             $('.list').each(function(){
                 var id = $(this ).attr('data-tab');
                 var answer = $(this ).find("input[checked]").val();
                 if (answer == undefined) {
                     answer = -1;
+                    isAll = false;
                 }
                 data.push([id,answer]);
             });
-            var isAll = true;
             var up = $('.up');
             var suc = $('.suc');
             var timer = $('.timer');
