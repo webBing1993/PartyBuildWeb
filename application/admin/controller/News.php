@@ -61,7 +61,8 @@ class News extends Admin {
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             if(empty($data['id'])) {
                 unset($data['id']);
-            }elseif(empty($data['pid'])) {
+            }
+            if(empty($data['pid'])) {
                 unset($data['pid']);
             }
             $Model = new NewsModel();
