@@ -87,9 +87,27 @@ $(function () {
         var data = new Date();
         var year = data.getFullYear();
         var month = data.getMonth() + 1;
+        if (month < 10) {
+            month = "0" + month;
+        }
         var date = data.getDate();
         var day = data.getDay();
-        var time = data.getHours() + " : " + data.getMinutes() + " : " + data.getSeconds();
+        if (day < 10) {
+            day = "0" + day;
+        }
+        var hour = data.getHours();
+        var minutes = data.getMinutes();
+        var seconds = data.getSeconds();
+        if (hour < 10) {
+            hour = "0" + hour;
+        }
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        if (seconds < 10) {
+            seconds = "0" + seconds;
+        }
+        var time = hour + " : " + minutes + " : " + seconds;
         var Week = ['日','一','二','三','四','五','六'];
         $(".timeNow").html("国家授时中心标准时间：" + year + "年" + month + "月" + date + "日 &nbsp;| &nbsp;" + time + " &nbsp; | &nbsp;星期" + Week[parseInt(day)]);
         $(".now_title .pull-left").html(year + "年" + month + "月" + date + "日");
