@@ -61,6 +61,8 @@ class News extends Admin {
             $data['create_user'] = $_SESSION['think']['user_auth']['id'];
             if(empty($data['id'])) {
                 unset($data['id']);
+            }elseif(empty($data['pid'])) {
+                unset($data['pid']);
             }
             $Model = new NewsModel();
             if($data['class'] == 1) {
@@ -94,6 +96,9 @@ class News extends Admin {
         if(IS_POST) {
             $data = input('post.');
             $Model = new NewsModel();
+            if(empty($data['pid'])) {
+                unset($data['pid']);
+            }
             if($data['class'] == 1) {
                 $valid = 'News.pic';
             }else {
