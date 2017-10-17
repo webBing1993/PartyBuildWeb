@@ -5,9 +5,10 @@
 $(function () {
 
     // 监听滚轮事件
-    $(window).scroll(function (e) {
+    var scrollNow = true;
+    $(window).off("scroll" ).on("scroll",function (e) {
         var scrollTop = $(this).scrollTop();
-        if (scrollTop >= 102) {
+        if (scrollTop >= 152) {
             $(".nav").css({
                 position: "fixed",
                 top: 0,
