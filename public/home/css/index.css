@@ -474,3 +474,46 @@
 .interest_content li a:hover .interest_text {
     color: #1755cc;
 }
+/*erweima*/
+.container {
+    position: relative;
+}
+.erweima {
+    position: absolute;
+    left: -18%;
+    top: 10%;
+    height: 384px;
+    background-color: #f9f9f9;
+}
+.erweima p {
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    color: #fff;
+    background-color: #d43d3d;
+    font-size: 14px;
+    text-align: center;
+}
+.erweima ul {
+    margin-top: 8px;
+}
+.erweima li {
+    padding: 0 20px;
+}
+.erweima li .img {
+    width: 138px;
+    height: 135px;
+    display: block;
+    padding-bottom: 7px;
+}
+.erweima li .img img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.erweima li .title {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 14px;
+}

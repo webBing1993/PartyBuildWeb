@@ -46,7 +46,6 @@
         var c = window.location.href.split("index/id/")[1];
         if (c != undefined) {
             var c1 = c.split(".html")[0];
-            console.log(c1);
             $(".list").eq(c1-1).addClass("active");
             $(".list").eq(c1-1).children(".list_content").children(".list_js").hide();
             $(".list").eq(c1-1).children(".list_content").children(".list_text").show();
