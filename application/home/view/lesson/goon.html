@@ -2,6 +2,14 @@
 
 {block name="style"}
 <link rel="stylesheet" href="/home/css/learn.css">
+<style>
+    .content_text {
+        border-bottom: 0;
+    }
+    form {
+        margin-bottom: 15px;
+    }
+</style>
 {/block}
 {block name="body"}
 {include file="public/header"}
@@ -43,7 +51,7 @@
                             </label>
                             {/volist}
                         </form>
-                        <p>正确答案</p>:<span>{$vo->Right|implode=###,"&nbsp;&nbsp;&nbsp;"}</span>
+                        <p>正确答案：<span>{$vo->Right|implode=###,"&nbsp;&nbsp;&nbsp;"}</span></p>
                     </div>
                     {/volist}
                 </div>
