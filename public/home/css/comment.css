@@ -156,6 +156,8 @@
 .content_title {
     line-height: 60px;
     font-size: 17px;
+    height: 60px;
+    overflow: hidden;
 }
 .content_title a {
     color: #333;
