@@ -62,6 +62,9 @@ class News extends Admin {
             if(empty($data['id'])) {
                 unset($data['id']);
             }
+            if(empty($data['pid'])) {
+                $data['pid'] = '0';
+            }
             $Model = new NewsModel();
             if($data['class'] == 1) {
                 $valid = 'News.pic';
@@ -95,7 +98,7 @@ class News extends Admin {
             $data = input('post.');
             $Model = new NewsModel();
             if(empty($data['pid'])) {
-                unset($data['pid']);
+                $data['pid'] = 0;
             }
             if($data['class'] == 1) {
                 $valid = 'News.pic';
