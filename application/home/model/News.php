@@ -41,13 +41,17 @@ class News extends Model {
     /**
      * 获取主页
      */
-    public function getIndex() {
+    public function getIndex($p=0) {
+        ($p) ? $len = $p-1*12 : $len = 0;
         $map = array(
             'status' => 1,
         );
         $order = array('create_time desc');
-        $field = array('id,title,create_time');
-        $res = $this->where($map)->order($order)->limit(12)->field($field)->select();
+        $field = array('id,title,class,create_time');
+        $res = $this->where($map)->order($order)->field($field)->limit($len,12)->select();
+        foreach ($res as $value) {
+            $value['time'] = date("Y-m-d",$value['create_time']);
+        }
         return $res;
     }
     

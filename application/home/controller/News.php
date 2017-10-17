@@ -20,9 +20,19 @@ class News extends Base {
      */
     public function index(){
         $Model = new NewsModel;
-        $list = $Model->getIndex();
-        $this->assign('list',$list);
-        return $this->fetch();
+        if(IS_POST) {
+            $p = input('p');
+            $list = $Model->getIndex($p);
+            if($list) {
+                return $this->success("加载成功","",$list);
+            }else {
+                return $this->error("加载失败");
+            }
+        }else {
+            $list = $Model->getIndex();
+            $this->assign('list',$list);
+            return $this->fetch();
+        }
     }
 
     /**
