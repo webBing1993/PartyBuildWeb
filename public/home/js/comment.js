@@ -18,10 +18,16 @@ $(function () {
                 marginTop: 0
             });
             $(".top").show();
+            $(".erweima").css({
+                top: scrollTop
+            });
         }else {
             $(".nav").css({
                 position: "relative",
                 marginTop: "4px"
+            });
+            $(".erweima").css({
+                top: "10%"
             });
             $(".top").hide();
         }
