@@ -11,6 +11,7 @@ namespace app\admin\model;
 
 class News extends Base {
     protected $insert = [
+        'pid' => 0,
         'create_time' => NOW_TIME,
         'status' => 1,
         'views' => 0,
