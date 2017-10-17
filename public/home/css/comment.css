@@ -387,11 +387,11 @@ footer .container {
 footer p {
     text-align: center;
     font-size: 14px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     color: #333;
 }
 footer p:first-of-type {
-    margin-top: 29px;
+    margin-top: 37px;
 }
 footer p a {
     color: #333;
