@@ -41,14 +41,20 @@ class Branch extends Model {
         $field = array("id,title,create_time");
         $map['type'] = 1;
         $one = $this->where($map)->order($order)->field($field)->limit(12)->select();
+        $t1 = $this->where($map)->count();
         $map['type'] = 2;
         $two = $this->where($map)->order($order)->field($field)->limit(12)->select();
+        $t2 = $this->where($map)->count();
         $map['type'] = 3;
         $three = $this->where($map)->order($order)->field($field)->limit(12)->select();
+        $t3 = $this->where($map)->count();
         $res = array(
             'one' => $one,
+            't1' => $t1,
             'two' => $two,
-            'three' => $three
+            't2' => $t2,
+            'three' => $three,
+            't3' => $t3,
         );
         return $res;
     }
@@ -72,6 +78,24 @@ class Branch extends Model {
                 break;
             default:
                 break;
+        }
+        return $res;
+    }
+
+    /**
+     * 获取分页
+     */
+    public function getPage($type,$p) {
+        $len = ($p-1)*12;
+        $map = array(
+            'type' => $type,
+            'status' => $p
+        );
+        $order = array("create_time desc");
+        $field = array("id,title,create_time");
+        $res = $this->where($map)->order($order)->field($field)->limit($len,12)->select();
+        foreach ($res as $value) {
+            $value['time'] = date("Y-m-d",$value['create_time']);
         }
         return $res;
     }
