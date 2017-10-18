@@ -15,15 +15,15 @@
         </div>
     </div>
     <div class="banner col-md-12 col-lg-12  col-sm-12 col-xs-12">
-        <img src="/home/images/slide2.png" alt="">
+        <img src="/home/images/banner4.png" alt="">
     </div>
     <div class="content col-md-12 col-lg-12 col-xs-12">
         <div class="pioneerTitle">党员风采</div>
         <div class="col-md-1 col-lg-1 col-xs-1"></div>
         <div class="col-md-10 col-lg-10 col-xs-10 pioneerLists">
             <ul class="clearfix">
-                {volist name="list" id="vo"}
-                <li class=" list fl">
+                {volist name="list" id="vo"  key="k"}
+                <li class=" list fl clearfix">
                     <div class="list_img"><img src="{$vo.front_cover|get_cover='path'}" alt=""></div>
                     <div class="list_content">
                         <p class="list_name">{$vo.name}</p>
@@ -31,6 +31,9 @@
                         <div class="list_text">{$vo.content}</div>
                     </div>
                 </li>
+                {eq name="k%4" value="0"}
+                <p class="fl h1"></p>
+                {/eq}
                 {/volist}
             </ul>
         </div>

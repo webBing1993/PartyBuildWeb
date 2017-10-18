@@ -156,7 +156,7 @@
 .content_title {
     line-height: 60px;
     font-size: 17px;
-    height: 60px;
+    height: 62px;
     overflow: hidden;
 }
 .content_title a {
@@ -203,7 +203,7 @@
     background: url("../images/sxt.png") no-repeat;
     background-size: 18px 18px;
     position: absolute;
-    top: 5px;
+    top: 2px;
 }
 .sxt a {
     padding-left: 20px;

@@ -81,7 +81,7 @@
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
-    width: 87%;
+    width: 96%;
     display: inline-block;
 }
 .newLeft .list1>li ul {
@@ -273,9 +273,9 @@
     height: 100%;
 }
 .learnContent {
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
-    bottom: 0;
+    /*bottom: 0;*/
 }
 .learnContent li {
     line-height: 26px;
@@ -375,6 +375,9 @@
     line-height: 26px;
 }
 /*pioneer*/
+.learnsRight {
+    height: 772px;
+}
 .pioneer_title {
     text-align: center;
     padding-bottom: 3px;
@@ -421,8 +424,15 @@
 }
 .pioneer_text p {
     width: auto;
+    line-height: 20px;
     display: inline-block;
     text-align: left;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .pioneer_btn {
     width: 100%;

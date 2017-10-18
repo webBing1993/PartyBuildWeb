@@ -13,7 +13,7 @@
         <div class="col-md-3 col-lg-3  col-sm-3 col-xs-3">
             <div class="content_tab">
                 <ul>
-                    <li class="red"><a href="javascript:;"> <span>新闻聚焦</span><span>  </span></a></li>
+                    <li class="red"><a href="{:Url('News/index')}"> <span>新闻聚焦</span><span>  </span></a></li>
                 </ul>
             </div>
             <div class="tab_img">
@@ -77,24 +77,31 @@
 {/block}
 {block name="script"}
 <script>
+    // 取消左侧父级事件发生
+    $(".content_tab li a").on("click", function (e) {
+        e.stopPropagation();
+    });
     // 点赞
+    var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
+    var t = n;
     var isGood = function(e,type,id){
-
         $(e).addClass("active");
-        var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
         $(e).addClass("active").next(".dz_cn").children("span")[0]?n++:n;
+        if (n - t >= 2) {
+            n--;
+        }
         $(".dz_cn").children("span")[0].innerHTML = n;
         $.ajax({
             type:"post",
             url:"{:Url('Base/like')}",
             data:{
                 type:type,
-                aid:id,
+                aid:id
             },
             success:function(data){
 
             }
-        })
+        });
     };
     var send = function(e,type,id){
         var it = $(".comment_say input");

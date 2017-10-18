@@ -18,7 +18,7 @@
         <div class="col-md-3 col-lg-3  col-sm-3 col-xs-3">
             <div class="content_tab">
                 <ul>
-                    <li class="red"><a href="javascript:;"> <span>每日一课</span><span>  </span></a></li>
+                    <li class="red"><a href="/home/lesson/answer.html"> <span>每日一课</span><span>  </span></a></li>
                 </ul>
             </div>
             <div class="tab_img">
@@ -34,7 +34,7 @@
                 <span>您的当前位置：</span>
                 <a href="/home/index/index.html">首页</a>
                 <span> > </span>
-                <a href="/home/lesson/goon.html">每日一课</a>
+                <a href="/home/lesson/answer.html">每日一课</a>
             </div>
             <div class="content_text">
                 <div class="learn_title">党章党规全掌握</div>
@@ -67,11 +67,16 @@
 {/block}
 {block name="script"}
 <script>
+
+    // 取消左侧父级事件发生
+    $(".content_tab li a").on("click", function (e) {
+        e.stopPropagation();
+    });
     // nav
-    $(".nav-header li:nth-of-type(3) a").addClass("active");
+    $(".nav-header li:first-of-type a").addClass("active");
     $(".nav-header li").bind("mouseleave", function () {
         $(".nav-header li a").removeClass("active");
-        $(".nav-header li:nth-of-type(3) a").addClass("active")
+        $(".nav-header li:first-of-type a").addClass("active")
     });
 </script>
 {/block}
