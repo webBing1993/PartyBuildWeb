@@ -44,6 +44,8 @@ class Special extends Model {
                 'status' => 1
             );
             $detail = SpecialDetail::where($info)->order($order)->limit(12)->select();
+            $total = SpecialDetail::where($info)->count();
+            $value['total'] = $total;
             $value['con'] = $detail;
         }
         return $res;
@@ -59,5 +61,23 @@ class Special extends Model {
         $order = array('create_time desc');
         $res = $this->where($map)->order($order)->limit(12)->select();
         return $res;
+    }
+    
+    /**
+     * 获取分页
+     * $id：专题id 
+     * $p : 页码
+     */
+    public function getPage($id,$p) {
+        $map = array(
+            'pid' => $id,
+            'status' => 1
+        );
+        $length  = ($p-1)*12;
+        $order = array('create_time desc');
+        $res = $this->where($map)->order($order)->limit($length,12)->select();
+         foreach ($res as $value) {
+             $value['time'] = date("Y-m-d",$value['create_time']);
+         }
     }
 }

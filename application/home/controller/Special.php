@@ -22,9 +22,19 @@ class Special extends Controller
      */
     public function index() {
         $Model = new SpecialModel();
-        $list = $Model->getIndex();
-        $this->assign('list',$list);
-        return $this->fetch();
+        if(IS_POST) {
+            $data = input('post.');
+            $res = $Model->getPage($data['id'],$data['p']);
+            if($res) {
+                return $this->success("获取成功","",$res);
+            }else {
+                return $this->error("获取失败");
+            }
+        }else {
+            $list = $Model->getIndex();
+            $this->assign('list',$list);
+            return $this->fetch();
+        }
     }
 
 
