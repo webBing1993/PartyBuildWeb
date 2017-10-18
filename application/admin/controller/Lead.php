@@ -26,6 +26,7 @@ class Lead extends Admin {
         $list = $this->lists('Lead',$map);
         int_to_string($list,array(
             'status' => array(0=>"未审核",1=>'已发布'),
+            'recommend' => array(0=>"未推荐",1=>"推荐")
         ));
         $this->assign('list',$list);
 
