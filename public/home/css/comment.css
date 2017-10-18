@@ -414,6 +414,10 @@ footer p span.sx {
     margin: 0 15px;
 }
 
+.h16 {
+    height: 16px;
+    width: 100%;
+}
 
 .h38 {
     height: 38px;

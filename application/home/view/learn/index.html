@@ -44,10 +44,10 @@
                                 <span class="fr">
                                     [ <span class="time">{$vo.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
-                                {eq name="k%4" value="0"}
-                                <p class="h38"></p>
-                                {/eq}
                         </li>
+                        {eq name="k%4" value="0"}
+                        <p class="h16"></p>
+                        {/eq}
                         {/volist}
                     </ul>
                 </div>
@@ -75,11 +75,12 @@
                 $.ajax({
                     type: "post",
                     url: "{:Url('Learn/index')}",
-                    date: {
-                        type: num
+                    data: {
+                        p: num
                     },
                     success: function (date) {
                         $(".content_text li").remove();
+                        $(".content_text ul p").remove();
                         var data = date.data;
                         var html = "";
                         for (var i = 0; i <= 11; i++) {
@@ -99,10 +100,12 @@
                                     +data[i].time
                                     +'</span> ]'
                                     +'</span>'
-                                    +'{eq name="k%4" value="0"}'
-                                    +'<p class="h38"></p>'
-                                    +'{/eq}'
                                     +'</li>';
+                            if ((i + 1) % 4 == 0) {
+                                html += '{eq name="k%4" value="0"}'
+                                        +'<p class="h16"></p>'
+                                        +'{/eq}';
+                            }
                             $(".content_text ul").append(html);
                         }
                     }
