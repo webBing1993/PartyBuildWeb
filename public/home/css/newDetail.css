@@ -1,4 +1,14 @@
 /*detail*/
+.detail_img {
+    width: 100%;
+    height: 350px;
+    margin-bottom: 25px;
+}
+.detail_img iframe {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
 .newsDetail .newsTitle {
     font-size: 18px;
     color: #333;
