@@ -60,6 +60,8 @@
 {/block}
 {block name="script"}
 <script>
+    var total = {$total};
+    console.log(total);
     // nav
     $(".nav-header li:nth-of-type(2) a").addClass("active");
     $(".nav-header li").bind("mouseleave", function () {

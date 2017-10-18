@@ -38,7 +38,7 @@
                 <p class="time clearfix"><span class="fr">{$detail.create_time|time_format='Y-m-d'}</span></p>
                 {eq name="$detail.class" value="2"}
                 <div class="detail_img">
-                    <video src='{$detail.net_path}' frameborder="0" allowfullscreen="true" width="100%" height="100%" controls="controls"></video>
+                    <iframe  src="{$detail.net_path}" frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>
                 </div>
                 {/eq}
                 <div class="detail_content">
@@ -82,14 +82,11 @@
         e.stopPropagation();
     });
     // 点赞
-    var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
-    var t = n;
+
     var isGood = function(e,type,id){
         $(e).addClass("active");
+        var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
         $(e).addClass("active").next(".dz_cn").children("span")[0]?n++:n;
-        if (n - t >= 2) {
-            n--;
-        }
         $(".dz_cn").children("span")[0].innerHTML = n;
         $.ajax({
             type:"post",
