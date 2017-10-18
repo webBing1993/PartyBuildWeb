@@ -42,7 +42,7 @@ class News extends Model {
      * 获取主页
      */
     public function getIndex($p=0) {
-        ($p) ? $len = $p-1*12 : $len = 0;
+        ($p) ? $len = ($p-1)*12 : $len = 0;
         $map = array(
             'status' => 1,
         );

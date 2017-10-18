@@ -31,6 +31,10 @@ class News extends Base {
         }else {
             $list = $Model->getIndex();
             $this->assign('list',$list);
+
+            $map = array('status'=> 1);
+            $total = $Model->where($map)->count();
+            $this->assign('total',$total);
             return $this->fetch();
         }
     }
@@ -43,11 +47,6 @@ class News extends Base {
         $id = input('id');
         $Model = new NewsModel;
         $detail = $Model->getDetail($id);
-
-        //获取 文章点赞
-//        $likeModel = new Like();
-//        $like = $likeModel->getLike(1,$id,0);
-//        $detail['is_like'] = $like;
         $this->assign('detail',$detail);
 
         //获取 评论
