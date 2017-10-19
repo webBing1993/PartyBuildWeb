@@ -29,7 +29,7 @@
                 <span>您的当前位置：</span>
                 <a href="{:Url('Index/index')}">首页</a>
                 <span> > </span>
-                <a href="{:Url('Branch/index')}">{$detail.type_name}</a>
+                <a href="{:Url('Branch/index?type='.$detail['type'])}">{$detail.type_name}</a>
                 <span> > </span>
                 <a href="">{$detail.title}</a>
             </div>

@@ -99,6 +99,30 @@
 {/block}
 {block name="script"}
 <script>
+
+    // 首页指定跳转过来
+
+    var c = window.location.href.split("index/type/")[1];
+    if (c != undefined) {
+        var c1 = c.split(".html")[0];
+        $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
+        $(".content_text").removeClass("hidden").hide();
+        $(".content_text").eq(c1-1).show();
+        var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
+        $(".textTitle").html(html);
+        $(".content_title a:last-of-type").html(html);
+        var type = c1;
+        var total;
+        if ($(".content_tab li").eq(c1-1) == 0) {
+            total = {$list.t1}
+        }else if ($(".content_tab li").eq(c1-1) == 1) {
+            total = {$list.t2}
+        }else {
+            total = {$list.t3}
+        }
+        pag(0,type,total,c1-1);
+    }
+    
     // nav
     $(".nav-header li:nth-of-type(5) a").addClass("active");
     $(".nav-header li").bind("mouseleave", function () {
@@ -117,13 +141,6 @@
             var html = $(this).children("a").children('span')[0].innerHTML;
             $(".textTitle").html(html);
             $(".content_title a:last-of-type").html(html);
-            if (html == "红色音乐") {
-                $(".content_text").eq($(this).index()).css("borderBottom",0);
-                $(".page_div").hide();
-                $(".textTitle").css("marginBottom",0);
-            }else {
-                $(".page_div").show();
-            }
             var type = $(this).index() + 1;
             var total;
             if ($(this).index() == 0) {
@@ -134,7 +151,6 @@
                 total = {$list.t3}
             }
             pag(0,type,total,$(this).index());
-            console.log(total);
         });
     });
 
