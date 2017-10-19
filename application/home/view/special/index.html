@@ -150,7 +150,11 @@
                             $(".content_text li").remove();
                             var data = date.data;
                             var html = "";
-                            for (var i = 0; i <= 11; i++) {
+                            var t = 11;
+                            if (data.length <= 11) {
+                                t = data.length - 1
+                            }
+                            for (var i = 0; i <= t; i++) {
                                 html = '<li class="clearfix">'
                                         +'<span class="fl">'
                                         +'<span class="circle"></span>'
