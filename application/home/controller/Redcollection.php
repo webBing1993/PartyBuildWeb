@@ -23,4 +23,13 @@ class Redcollection extends Controller
     }
 
 
+    /*
+     *  书籍详情页
+     * */
+    public function bookdetail()
+    {
+
+        return $this->fetch();
+    }
+
 }

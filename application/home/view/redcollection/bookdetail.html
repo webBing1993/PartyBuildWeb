@@ -1,0 +1,175 @@
+{extend name="public/common"}
+
+{block name="style"}
+<link rel="stylesheet" href="/home/css/bookdetail.css">
+{/block}
+{block name="body"}
+{include file="public/header"}
+<div class="container">
+    <div class="banner col-md-12 col-lg-12  col-sm-12 col-xs-12">
+        <img src="/home/images/redbanner.png" alt="">
+    </div>
+    <div class="content col-md-12 col-lg-12  col-sm-12 col-xs-12">
+        <div class="col-md-3 col-lg-3  col-sm-3 col-xs-3">
+            <div class="content_tab">
+                <ul>
+                    <li class="red"><a href="javascript:;"> <span>红色电影</span><span>  </span></a></li>
+                    <li><a href="javascript:;"><span>红色书籍</span><span>  </span> </a></li>
+                    <li><a href="javascript:;"> <span>红色音乐</span><span>  </span></a></li>
+                </ul>
+            </div>
+            <div class="tab_img">
+                <ul>
+                    <li><a href="/home/news/general.html"><img src="/home/images/zg.png" alt=""></a></li>
+                    <li><a href="{:Url('Lesson/answer')}"><img src="/home/images/dt.png" alt=""></a></li>
+                    <li><a href="{:Url('Video/index')}"><img src="/home/images/qw.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-9  col-sm-9 col-xs-9">
+            <div class="content_title">
+                <span>您的当前位置：</span>
+                <a href="/home/index/index.html">首页</a>
+                <span> > </span>
+                <a href="/home/redcollection/index.html">红色书籍</a>
+                <span> > </span>
+                <a href="">书籍名称</a>
+            </div>
+            <div class="book">
+                <p class="bookTitle">书籍名称</p>
+                <div class="bookImg"><img src="/home/images/b2.jpg" alt=""></div>
+                <div class="lists">
+                    <div class="list">
+                        <p>作品简介</p>
+                        <div>
+                            作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介作品的简介
+                        </div>
+                    </div>
+                    <div class="list">
+                        <p>作者简介</p>
+                        <div>
+                            作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介作者简介
+                        </div>
+                    </div>
+                    <div class="dz">
+                        <div class="dz_cl" onclick="isGood(this,1,1)">
+                            <div class="dz_img">
+                                <img src="/home/images/xx.png" alt="">
+                            </div>
+                            <p>赞</p>
+                        </div>
+                        <div class="dz_cn">共有 <span>100</span>人点赞</div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <div class="sum">共 <span>500</span>条评论</div>
+                    <div class="commentLists">
+                        <div class="list clearfix">
+                            <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
+                            <div class="list_name fl">游客：</div>
+                            <div class="list_content fl">评论内容</div>
+                        </div>
+                    </div>
+                    <div class="comment_say">
+                        <span>我来评论</span>
+                        <input type="text" placeholder="点击输入您想说的内容...">
+                        <span class="comment_btn" onclick="send()">发送</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script>
+    // nav
+    $(".nav-header li:nth-of-type(7) a").addClass("active");
+    $(".nav-header li").bind("mouseleave", function () {
+        $(".nav-header li a").removeClass("active");
+        $(".nav-header li:nth-of-type(7) a").addClass("active")
+    });
+
+    // 点赞
+    var isGood = function(e,type,id){
+        $(e).addClass("active");
+        var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
+        $(e).addClass("active").next(".dz_cn").children("span")[0]?n++:n;
+        $(".dz_cn").children("span")[0].innerHTML = n;
+        $.ajax({
+            type:"post",
+//            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id
+            },
+            success:function(data){
+
+            }
+        });
+    };
+
+    var send = function(e,type,id){
+        var it = $(".comment_say input");
+        if (it.val() == "") {
+            swal({
+                title: ' ',
+                text: '您还未评论！',
+                type: 'warning',
+                confirmButtonText:'确定',
+                timer:3000
+            });
+        }
+        if(it.val() != '' && it.val().length > 4){
+            $.ajax({
+                type:"post",
+//                url:"{:Url('Base/comment')}",
+                data:{
+                    type:type,
+                    aid:id,
+                    content:it.val()
+                },
+                beforeSend:function(){
+                    swal({
+                        title: ' ',
+                        text: '评论提交中...',
+                        showConfirmButton:false
+                    });
+                },
+                success:function(msg){
+                    var data = msg.data;
+                    var userid = "'"+data.create_user+"'";
+                    var html = '';
+                    html += '<div class="list clearfix">'+
+                            '<div class="list_img fl">'+
+                            '<img src="'+data.header+'" alt="用户头像">'+
+                            '</div>'+
+                            '<div class="comment_name fl">'+data.nickname+'：</div>'+
+                            '<div class="comment_content fl" >'+it.val()+'</div>'+
+                            '</div>';
+                    $('.commentLists' ).append(html);
+                    it.val('');
+                    var sum = $('.sum span' );
+                    sum.text(parseInt(sum.text())+1);
+                    swal({
+                        title: ' ',
+                        text: '评论成功',
+                        type: 'success',
+                        confirmButtonText:'确定',
+                        timer:3000
+                    });
+                }
+            });
+        }else if(it.val() != '' && it.val().length <= 4) {
+            swal({
+                title: ' ',
+                text: '您的评论少于5个字',
+                type: 'error',
+                confirmButtonText:'确定',
+                timer:3000
+            });
+        }
+    };
+
+</script>
+{/block}
