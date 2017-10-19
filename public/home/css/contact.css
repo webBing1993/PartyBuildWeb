@@ -1,16 +1,71 @@
-.about_us {
-    margin-bottom: 50px;
+body {
+    background: url("/home/images/bg.png") center top no-repeat;
+    background-size: 100% auto;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
 }
-.content_text .title {
-    font-size: 17px;
-    color: #cc1100;
+@media (min-width: 1200px) {
+    .container {
+        width: 992px;
+    }
 }
-.about_content p,
-.contact_content p {
-    font-size: 17px;
-    line-height: 1.5;
-    margin-top: 10px;
+.contact_header {
+    width: 100%;
+    height: 106px;
+    background-color: #d43d3d;
+    position: relative;
 }
-.about_content p {
+.contact_header .dimg {
+    /*width: 400px;*/
+    position: absolute;
+    right: -308px;
+    top: 0;
+    display: inline-block;
+}
+.contact_header .dimg img {
+
+}
+.contact_header .container {
+    position: relative;
+}
+.contact_header .container>img {
+    width: auto;
+    margin-top: 15px;
+    height: 50px;
+    display: inline-block;
+}
+.content {
+    margin-top: 12px;
+}
+.content .img {
+    height: 250px;
+}
+.content .img img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.lists {
+    margin-top: 60px;
+}
+.lists .title {
+    font-size: 18px;
+    font-family: "黑体";
+    font-weight: 600;
+    margin-bottom: 31px;
+    line-height: 18px;
+}
+.lists p:nth-of-type(n+2) {
     text-indent: 2em;
+    font-size: 16px;
+    color: #333;
+    line-height: 30px;
+}
+.lists .list:last-of-type p:nth-of-type(n+2) {
+    text-indent: 0;
+}
+footer {
+    position: fixed;
+    bottom: 0;
 }
