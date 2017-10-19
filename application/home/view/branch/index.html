@@ -41,17 +41,17 @@
                     <ul>
                         {volist name="list.one" id="vo1" key="k"}
                         <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo1['id'])}">{$vo1.title}</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">{$vo1.create_time|time_format='Y-m-d'}</span> ]
-                                </span>
-                            {eq name="k%4" value="0"}
-                            <p class="h38"></p>
-                            {/eq}
+                            <span class="fl">
+                                <span class="circle"></span>
+                                <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo1['id'])}">{$vo1.title}</a></span>
+                            </span>
+                            <span class="fr">
+                                [ <span class="time">{$vo1.create_time|time_format='Y-m-d'}</span> ]
+                            </span>
                         </li>
+                        {eq name="k%4" value="0"}
+                        <p class="h16"></p>
+                        {/eq}
                         {/volist}
                     </ul>
                 </div>
@@ -59,34 +59,34 @@
                     <ul>
                         {volist name="list.two" id="vo2" key="k"}
                         <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo2['id'])}">{$vo2.title}</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">{$vo2.create_time|time_format='Y-m-d'}</span> ]
-                                </span>
-                            {eq name="k%4" value="0"}
-                            <p class="h38"></p>
-                            {/eq}
+                            <span class="fl">
+                                <span class="circle"></span>
+                                <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo2['id'])}">{$vo2.title}</a></span>
+                            </span>
+                            <span class="fr">
+                                [ <span class="time">{$vo2.create_time|time_format='Y-m-d'}</span> ]
+                            </span>
                         </li>
+                        {eq name="k%4" value="0"}
+                        <p class="h16"></p>
+                        {/eq}
                         {/volist}
                     </ul>
                 </div>
                 <div class="content_text text3 hidden">
                     <ul> {volist name="list.three" id="vo3" key="k"}
                         <li class="clearfix">
-                                <span class="fl">
-                                    <span class="circle"></span>
-                                    <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo3['id'])}">{$vo3.title}</a></span>
-                                </span>
-                                <span class="fr">
-                                    [ <span class="time">{$vo3.create_time|time_format='Y-m-d'}</span> ]
-                                </span>
-                            {eq name="k%4" value="0"}
-                            <p class="h38"></p>
-                            {/eq}
+                            <span class="fl">
+                                <span class="circle"></span>
+                                <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo3['id'])}">{$vo3.title}</a></span>
+                            </span>
+                            <span class="fr">
+                                [ <span class="time">{$vo3.create_time|time_format='Y-m-d'}</span> ]
+                            </span>
                         </li>
+                        {eq name="k%4" value="0"}
+                        <p class="h16"></p>
+                        {/eq}
                         {/volist}
                     </ul>
                 </div>
@@ -105,5 +105,139 @@
         $(".nav-header li a").removeClass("active");
         $(".nav-header li:nth-of-type(5) a").addClass("active")
     });
+
+    // 初始化加载
+    pag(0,1,{$list.t1},0);
+
+    $(function () {
+        $(".content_tab li").on("click", function () {
+            $(this).addClass("red").siblings("li").removeClass("red");
+            $(".content_text").removeClass("hidden").hide();
+            $(".content_text").eq($(this).index()).show();
+            var html = $(this).children("a").children('span')[0].innerHTML;
+            $(".textTitle").html(html);
+            $(".content_title a:last-of-type").html(html);
+            if (html == "红色音乐") {
+                $(".content_text").eq($(this).index()).css("borderBottom",0);
+                $(".page_div").hide();
+                $(".textTitle").css("marginBottom",0);
+            }else {
+                $(".page_div").show();
+            }
+            var type = $(this).index() + 1;
+            var total;
+            if ($(this).index() == 0) {
+                total = {$list.t1}
+            }else if ($(this).index() == 1) {
+                total = {$list.t2}
+            }else {
+                total = {$list.t3}
+            }
+            pag(0,type,total,$(this).index());
+            console.log(total);
+        });
+    });
+
+    function pag(b,id,total,a) {
+        if (total == 0) {
+            $("#page").hide();
+        }else {
+            $("#page").show();
+        }
+        // 向上取整
+        var page = Math.ceil(total / 12);
+        $("#page").paging({
+            pageNo:1,
+            totalPage: page,
+            totalSize: 300,
+            callback: function(num) {
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('Branch/index')}",
+                    data: {
+                        p: num,
+                        type: id
+                    },
+                    success: function (date) {
+                        $(".content_text li").remove();
+                        $(".content_text ul p").remove();
+                        var data = date.data;
+                        var html = "";
+                        for (var i = 0; i <= 11; i++) {
+                            if (a == 0) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText'
+                                        +" {eq name='$vo1.class' value='2'}sxt{/eq}"
+                                        +'"><a href="'
+                                        +"{:Url('Branch/detail?id='.$vo1['id'])}"
+                                        +'">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if ((i + 1) % 4 == 0) {
+                                    html += '<p class="h16"></p>';
+                                }
+                            }
+                            else if (a == 1) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText'
+                                        +" {eq name='$vo2.class' value='2'}sxt{/eq}"
+                                        +'"><a href="'
+                                        +"{:Url('Branch/detail?id='.$vo2['id'])}"
+                                        +'">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if ((i + 1) % 4 == 0) {
+                                    html += '<p class="h16"></p>';
+                                }
+                            }
+                            else if (a == 2) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText'
+                                        +" {eq name='$vo3.class' value='2'}sxt{/eq}"
+                                        +'"><a href="'
+                                        +"{:Url('Branch/detail?id='.$vo3['id'])}"
+                                        +'">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if ((i + 1) % 4 == 0) {
+                                    html += '<p class="h16"></p>';
+                                }
+                            }
+
+                            $(".content_text ul").append(html);
+                        }
+                    }
+                })
+            }
+        });
+    }
+
 </script>
 {/block}

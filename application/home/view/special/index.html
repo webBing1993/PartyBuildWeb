@@ -14,7 +14,8 @@
                     <li class="fl">
                         <div class="tab_name">{$vo.name}</div>
                         <div class="tab_content">{$vo.summary}</div>
-                        {$vo.id}++{$vo.total}
+                        <span class="hidden tab_id">{$vo.id}</span>
+                        <span class="hidden tab_total">{$vo.total}</span>
                     </li>
                     {/volist}
                 </ul>
@@ -44,7 +45,7 @@
                 {volist name="list" id="vo"}
                 <div class="content_text text1">
                     <ul>
-                        {volist name="vo.con" id="con"}
+                        {volist name="vo.con" id="con" key="k"}
                         <li class="clearfix">
                                 <span class="fl">
                                     <span class="circle"></span>
@@ -54,6 +55,9 @@
                                     [ <span class="time">{$con.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
                         </li>
+                        {eq name="k%4" value="0"}
+                        <p class="h16"></p>
+                        {/eq}
                         {/volist}
                     </ul>
                 </div>
@@ -79,7 +83,6 @@
 
         // 判断tabs li 的奇偶数
         var len = $(".tabs li").length;
-        console.log(len);
         if (len % 2 == 1) {
             $(".tabs li.last").remove();
         }
@@ -112,7 +115,72 @@
             $(".content_title a:last-of-type").html(html);
             $(".specialImg").eq($(this).index()).show().siblings(".specialImg").hide();
             $(".content_text").eq($(this).index()).show().siblings(".content_text").hide();
+
+            // 分页操作
+            var total = $(this).children(".tab_total").html();
+            var id = $(this).children(".tab_id").html();
+            pag(0,id,total);
         });
+
+        // 分页
+        var total = $(".tabs li:first-of-type .tab_total").html();
+        var id = $(".tabs li:first-of-type .tab_id").html();
+        pag(0,id,total);
+        function pag(b,id,total) {
+            if (total == 0) {
+                $("#page").hide();
+            }else {
+                $("#page").show();
+            }
+            // 向上取整
+            var page = Math.ceil(total / 12);
+            $("#page").paging({
+                pageNo:1,
+                totalPage: page,
+                totalSize: 300,
+                callback: function(num) {
+                    $.ajax({
+                        type: "post",
+                        url: "{:Url('Special/index')}",
+                        data: {
+                            p: num,
+                            id: id
+                        },
+                        success: function (date) {
+                            $(".content_text li").remove();
+                            var data = date.data;
+                            var html = "";
+                            for (var i = 0; i <= 11; i++) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText'
+                                        +" {eq name='$con.class' value='2'}sxt{/eq}"
+                                        +'"><a href="'
+                                        +"{:Url('Special/detail?id='.$con['id'])}"
+                                        +'">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if ((i + 1) % 4 == 0) {
+                                    html += '{eq name="k%4" value="0"}'
+                                            +'<p class="h16"></p>'
+                                            +'{/eq}';
+                                }
+                                $(".content_text ul").append(html);
+                            }
+                        }
+                    })
+                }
+            });
+        }
+
 
         // 首页指定跳转过来
         

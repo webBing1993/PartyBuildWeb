@@ -56,7 +56,7 @@ $(function () {
         }else {
             $(".page_div").show();
         }
-        pag($(this).index());
+        //pag($(this).index());
     });
 
     // 分页

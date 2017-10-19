@@ -376,7 +376,7 @@
 }
 /*pioneer*/
 .learnsRight {
-    height: 772px;
+    height: 765px;
 }
 .pioneer_title {
     text-align: center;
@@ -387,7 +387,7 @@
     font-size: 18px;
 }
 .pioneer_content {
-    padding: 10px 20px;
+    padding: 10px 20px 5px;
     background-color: #f1f1f1;
     margin-top: 5px;
 }
