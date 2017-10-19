@@ -44,10 +44,10 @@
                                 <span class="fr">
                                     [ <span class="time">{$vo.create_time|time_format='Y-m-d'}</span> ]
                                 </span>
-                                {eq name="k%4" value="0"}
-                                <p class="h38"></p>
-                                {/eq}
                         </li>
+                        {eq name="k%4" value="0"}
+                        <p class="h16"></p>
+                        {/eq}
                         {/volist}
                     </ul>
                 </div>
@@ -60,8 +60,62 @@
 {/block}
 {block name="script"}
 <script>
-    var total = {$total};
-    console.log(total);
+   
+    // 分页
+    pag(0);
+    function pag(b) {
+        var total = {$total};
+        // 向上取整
+        var page = Math.ceil(total / 12);
+        $("#page").paging({
+            pageNo:1,
+            totalPage: page,
+            totalSize: 300,
+            callback: function(num) {
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('News/index')}",
+                    data: {
+                        p: num
+                    },
+                    success: function (date) {
+                        console.log(num);
+                        $(".content_text li").remove();
+                        $(".content_text ul p").remove();
+                        var data = date.data;
+                        var html = "";
+                        for (var i = 0; i <= 11; i++) {
+                            html = '<li class="clearfix">'
+                                    +'<span class="fl">'
+                                    +'<span class="circle"></span>'
+                                    +'<span class="contentText'
+                                    +" {eq name='$vo.class' value='2'}sxt{/eq}"
+                                    +'"><a href="'
+                                    +"{:Url('News/detail?id='.$vo['id'])}"
+                                    +'">'
+                                    +data[i].title
+                                    +'</a></span>'
+                                    +'</span>'
+                                    +'<span class="fr">'
+                                    +'[ <span class="time">'
+                                    +data[i].time
+                                    +'</span> ]'
+                                    +'</span>'
+                                    +'</li>';
+                            if ((i + 1) % 4 == 0) {
+                                html += '{eq name="k%4" value="0"}'
+                                        +'<p class="h16"></p>'
+                                        +'{/eq}';
+                            }
+                            $(".content_text ul").append(html);
+                        }
+                    }
+                })
+            }
+        });
+    }
+    
+    
     // nav
     $(".nav-header li:nth-of-type(2) a").addClass("active");
     $(".nav-header li").bind("mouseleave", function () {

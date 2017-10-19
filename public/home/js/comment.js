@@ -60,7 +60,7 @@ $(function () {
     });
 
     // 分页
-    pag(0);
+    /*pag(0);
     function pag(b) {
         var len = $(".content_text").eq(b).find("li").length;
         // 向上取整
@@ -83,7 +83,7 @@ $(function () {
                 })
             }
         });
-    }
+    }*/
     
 });
 
