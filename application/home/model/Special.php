@@ -75,7 +75,7 @@ class Special extends Model {
         );
         $length  = ($p-1)*12;
         $order = array('create_time desc');
-        $res = $this->where($map)->order($order)->limit($length,12)->select();
+        $res = SpecialDetail::where($map)->order($order)->limit($length,12)->select();
          foreach ($res as $value) {
              $value['time'] = date("Y-m-d",$value['create_time']);
          }
