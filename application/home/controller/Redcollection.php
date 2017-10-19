@@ -6,6 +6,7 @@
  * Time: 18:14
  */
 namespace app\home\controller;
+use app\home\model\Redfilm;
 use think\Controller;
 /**
  * 红色珍藏
@@ -16,10 +17,15 @@ class Redcollection extends Controller
      * 首页
      * @return mixed
      */
-    public function index()
-    {
+    public function index() {
+        $Model = new Redfilm();
+        if(IS_POST) {
 
-        return $this->fetch();
+        }else {
+            $list = $Model->getIndex();
+            $this->assign('list',$list);
+            return $this->fetch();
+        }
     }
 
 
