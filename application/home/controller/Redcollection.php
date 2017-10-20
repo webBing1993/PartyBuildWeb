@@ -53,4 +53,14 @@ class Redcollection extends Controller
         return $this->fetch();
     }
 
+
+    /*
+     *  视频详情页
+     * */
+    public function moviedetail()
+    {
+
+        return $this->fetch();
+    }
+
 }

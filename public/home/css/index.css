@@ -59,7 +59,7 @@
 .newLeft .list1>li:first-of-type {
     position: relative;
 }
-.newLeft .list1>li:first-of-type a {
+.newLeft .list1>li:first-of-type>a {
     padding-left: 54px;
 }
 .newLeft .list1>li:last-of-type {
