@@ -9,6 +9,11 @@
 }
 
 /*header*/
+header {
+    width: 100%;
+    position: relative;
+    height: 156px;
+}
 .header {
     height: 102px;
 }
@@ -37,7 +42,10 @@
     height: 50px;
     line-height: 50px;
     background-color: #d43d3d;
-    margin-top: 4px;
+    /*margin-top: 4px;*/
+    position: absolute;
+    top: 102px;
+    width: 100%;
 }
 .nav-header {
     padding: 0!important;

@@ -7,23 +7,22 @@ $(function () {
     // 监听滚轮事件
     $(window).off("scroll" ).on("scroll",function (e) {
         var scrollTop = $(this).scrollTop();
-        if (scrollTop >= 102) {
-            $(".nav").css({
+        if (scrollTop >= 103) {
+            $("header .nav").css({
                 position: "fixed",
                 top: 0,
-                left: 0,
                 zIndex: 100,
-                width: "100%",
-                marginTop: 0
             });
             $(".top").show();
             $(".erweima").css({
                 top: scrollTop
             });
         }else {
-            $(".nav").css({
-                position: "relative",
-                marginTop: "4px"
+            $("header .nav").css({
+                position: "absolute",
+                //marginTop: "4px"
+                bottom: 0,
+                top: "auto"
             });
             $(".erweima").css({
                 top: "10%"
