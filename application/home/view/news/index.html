@@ -90,11 +90,10 @@
                             html = '<li class="clearfix">'
                                     +'<span class="fl">'
                                     +'<span class="circle"></span>'
-                                    +'<span class="contentText'
-                                    +" {eq name='$vo.class' value='2'}sxt{/eq}"
-                                    +'"><a href="'
-                                    +"{:Url('News/detail?id='.$vo['id'])}"
-                                    +'">'
+                                    +'<span class="contentText"><a href="'
+                                    +"/home/news/detail/id/"
+                                    +data[i].id
+                                    +'.html">'
                                     +data[i].title
                                     +'</a></span>'
                                     +'</span>'
@@ -104,10 +103,26 @@
                                     +'</span> ]'
                                     +'</span>'
                                     +'</li>';
+                            if (data[i].class == 2 ) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText sxt"><a href="'
+                                        +"/home/news/detail/id/"
+                                        +data[i].id
+                                        +'.html">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                            }
                             if ((i + 1) % 4 == 0) {
-                                html += '{eq name="k%4" value="0"}'
-                                        +'<p class="h16"></p>'
-                                        +'{/eq}';
+                                html += '<p class="h16"></p>';
                             }
                             $(".content_text ul").append(html);
                         }

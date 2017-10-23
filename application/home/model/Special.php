@@ -79,5 +79,6 @@ class Special extends Model {
          foreach ($res as $value) {
              $value['time'] = date("Y-m-d",$value['create_time']);
          }
+        return $res;
     }
 }

@@ -95,15 +95,21 @@
             $(".tabs li:nth-of-type(n+13)").remove();
         }
 
+
         var html = $(".tabs li").children(".tab_name")[0].innerHTML + $(".tabs li").children(".tab_content")[0].innerHTML;
         $(".textTitle").html(html);
         $(".content_title a:last-of-type").html(html);
         $(".specialImg").eq(0).show().siblings(".specialImg").hide();
         $(".content_text").eq(0).show().siblings(".content_text").hide();
 
-        $(".tabs li").on("click", function () {
+
+        if ($(".tabs li").index() == 0) {
+            pag(0,$(".tabs li").eq(0).children(".tab_id").html(),$(".tabs li").eq(0).children(".tab_total").html());
+        }
+
+        $(".tabs li").on("click", function (e) {
             if ($(this).hasClass("last")) {
-                return
+                return false;
             }
             $(".tabs li").css("animation","click_ 1s ease");
             $(this).css("animation","click 1s ease");
@@ -119,12 +125,12 @@
             var total = $(this).children(".tab_total").html();
             var id = $(this).children(".tab_id").html();
             pag(0,id,total);
+            return false;
         });
 
+
+
         // 分页
-        var total = $(".tabs li:first-of-type .tab_total").html();
-        var id = $(".tabs li:first-of-type .tab_id").html();
-        pag(0,id,total);
         function pag(b,id,total) {
             if (total == 0) {
                 $("#page").hide();
@@ -147,6 +153,7 @@
                         },
                         success: function (date) {
                             $(".content_text li").remove();
+                            $(".content_text ul p").remove();
                             var data = date.data;
                             var html = "";
                             var t = 11;
@@ -157,11 +164,10 @@
                                 html = '<li class="clearfix">'
                                         +'<span class="fl">'
                                         +'<span class="circle"></span>'
-                                        +'<span class="contentText'
-                                        +" {eq name='$con.class' value='2'}sxt{/eq}"
-                                        +'"><a href="'
-                                        +"{:Url('Special/detail?id='.$con['id'])}"
-                                        +'">'
+                                        +'<span class="contentText"><a href="'
+                                        +"/home/special/detail/id/"
+                                        +data[i].id
+                                        +'.html">'
                                         +data[i].title
                                         +'</a></span>'
                                         +'</span>'
@@ -171,10 +177,26 @@
                                         +'</span> ]'
                                         +'</span>'
                                         +'</li>';
+                                if (data[i].class == 2) {
+                                    html = '<li class="clearfix">'
+                                            +'<span class="fl">'
+                                            +'<span class="circle"></span>'
+                                            +'<span class="contentText sxt"><a href="'
+                                            +"/home/special/detail/id/"
+                                            +data[i].id
+                                            +'.html">'
+                                            +data[i].title
+                                            +'</a></span>'
+                                            +'</span>'
+                                            +'<span class="fr">'
+                                            +'[ <span class="time">'
+                                            +data[i].time
+                                            +'</span> ]'
+                                            +'</span>'
+                                            +'</li>';
+                                }
                                 if ((i + 1) % 4 == 0) {
-                                    html += '{eq name="k%4" value="0"}'
-                                            +'<p class="h16"></p>'
-                                            +'{/eq}';
+                                    html += '<p class="h16"></p>';
                                 }
                                 $(".content_text ul").append(html);
                             }

@@ -7,7 +7,7 @@ $(function () {
     // 监听滚轮事件
     $(window).off("scroll" ).on("scroll",function (e) {
         var scrollTop = $(this).scrollTop();
-        if (scrollTop >= 106) {
+        if (scrollTop >= 102) {
             $(".nav").css({
                 position: "fixed",
                 top: 0,
