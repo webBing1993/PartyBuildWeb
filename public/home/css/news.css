@@ -11,9 +11,17 @@
 }
 .content_text .contentText {
     margin-left: 5px;
+    position: relative;
+    width: 100%;
+    display: inline-block;
 }
 .content_text .contentText a {
-    color: #666;
+    width: 100%;
+    display: inline-block;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .content_text .contentText a:hover {
     text-decoration: underline;
