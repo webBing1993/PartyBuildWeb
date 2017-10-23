@@ -57,9 +57,16 @@ class Redcollection extends Controller
     /*
      *  视频详情页
      * */
-    public function moviedetail()
-    {
+    public function moviedetail() {
+        $id = input('id');
+        $Model = new Redfilm();
+        $detail = $Model->getDetail($id);
+        $this->assign('detail',$detail);
 
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(5,$id,0);
+        $this->assign('comment',$comment);
         return $this->fetch();
     }
 
