@@ -6,6 +6,7 @@
  * Time: 18:21
  */
 namespace app\home\controller;
+use app\home\model\Comment;
 use think\Controller;
 use app\home\model\Video as VideoModel;
 /**
@@ -23,7 +24,25 @@ class Video extends Controller
         $this->assign('list',$list);
         return $this->fetch();
     }
-    
+
+
+    /**
+     * 详情页
+     * @return mixed
+     */
+    public function detail() {
+        $id = input('id');
+        $Model = new VideoModel();
+        $detail = $Model->getDetail($id);
+        $this->assign('detail',$detail);
+
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(5,$id,0);
+        $this->assign('comment',$comment);
+        return $this->fetch();
+    }
+
     /**
      * 换一批
      * $type ,$n = 1

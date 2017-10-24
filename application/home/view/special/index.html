@@ -96,16 +96,6 @@
         }
 
 
-        var html = $(".tabs li").children(".tab_name")[0].innerHTML + $(".tabs li").children(".tab_content")[0].innerHTML;
-        $(".textTitle").html(html);
-        $(".content_title a:last-of-type").html(html);
-        $(".specialImg").eq(0).show().siblings(".specialImg").hide();
-        $(".content_text").eq(0).show().siblings(".content_text").hide();
-
-
-        if ($(".tabs li").index() == 0) {
-            pag(0,$(".tabs li").eq(0).children(".tab_id").html(),$(".tabs li").eq(0).children(".tab_total").html());
-        }
 
         $(".tabs li").on("click", function (e) {
             if ($(this).hasClass("last")) {
@@ -119,15 +109,75 @@
             $(".textTitle").html(html);
             $(".content_title a:last-of-type").html(html);
             $(".specialImg").eq($(this).index()).show().siblings(".specialImg").hide();
-            $(".content_text").eq($(this).index()).show().siblings(".content_text").hide();
+//            $(".content_text").eq($(this).index()).show().siblings(".content_text").hide();
 
             // 分页操作
             var total = $(this).children(".tab_total").html();
             var id = $(this).children(".tab_id").html();
-            pag(0,id,total);
+
+            $.ajax({
+                type: "post",
+                url: "{:Url('Special/index')}",
+                data: {
+                    p: 1,
+                    id: id
+                },
+                success: function (date) {
+                    pag(0,id,total);
+                    $(".content_text li").remove();
+                    $(".content_text ul p").remove();
+                    var data = date.data;
+                    var html = "";
+                    var t = 11;
+                    if (data.length <= 11) {
+                        t = data.length - 1
+                    }
+                    for (var i = 0; i <= t; i++) {
+                        html = '<li class="clearfix">'
+                                + '<span class="fl">'
+                                + '<span class="circle"></span>'
+                                + '<span class="contentText"><a href="'
+                                + "/home/special/detail/id/"
+                                + data[i].id
+                                + '.html">'
+                                + data[i].title
+                                + '</a></span>'
+                                + '</span>'
+                                + '<span class="fr">'
+                                + '[ <span class="time">'
+                                + data[i].time
+                                + '</span> ]'
+                                + '</span>'
+                                + '</li>';
+                        if (data[i].class == 2) {
+                            html = '<li class="clearfix">'
+                                    + '<span class="fl">'
+                                    + '<span class="circle"></span>'
+                                    + '<span class="contentText sxt"><a href="'
+                                    + "/home/special/detail/id/"
+                                    + data[i].id
+                                    + '.html">'
+                                    + data[i].title
+                                    + '</a></span>'
+                                    + '</span>'
+                                    + '<span class="fr">'
+                                    + '[ <span class="time">'
+                                    + data[i].time
+                                    + '</span> ]'
+                                    + '</span>'
+                                    + '</li>';
+                        }
+                        if ((i + 1) % 4 == 0) {
+                            html += '<p class="h16"></p>';
+                        }
+                        $(".content_text ul").append(html);
+                    }
+                }
+            });
             return false;
         });
 
+        $(".tabs li").eq(0).click() ;
 
 
         // 分页

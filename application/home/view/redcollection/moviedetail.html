@@ -4,59 +4,58 @@
 <link rel="stylesheet" href="/home/css/moviedetail.css">
 {/block}
 {block name="body"}
-<header>
-    <div class="container">
-        <img src="/home/images/logo1.png" alt="">
+{include file="public/header"}
+<div class="container">
+    <div class="banner col-md-12 col-lg-12  col-sm-12 col-xs-12">
+        <img src="/home/images/slide2.png" alt="">
     </div>
-</header>
-<div class="main">
-    <div class="container">
-        <div class="content_title">
-            <span>您的当前位置：</span>
-            <a href="{:Url('Index/index')}">首页</a>
-            <span> > </span>
-            <a href="{:Url('Redcollection/index')}">红色珍藏</a>
-            <span> > </span>
-            <a href="">红色电影</a>
+    <div class="content col-md-12 col-lg-12  col-sm-12 col-xs-12">
+        <div class="col-md-3 col-lg-3  col-sm-3 col-xs-3">
+            <div class="content_tab">
+                <ul>
+                    <li class="red"><a href="{:Url('Redcollection/index')}"> <span>红色电影</span><span>  </span></a></li>
+                </ul>
+            </div>
+            <div class="tab_img">
+                <ul>
+                    <li><a href="/home/news/general.html"><img src="/home/images/zg.png" alt=""></a></li>
+                    <li><a href="/home/lesson/answer.html"><img src="/home/images/dt.png" alt=""></a></li>
+                    <li><a href="/home/video/index.html"><img src="/home/images/qw.png" alt=""></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="movie">
-            <div class="movie_content">
-                <div class="movieNow fl">
+        <div class="col-md-9 col-lg-9  col-sm-9 col-xs-9">
+            <div class="content_title">
+                <span>您的当前位置：</span>
+                <a href="{:Url('Index/index')}">首页</a>
+                <span> > </span>
+                <a href="{:Url('Redcollection/index')}">红色电影</a>
+                <span> > </span>
+                <a href="">{$detail.title}</a>
+            </div>
+            <div class="newsDetail">
+                <p class="newsTitle">{$detail.title}</p>
+                <p class="time clearfix"><span class="fr">{$detail.create_time|time_format='Y-m-d'}</span></p>
+                <div class="detail_img">
                     <iframe  src="{$detail.net_path}" frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>
                 </div>
-                <div class="movieLists fl">
-                    <ul>
-                        {volist name="$detail.list" id="vo"}
-                        <li class="clearfix">
-                            <a href="javascript:;">
-                                <div class="listImg fl">
-                                    <img src="{$vo.front_cover|get_cover='path'}" alt="">
-                                </div>
-                                <div class="list_content fl">
-                                    <div class="title">{$vo.title}</div>
-                                    <div class="text">内容简介：{$vo.introduction}</div>
-                                    <div class="tim">播放：{$vo.views}次</div>
-                                </div>
-                            </a>
-                        </li>
-                        {/volist}
-                    </ul>
+                <div class="detail_content">
+                    {$detail.content}
+                </div>
+                <div class="dz">
+                    <div class="dz_cl" onclick="isGood(this,1,{$detail.id})">
+                        <div class="dz_img">
+                            <img src="/home/images/xx.png" alt="">
+                        </div>
+                        <p>赞</p>
+                    </div>
+                    <div class="dz_cn">共有 <span>{$detail.likes}</span>人点赞</div>
                 </div>
             </div>
-            <div class="introduce">
-                <div class="name">{$detail.title} <span class="fr">播放：{$detail.views}次</span></div>
-                <div class="text">内容简介：{$detail.content}</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="comment">
-        <div class="commentLists col-sm-8 col-md-8">
-            <div class="sum">共 <span>{$detail.comments}</span>条评论</div>
-            <div class="lists_content">
-                <div class="lists">
-                    {volist name="$comment" id="com"}
+            <div class="comment">
+                <div class="sum">共 <span>{$detail.comments}</span>条评论</div>
+                <div class="commentLists">
+                    {volist name="comment" id="com"}
                     <div class="list clearfix">
                         <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
                         <div class="list_name fl">{$com.nickname}：</div>
@@ -64,13 +63,15 @@
                     </div>
                     {/volist}
                 </div>
+                <div class="comment_say">
+                    <span>我来评论</span>
+                    <input type="text" placeholder="点击输入您想说的内容...">
+                    <span class="comment_btn" onclick="send(this,1,{$detail.id})">发送</span>
+                </div>
             </div>
-        </div>
-        <div class="comment_say col-sm-4 col-md-4">
-            <span>我来评论</span>
-            <div>
-                <textarea type="text" placeholder="点击输入您想说的内容..."></textarea>
-                <span class="comment_btn fr" onclick="send(this,5,{$detail.id})">发送</span>
+            <div class="tip"></div>
+            <div class="loading hidden">
+                <div class="typing_loader"></div>
             </div>
         </div>
     </div>
@@ -78,14 +79,80 @@
 {/block}
 {block name="script"}
 <script>
-    // nav
-    $(".nav-header li:nth-of-type(7) a").addClass("active");
-    $(".nav-header li").bind("mouseleave", function () {
-        $(".nav-header li a").removeClass("active");
-        $(".nav-header li:nth-of-type(7) a").addClass("active")
+    var scrollNow = true;
+    $(function () {
+        var len = $(".commentLists .list" ).length;
+        if(len >= 7){
+            $('.tip' ).text('上拉加载更多');
+        }
+        //上拉加载评论
+        loadScroll();
     });
+
+    function loadScroll() {
+        $(window).off("scroll").on("scroll",function (e) {
+            var len = $(".commentLists .list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            var id = {$detail.id};
+            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 10 && scrollNow) {
+                scrollNow = false;
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('Base/morecomment')}",
+                    data: {
+                        aid: id,
+                        type: 1,
+                        length: len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                        }else{
+                            tip.text('没有更多了');
+                            $(window).off("scroll");
+                        }
+                        scrollNow = true; // 请求结束
+                    }
+                })
+            }
+        })
+    }
+
+    // 取消左侧父级事件发生
+    $(".content_tab li a").on("click", function (e) {
+        e.stopPropagation();
+    });
+    // 点赞
+
+    var isGood = function(e,type,id){
+        $(e).addClass("active");
+        var n = parseInt($(".dz_cn").children("span")[0].innerHTML);
+        $(e).addClass("active").next(".dz_cn").children("span")[0]?n++:n;
+        $(".dz_cn").children("span")[0].innerHTML = n;
+        $.ajax({
+            type:"post",
+            url:"{:Url('Base/like')}",
+            data:{
+                type:type,
+                aid:id
+            },
+            success:function(data){
+
+            }
+        });
+    };
     var send = function(e,type,id){
-        var it = $(".comment_say textarea");
+        var it = $(".comment_say input");
         if (it.val() == "") {
             swal({
                 title: ' ',
@@ -122,7 +189,7 @@
                             '<div class="comment_name fl">'+data.nickname+'：</div>'+
                             '<div class="comment_content fl" >'+it.val()+'</div>'+
                             '</div>';
-                    $('.commentLists .lists' ).append(html);
+                    $('.commentLists' ).append(html);
                     it.val('');
                     var sum = $('.sum span' );
                     sum.text(parseInt(sum.text())+1);
@@ -146,7 +213,12 @@
         }
     };
 
-
+    // nav
+    $(".nav-header li:nth-of-type(7) a").addClass("active");
+    $(".nav-header li").bind("mouseleave", function () {
+        $(".nav-header li a").removeClass("active");
+        $(".nav-header li:nth-of-type(7) a").addClass("active")
+    });
 
 </script>
 {/block}

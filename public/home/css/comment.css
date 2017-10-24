@@ -176,6 +176,9 @@ header {
 .buildLists,.learnLists,.learnList,.redLists,.specialList,.specialDetail,.comment,.newsDetail {
     border: 1px solid #d9d9d9;padding: 30px;
 }
+.content_text .contentText {
+    padding-left: 12px;
+}
 .content_text {
     padding-bottom: 30px;
     border-bottom: 1px solid #d9d9d9;
@@ -186,6 +189,7 @@ header {
     overflow: hidden;
     /*text-overflow:ellipsis;*/
     white-space: nowrap;
+    position: relative;
 }
 .textTitle {
     font-size: 20px;
@@ -199,6 +203,10 @@ header {
     display: inline-block;
     border-radius: 50%;
     background-color: #d9d9d9;
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    left: 0px;
 }
 .sxt {
     position: relative;
@@ -459,4 +467,28 @@ footer p span.sx {
 }
 .top:hover {
     background-color: #d7d7d7;
+}
+
+/*加载动画*/
+.tip {
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #c1c1c1;
+    margin-top: 20px;
+}
+.loading {
+    width: 100%;
+    height: 40px;
+}
+.typing_loader {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    -webkit-animation: typing 1s linear infinite alternate;
+    -moz-animation: Typing 1s linear infinite alternate;
+    animation: typing 1s linear infinite alternate;
+    position: relative;
+    top: 50%;
+    left: 50%;
 }

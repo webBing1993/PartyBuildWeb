@@ -24,7 +24,7 @@
 }
 .lists .list div {
     padding-top: 15px;
-    text-indent: 2em;
+    /*text-indent: 2em;*/
     font-size: 14px;
     color: #333;
     margin-bottom: 48px;

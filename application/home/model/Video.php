@@ -89,4 +89,21 @@ class Video extends Model {
         return $res;
     }
 
+    /**
+     * 获取详情
+     */
+    public function getDetail($id) {
+        $this->where('id',$id)->setInc('views');
+        $res = $this->get($id);
+
+        $map = array(
+            'status' => 1,
+        );
+        $order = array('create_time desc,recommend desc');
+        $list = $this->where($map)->order($order)->limit(8)->select();
+        $res['list'] = $list;
+
+        return $res;
+    }
+
 }

@@ -47,7 +47,8 @@
     text-align: center;
     line-height: 87px;
     font-size: 15px;
-    background-color: #d6d6d6;
+    background: url("/home/images/look.png") center no-repeat;
+    background-size: 100% 87px;
 }
 /*videoList*/
 .video_title {

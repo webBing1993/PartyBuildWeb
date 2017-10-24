@@ -71,12 +71,65 @@
                     <span class="comment_btn" onclick="send(this,1,{$detail.id})">发送</span>
                 </div>
             </div>
+            <div class="tip"></div>
+            <div class="loading hidden">
+                <div class="typing_loader"></div>
+            </div>
         </div>
     </div>
 </div>
 {/block}
 {block name="script"}
 <script>
+    var scrollNow = true;
+    $(function () {
+        var len = $(".commentLists .list" ).length;
+        if(len >= 7){
+            $('.tip' ).text('上拉加载更多');
+        }
+        //上拉加载评论
+        loadScroll(); 
+    });
+
+    function loadScroll() {
+        $(window).off("scroll").on("scroll",function (e) {
+            var len = $(".commentLists .list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            var id = {$detail.id};
+            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 10 && scrollNow) {
+                scrollNow = false;
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('Base/morecomment')}",
+                    data: {
+                        aid: id,
+                        type: 1,
+                        length: len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                        }else{
+                            tip.text('没有更多了');
+                            $(window).off("scroll");
+                        }
+                        scrollNow = true; // 请求结束
+                    }
+                })
+            }
+        })
+    }
+    
     // 取消左侧父级事件发生
     $(".content_tab li a").on("click", function (e) {
         e.stopPropagation();

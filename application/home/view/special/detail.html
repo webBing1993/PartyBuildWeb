@@ -87,6 +87,56 @@
 {/block}
 {block name="script"}
 <script>
+
+    $(function () {
+        var len = $(".commentLists .list" ).length;
+        if(len >= 7){
+            $('.tip' ).text('上拉加载更多');
+        }
+        //上拉加载评论
+        loadScroll();
+    });
+
+    function loadScroll() {
+        $(window).on("scroll",function (e) {
+            var len = $(".commentLists .list" ).length;
+            var tip = $(".tip");
+            var loading = $('.loading');
+            var id = {$detail.id};
+            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 10 && scrollNow) {
+                scrollNow = false;
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('Base/morecomment')}",
+                    data: {
+                        aid: id,
+                        type: 1,
+                        length: len
+                    },
+                    beforeSend: function(XMLHttpRequest){
+                        tip.hide();
+                        loading.toggleClass('hidden');
+                    },
+                    success:function(data){
+                        loading.toggleClass('hidden');
+                        tip.show();
+                        if(data.code == 1){
+                            var dataLen =data.data.length;
+                            if(data.data.length == 5){
+                                tip.text('上拉加载更多');
+                            }
+                        }else{
+                            tip.text('没有更多了');
+                            $(window).off("scroll");
+                        }
+                        scrollNow = true; // 请求结束
+                    }
+                })
+            }
+        })
+    }
+
+
     // 点赞
     var isGood = function(e,type,id){
 
