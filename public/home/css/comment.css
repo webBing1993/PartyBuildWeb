@@ -182,6 +182,7 @@ header {
 .content_text {
     padding-bottom: 30px;
     border-bottom: 1px solid #d9d9d9;
+    height: 650px;
 }
 .content_text span.fl {
     display: inline-block;

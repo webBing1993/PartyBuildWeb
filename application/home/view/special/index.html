@@ -96,25 +96,25 @@
         }
 
 
-
         $(".tabs li").on("click", function (e) {
+            $(".content_text").hide();
+
+            var index = $(this).index();
+            $(".content_text").eq(index).show();
             if ($(this).hasClass("last")) {
                 return false;
             }
             $(".tabs li").css("animation","click_ 1s ease");
             $(this).css("animation","click 1s ease");
-            $(".content_text").removeClass("hidden").hide();
-            $(".content_text").eq($(this).index()).show();
             var html = $(this).children(".tab_name")[0].innerHTML + $(this).children(".tab_content")[0].innerHTML;
             $(".textTitle").html(html);
             $(".content_title a:last-of-type").html(html);
-            $(".specialImg").eq($(this).index()).show().siblings(".specialImg").hide();
-//            $(".content_text").eq($(this).index()).show().siblings(".content_text").hide();
+            $(".specialImg").eq(index).show().siblings(".specialImg").hide();
+//            $(".content_text").eq(index).show().siblings(".content_text").hide();
 
             // 分页操作
-            var total = $(this).children(".tab_total").html();
-            var id = $(this).children(".tab_id").html();
-
+            var total = $(this).find(".tab_total").html();
+            var id = $(this).find(".tab_id").html();
             $.ajax({
                 type: "post",
                 url: "{:Url('Special/index')}",
@@ -123,9 +123,9 @@
                     id: id
                 },
                 success: function (date) {
-                    pag(0,id,total);
-                    $(".content_text li").remove();
-                    $(".content_text ul p").remove();
+                    console.log(date);
+                    $(".content_text").eq(index).find("li").remove();
+                    $(".content_text").eq(index).find("p").remove();
                     var data = date.data;
                     var html = "";
                     var t = 11;
@@ -134,46 +134,47 @@
                     }
                     for (var i = 0; i <= t; i++) {
                         html = '<li class="clearfix">'
-                                + '<span class="fl">'
-                                + '<span class="circle"></span>'
-                                + '<span class="contentText"><a href="'
-                                + "/home/special/detail/id/"
-                                + data[i].id
-                                + '.html">'
-                                + data[i].title
-                                + '</a></span>'
-                                + '</span>'
-                                + '<span class="fr">'
-                                + '[ <span class="time">'
-                                + data[i].time
-                                + '</span> ]'
-                                + '</span>'
-                                + '</li>';
+                                +'<span class="fl">'
+                                +'<span class="circle"></span>'
+                                +'<span class="contentText"><a href="'
+                                +"/home/special/detail/id/"
+                                +data[i].id
+                                +'.html">'
+                                +data[i].title
+                                +'</a></span>'
+                                +'</span>'
+                                +'<span class="fr">'
+                                +'[ <span class="time">'
+                                +data[i].time
+                                +'</span> ]'
+                                +'</span>'
+                                +'</li>';
                         if (data[i].class == 2) {
                             html = '<li class="clearfix">'
-                                    + '<span class="fl">'
-                                    + '<span class="circle"></span>'
-                                    + '<span class="contentText sxt"><a href="'
-                                    + "/home/special/detail/id/"
-                                    + data[i].id
-                                    + '.html">'
-                                    + data[i].title
-                                    + '</a></span>'
-                                    + '</span>'
-                                    + '<span class="fr">'
-                                    + '[ <span class="time">'
-                                    + data[i].time
-                                    + '</span> ]'
-                                    + '</span>'
-                                    + '</li>';
+                                    +'<span class="fl">'
+                                    +'<span class="circle"></span>'
+                                    +'<span class="contentText sxt"><a href="'
+                                    +"/home/special/detail/id/"
+                                    +data[i].id
+                                    +'.html">'
+                                    +data[i].title
+                                    +'</a></span>'
+                                    +'</span>'
+                                    +'<span class="fr">'
+                                    +'[ <span class="time">'
+                                    +data[i].time
+                                    +'</span> ]'
+                                    +'</span>'
+                                    +'</li>';
                         }
                         if ((i + 1) % 4 == 0) {
                             html += '<p class="h16"></p>';
                         }
-                        $(".content_text ul").append(html);
+                        $(".content_text").eq(index).find("ul").append(html);
                     }
                 }
-            });
+            })
+            pag(0,id,total,index);
             return false;
         });
 
@@ -181,7 +182,7 @@
 
 
         // 分页
-        function pag(b,id,total) {
+        function pag(b,id,total,index) {
             if (total == 0) {
                 $("#page").hide();
             }else {
@@ -202,8 +203,8 @@
                             id: id
                         },
                         success: function (date) {
-                            $(".content_text li").remove();
-                            $(".content_text ul p").remove();
+                            $(".content_text").eq(index).find("li").remove();
+                            $(".content_text").eq(index).find("p").remove();
                             var data = date.data;
                             var html = "";
                             var t = 11;
@@ -248,7 +249,7 @@
                                 if ((i + 1) % 4 == 0) {
                                     html += '<p class="h16"></p>';
                                 }
-                                $(".content_text ul").append(html);
+                                $(".content_text").eq(index).find("ul").append(html);
                             }
                         }
                     })
@@ -272,7 +273,7 @@
             // 分页操作
             var total1 = $(".tabs li").eq(c1-1).children(".tab_total").html();
             var id1 = $(".tabs li").eq(c1-1).children(".tab_id").html();
-            pag(0,id1,total1);
+            pag(0,id1,total1,c1-1);
         }
 
         var c2 = window.location.href.split("index/tag/")[1];
@@ -288,7 +289,7 @@
             // 分页操作
             var total2 = $(".tabs li").eq(c3-1).children(".tab_total").html();
             var id2 = $(".tabs li").eq(c3-1).children(".tab_id").html();
-            pag(0,id2,total2);
+            pag(0,id2,total2,c3-1);
         }
 
     })
