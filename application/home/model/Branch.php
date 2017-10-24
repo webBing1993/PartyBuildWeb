@@ -89,7 +89,7 @@ class Branch extends Model {
         $len = ($p-1)*12;
         $map = array(
             'type' => $type,
-            'status' => $p
+            'status' => 1
         );
         $order = array("create_time desc");
         $field = array("id,title,create_time");
