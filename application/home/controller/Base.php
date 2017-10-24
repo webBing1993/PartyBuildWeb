@@ -201,7 +201,7 @@ class Base extends Controller {
      * 加载更多评论
      */
     public function morecomment(){
-        $uid = session('userId');
+//        $uid = session('userId');
         $len = input('length');
         $map = array(
             'type' => input('type'),
@@ -215,15 +215,17 @@ class Base extends Controller {
         $comment = Comment::where($map)->order('likes desc,create_time desc')->limit($len,7)->select();
         if($comment) {
             foreach ($comment as $value) {
-                $user = WechatUser::where('userid',$value['uid'])->find();
-                $value['nickname'] = ($user['nickname']) ? $user['nickname'] : $user['name'];
-                $value['header'] =  ($user['header']) ? $user['header'] : $user['avatar'];
+//                $user = WechatUser::where('userid',$value['uid'])->find();
+//                $value['nickname'] = ($user['nickname']) ? $user['nickname'] : $user['name'];
+//                $value['header'] =  ($user['header']) ? $user['header'] : $user['avatar'];
+                $value['nickname'] = $this->getRandom();
+                $value['header'] = "/home/images/grzx.png";
                 $value['time'] = date('Y-m-d',$value['create_time']);
                 $value['content'] = strtr($value['content'], $badword1);
                 $map1 = array(
                     'type' => 0,
                     'aid' => $value['id'],
-                    'uid' => $uid,
+                    'uid' => 0,
                     'status' => 0,
                 );
                 $like = Like::where($map1)->find();
