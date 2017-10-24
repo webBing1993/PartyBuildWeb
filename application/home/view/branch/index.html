@@ -100,27 +100,30 @@
 {block name="script"}
 <script>
 
-    // 首页指定跳转过来
-    var c = window.location.href.split("index/type/")[1];
-    if (c != undefined) {
-        var c1 = c.split(".html")[0];
-        $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
-        $(".content_text").removeClass("hidden").hide();
-        $(".content_text").eq(c1-1).show();
-        var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
-        $(".textTitle").html(html);
-        $(".content_title a:last-of-type").html(html);
-        var type = c1;
-        var total;
-        if ($(".content_tab li").eq(c1-1) == 0) {
-            total = {$list.t1}
-        }else if ($(".content_tab li").eq(c1-1) == 1) {
-            total = {$list.t2}
-        }else {
-            total = {$list.t3}
+    $(function () {
+        // 首页指定跳转过来
+        var c = window.location.href.split("index/type/")[1];
+        if (c != undefined) {
+            var c1 = c.split(".html")[0];
+            $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
+            $(".content_text").removeClass("hidden").hide();
+            $(".content_text").eq(c1-1).show();
+            var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
+            $(".textTitle").html(html);
+            $(".content_title a:last-of-type").html(html);
+            var type = c1;
+            var total;
+            if ($(".content_tab li").eq(c1-1) == 0) {
+                total = {$list.t1}
+            }else if ($(".content_tab li").eq(c1-1) == 1) {
+                total = {$list.t2}
+            }else {
+                total = {$list.t3}
+            }
+
+            pag(0,type,total,c1-1);
         }
-        pag(0,type,total,c1-1);
-    }
+    });
 
     // nav
     $(".nav-header li:nth-of-type(5) a").addClass("active");
@@ -130,28 +133,169 @@
     });
 
 
-    if ($(".content_tab li").index() == 0) {
-        pag(0,1,{$list.t1},0);
-    }
     $(".content_tab li").on("click", function (e) {
         $(this).addClass("red").siblings("li").removeClass("red");
-        $(".content_text").removeClass("hidden").hide();
-        $(".content_text").eq($(this).index()).show();
+        $(".content_text").hide();
+
+        var index = $(this).index();
+        $(".content_text").eq(index).show();
+
         var html = $(this).children("a").children('span')[0].innerHTML;
         $(".textTitle").html(html);
         $(".content_title a:last-of-type").html(html);
-        var type =  $(this).index() + 1;
+        var type =  index + 1;
         var total;
-        if ($(this).index() == 0) {
-            total = {$list.t1}
-        }else if ($(this).index() == 1) {
-            total = {$list.t2}
+        if (index == 0) {
+            total = {$list.t1};
+        }else if (index == 1) {
+            total = {$list.t2};
         }else {
-            total = {$list.t3}
+            total = {$list.t3};
         }
-        pag(0,type,total,$(this).index());
+        $.ajax({
+            type: "post",
+            url: "{:Url('Branch/index')}",
+            data: {
+                p: 1,
+                type: type
+            },
+            success: function (date) {
+                $(".content_text").eq(index).find("li").remove();
+                $(".content_text").eq(index).find("p").remove();
+                var data = date.data;
+                var html = "";
+                var t = 11;
+                if (data.length <= 11) {
+                    t = data.length - 1;
+                }
+                for (var i = 0; i <= t; i++) {
+                    if (index == 0) {
+                        html = '<li class="clearfix">'
+                                +'<span class="fl">'
+                                +'<span class="circle"></span>'
+                                +'<span class="contentText"><a href="'
+                                +"/home/branch/detail/id/"
+                                +data[i].id
+                                +'.html">'
+                                +data[i].title
+                                +'</a></span>'
+                                +'</span>'
+                                +'<span class="fr">'
+                                +'[ <span class="time">'
+                                +data[i].time
+                                +'</span> ]'
+                                +'</span>'
+                                +'</li>';
+                        if (data[i].class == 2) {
+                            html = '<li class="clearfix">'
+                                    +'<span class="fl">'
+                                    +'<span class="circle"></span>'
+                                    +'<span class="contentText sxt"><a href="'
+                                    +"/home/branch/detail/id/"
+                                    +data[i].id
+                                    +'.html">'
+                                    +data[i].title
+                                    +'</a></span>'
+                                    +'</span>'
+                                    +'<span class="fr">'
+                                    +'[ <span class="time">'
+                                    +data[i].time
+                                    +'</span> ]'
+                                    +'</span>'
+                                    +'</li>';
+                        }
+                        if ((i + 1) % 4 == 0) {
+                            html += '<p class="h16"></p>';
+                        }
+                    }
+                    else if (index == 1) {
+                        html = '<li class="clearfix">'
+                                +'<span class="fl">'
+                                +'<span class="circle"></span>'
+                                +'<span class="contentText"><a href="'
+                                +"/home/branch/detail/id/"
+                                +data[i].id
+                                +'.html">'
+                                +data[i].title
+                                +'</a></span>'
+                                +'</span>'
+                                +'<span class="fr">'
+                                +'[ <span class="time">'
+                                +data[i].time
+                                +'</span> ]'
+                                +'</span>'
+                                +'</li>';
+                        if (data[i].class == 2) {
+                            html = '<li class="clearfix">'
+                                    +'<span class="fl">'
+                                    +'<span class="circle"></span>'
+                                    +'<span class="contentText sxt"><a href="'
+                                    +"/home/branch/detail/id/"
+                                    +data[i].id
+                                    +'.html">'
+                                    +data[i].title
+                                    +'</a></span>'
+                                    +'</span>'
+                                    +'<span class="fr">'
+                                    +'[ <span class="time">'
+                                    +data[i].time
+                                    +'</span> ]'
+                                    +'</span>'
+                                    +'</li>';
+                        }
+                        if ((i + 1) % 4 == 0) {
+                            html += '<p class="h16"></p>';
+                        }
+                    }
+                    else if (index == 2) {
+                        html = '<li class="clearfix">'
+                                +'<span class="fl">'
+                                +'<span class="circle"></span>'
+                                +'<span class="contentText"><a href="'
+                                +"/home/branch/detail/id/"
+                                +data[i].id
+                                +'.html">'
+                                +data[i].title
+                                +'</a></span>'
+                                +'</span>'
+                                +'<span class="fr">'
+                                +'[ <span class="time">'
+                                +data[i].time
+                                +'</span> ]'
+                                +'</span>'
+                                +'</li>';
+                        if (data[i].class == 2) {
+                            html = '<li class="clearfix">'
+                                    +'<span class="fl">'
+                                    +'<span class="circle"></span>'
+                                    +'<span class="contentText sxt"><a href="'
+                                    +"/home/branch/detail/id/"
+                                    +data[i].id
+                                    +'.html">'
+                                    +data[i].title
+                                    +'</a></span>'
+                                    +'</span>'
+                                    +'<span class="fr">'
+                                    +'[ <span class="time">'
+                                    +data[i].time
+                                    +'</span> ]'
+                                    +'</span>'
+                                    +'</li>';
+                        }
+                        if ((i + 1) % 4 == 0) {
+                            html += '<p class="h16"></p>';
+                        }
+                    }
+
+                    $(".content_text").eq(index).find("ul").append(html);
+                }
+            }
+        });
+        pag(0,type,total,index);
         return false;
     });
+
+    $(".content_tab li").eq(0).click();
 
     function pag(b,id,total,a) {
         if (total == 0) {
@@ -174,8 +318,8 @@
                         type: id
                     },
                     success: function (date) {
-                        $(".content_text li").remove();
-                        $(".content_text ul p").remove();
+                        $(".content_text").eq(a).find("li").remove();
+                        $(".content_text").eq(a).find("p").remove();
                         var data = date.data;
                         var html = "";
                         var t = 11;
@@ -301,7 +445,7 @@
                                 }
                             }
 
-                            $(".content_text ul").append(html);
+                            $(".content_text").eq(a).find("ul").append(html);
                         }
                     }
                 })
