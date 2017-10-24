@@ -97,7 +97,7 @@
             var tip = $(".tip");
             var loading = $('.loading');
             var id = {$detail.id};
-            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 10 && scrollNow) {
+            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 1 && scrollNow) {
                 scrollNow = false;
                 $.ajax({
                     type: "post",
@@ -116,14 +116,30 @@
                         tip.show();
                         if(data.code == 1){
                             var dataLen =data.data.length;
-                            if(data.data.length == 5){
-                                tip.text('上拉加载更多');
+                            var date = data.data;
+                            var maxLen;
+                            if (date.length >= 5) {
+                                maxLen = 5;
+                            }else {
+                                maxLen = date.length;
                             }
+                            var html = '';
+                            for (var i = 0; i < maxLen; i++) {
+                                html = '<div class="list clearfix">'+
+                                        '<div class="list_img fl">'+
+                                        '<img src="'+date[i].header+'" alt="用户头像">'+
+                                        '</div>'+
+                                        '<div class="comment_name fl">'+date[i].nickname+'：</div>'+
+                                        '<div class="comment_content fl" >'+date[i].content+'</div>'+
+                                        '</div>';
+                                $('.commentLists').append(html);
+                            }
+                            tip.text('上拉加载更多');
+                            scrollNow = true; // 请求结束
                         }else{
                             tip.text('没有更多了');
                             $(window).off("scroll");
                         }
-                        scrollNow = true; // 请求结束
                     }
                 })
             }
