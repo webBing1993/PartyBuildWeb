@@ -28,7 +28,7 @@
                     <ul>
                         {volist name="$detail.list" id="vo"}
                         <li class="clearfix">
-                            <a href="javascript:;">
+                            <a href="{:Url('Video/detail?id='.$vo['id'])}">
                                 <div class="listImg fl">
                                     <img src="{$vo.front_cover|get_cover='path'}" alt="">
                                 </div>
@@ -70,7 +70,7 @@
             <span>我来评论</span>
             <div>
                 <textarea type="text" placeholder="点击输入您想说的内容..."></textarea>
-                <span class="comment_btn fr" onclick="send(this,5,{$detail.id})">发送</span>
+                <span class="comment_btn fr" onclick="send(this,8,{$detail.id})">发送</span>
             </div>
         </div>
     </div>

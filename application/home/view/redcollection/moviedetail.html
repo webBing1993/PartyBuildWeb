@@ -43,7 +43,7 @@
                     {$detail.content}
                 </div>
                 <div class="dz">
-                    <div class="dz_cl" onclick="isGood(this,1,{$detail.id})">
+                    <div class="dz_cl" onclick="isGood(this,5,{$detail.id})">
                         <div class="dz_img">
                             <img src="/home/images/xx.png" alt="">
                         </div>
@@ -66,7 +66,7 @@
                 <div class="comment_say">
                     <span>我来评论</span>
                     <input type="text" placeholder="点击输入您想说的内容...">
-                    <span class="comment_btn" onclick="send(this,1,{$detail.id})">发送</span>
+                    <span class="comment_btn" onclick="send(this,5,{$detail.id})">发送</span>
                 </div>
             </div>
             <div class="tip"></div>
@@ -102,7 +102,7 @@
                     url: "{:Url('Base/morecomment')}",
                     data: {
                         aid: id,
-                        type: 1,
+                        type: 5,
                         length: len
                     },
                     beforeSend: function(XMLHttpRequest){

@@ -38,7 +38,7 @@ class Video extends Controller
 
         //获取 评论
         $commentModel = new Comment();
-        $comment = $commentModel->getComment(5,$id,0);
+        $comment = $commentModel->getComment(8,$id,0);
         $this->assign('comment',$comment);
         return $this->fetch();
     }
