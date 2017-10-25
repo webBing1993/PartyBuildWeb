@@ -43,7 +43,7 @@
                                 <div class="movie_img"><img src="{$one.front_cover|get_cover='path'}" alt=""></div>
                                 <div class="movie_name">{$one.title}</div>
                             </a>
-                            <div class="movie_content">简介：{$one.introduction}</div>
+                            <div class="movie_content"><span>简介：{$one.introduction}</span></div>
                         </li>
                         {/volist}
                     </ul>
@@ -62,14 +62,19 @@
                 </div>
                 <div class="content_text text3 hidden clearfix">
                     <div class="songLists">
-                        {volist name="list.three" id="three"}
-                        <div class="list fl">
-                            <a href="{:Url('Redcollection/songdetail?id='.$three['id'])}">
-                                <div class="songImg"><img src="{$three.front_cover|get_cover='path'}" alt=""></div>
-                                <div class="songTitle">{$three.title}</div>
-                            </a>
-                        </div>
-                        {/volist}
+                        <ul>
+                            {volist name="list.three" id="three"  key="k"}
+                            <li class="list fl">
+                                <a href="{:Url('Redcollection/songdetail?id='.$three['id'])}">
+                                    <div class="songImg"><img src="{$three.front_cover|get_cover='path'}" alt=""></div>
+                                    <div class="songTitle">{$three.title}</div>
+                                </a>
+                            </li>
+                            {eq name="k%2" value="0"}
+                            <p class="h1 fl"></p>
+                            {/eq}
+                            {/volist}
+                        </ul>
                     </div>
                 </div>
                 <!-- 分页-->
@@ -101,19 +106,103 @@
         })
     });
 
-    // 首页指定跳转过来
-    var c = window.location.href.split("index/type/")[1];
-   if (c != undefined) {
-       var c1 = c.split(".html")[0];
-       $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
-       $(".content_text").removeClass("hidden").hide();
-       $(".content_text").eq(c1-1).show();
-       var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
-       $(".textTitle").html(html);
-       $(".content_title a:last-of-type").html(html);
-   }
 
-    pag(0,1,7,0);
+    $(".content_tab li").on("click", function (e) {
+        $(this).addClass("red").siblings("li").removeClass("red");
+        $(".content_text").hide();
+
+        var index = $(this).index();
+        $(".content_text").eq(index).show();
+
+        var html = $(this).children("a").children('span')[0].innerHTML;
+        $(".textTitle").html(html);
+        $(".content_title a:last-of-type").html(html);
+        var type =  index + 1;
+        var total;
+        if (index == 0) {
+            total = {$list.t1};
+        }else if (index == 1) {
+            total = {$list.t2};
+        }else {
+            total = {$list.t3};
+        }
+        $.ajax({
+            type: "post",
+            url: "{:Url('Redcollection/index')}",
+            data: {
+                p: 1,
+                type: type
+            },
+            success: function (date) {
+                $(".content_text").eq(index).find("li").remove();
+                $(".content_text").eq(index).find("p").remove();
+                var data = date.data;
+                var html = "";
+                var t = 11;
+                if (data.length <= 11) {
+                    t = data.length - 1;
+                }
+                for (var i = 0; i <= t; i++) {
+                    if (index == 0) {
+                        html = '<li class="fl">'
+                                +'<a href="/home/redcollection/moviedetail/id/'
+                                +data[i].id
+                                +'.html">'
+                                +'<div class="movie_img"><img src="'
+                                +data[i].net_path
+                                +'" alt=""></div>'
+                                +'<div class="movie_name">'
+                                +data[i].title
+                                +'</div>'
+                                +'</a>'
+                                +'<div class="movie_content"><span>简介：'
+                                +data[i].introduction
+                                +'</span></div>'
+                                +'</li>';
+                    }
+                    else if (index == 1) {
+                        html = '<li class="fl">'
+                                +'<a href="/home/redcollection/bookdetail/id/'
+                                +data[i].id
+                                +'.html">'
+                                +'<div class="book_img"><img src="'
+                                +data[i].net_path
+                                +'" alt=""></div>'
+                                +'<div class="book_name">'
+                                +data[i].title
+                                +'</div>'
+                                +'</a>'
+                                +'</li>';
+                    }
+                    else if (index == 2) {
+                        html = '<li class="list fl">'
+                                +'<a href="/home/redcollection/songdetail/id/'
+                                +data[i].id
+                                +'.html">'
+                                +'<div class="songImg"><img src="'
+                                +data[i].path
+                                +'" alt=""></div>'
+                                +'<div class="songTitle">'
+                                +data[i].title
+                                +'</div>'
+                                +'</a>'
+                                +'</li>';
+
+                            if ((i + 1) % 2 == 0) {
+                                html += '<p class="h1 fl"></p>';
+                            }
+                    }
+
+                    $(".content_text").eq(index).find("ul").append(html);
+                }
+            }
+        });
+        pag(0,type,total,index);
+        return false;
+    });
+
+    $(".content_tab li").eq(0).click();
+
     function pag(b,id,total,a) {
         if (total == 0) {
             $("#page").hide();
@@ -145,120 +234,52 @@
                         }
                         for (var i = 0; i <= t; i++) {
                             if (a == 0) {
-                                html = '<li class="clearfix">'
-                                        +'<span class="fl">'
-                                        +'<span class="circle"></span>'
-                                        +'<span class="contentText"><a href="'
-                                        +"/home/branch/detail/id/"
+                                html = '<li class="fl">'
+                                        +'<a href="/home/redcollection/moviedetail/id/'
                                         +data[i].id
                                         +'.html">'
+                                        +'<div class="movie_img"><img src="'
+                                        +data[i].net_path
+                                        +'" alt=""></div>'
+                                        +'<div class="movie_name">'
                                         +data[i].title
-                                        +'</a></span>'
-                                        +'</span>'
-                                        +'<span class="fr">'
-                                        +'[ <span class="time">'
-                                        +data[i].time
-                                        +'</span> ]'
-                                        +'</span>'
+                                        +'</div>'
+                                        +'</a>'
+                                        +'<div class="movie_content"><span>简介：'
+                                        +data[i].introduction
+                                        +'</span></div>'
                                         +'</li>';
-                                if (data[i].class == 2) {
-                                    html = '<li class="clearfix">'
-                                            +'<span class="fl">'
-                                            +'<span class="circle"></span>'
-                                            +'<span class="contentText sxt"><a href="'
-                                            +"/home/branch/detail/id/"
-                                            +data[i].id
-                                            +'.html">'
-                                            +data[i].title
-                                            +'</a></span>'
-                                            +'</span>'
-                                            +'<span class="fr">'
-                                            +'[ <span class="time">'
-                                            +data[i].time
-                                            +'</span> ]'
-                                            +'</span>'
-                                            +'</li>';
-                                }
-                                if ((i + 1) % 4 == 0) {
-                                    html += '<p class="h16"></p>';
-                                }
                             }
                             else if (a == 1) {
-                                html = '<li class="clearfix">'
-                                        +'<span class="fl">'
-                                        +'<span class="circle"></span>'
-                                        +'<span class="contentText"><a href="'
-                                        +"/home/branch/detail/id/"
+                                html = '<li class="fl">'
+                                        +'<a href="/home/redcollection/bookdetail/id/'
                                         +data[i].id
                                         +'.html">'
+                                        +'<div class="book_img"><img src="'
+                                        +data[i].net_path
+                                        +'" alt=""></div>'
+                                        +'<div class="book_name">'
                                         +data[i].title
-                                        +'</a></span>'
-                                        +'</span>'
-                                        +'<span class="fr">'
-                                        +'[ <span class="time">'
-                                        +data[i].time
-                                        +'</span> ]'
-                                        +'</span>'
+                                        +'</div>'
+                                        +'</a>'
                                         +'</li>';
-                                if (data[i].class == 2) {
-                                    html = '<li class="clearfix">'
-                                            +'<span class="fl">'
-                                            +'<span class="circle"></span>'
-                                            +'<span class="contentText sxt"><a href="'
-                                            +"/home/branch/detail/id/"
-                                            +data[i].id
-                                            +'.html">'
-                                            +data[i].title
-                                            +'</a></span>'
-                                            +'</span>'
-                                            +'<span class="fr">'
-                                            +'[ <span class="time">'
-                                            +data[i].time
-                                            +'</span> ]'
-                                            +'</span>'
-                                            +'</li>';
-                                }
-                                if ((i + 1) % 4 == 0) {
-                                    html += '<p class="h16"></p>';
-                                }
                             }
                             else if (a == 2) {
-                                html = '<li class="clearfix">'
-                                        +'<span class="fl">'
-                                        +'<span class="circle"></span>'
-                                        +'<span class="contentText"><a href="'
-                                        +"/home/branch/detail/id/"
+                                html = '<li class="list fl">'
+                                        +'<a href="/home/redcollection/songdetail/id/'
                                         +data[i].id
                                         +'.html">'
+                                        +'<div class="songImg"><img src="'
+                                        +data[i].path
+                                        +'" alt=""></div>'
+                                        +'<div class="songTitle">'
                                         +data[i].title
-                                        +'</a></span>'
-                                        +'</span>'
-                                        +'<span class="fr">'
-                                        +'[ <span class="time">'
-                                        +data[i].time
-                                        +'</span> ]'
-                                        +'</span>'
+                                        +'</div>'
+                                        +'</a>'
                                         +'</li>';
-                                if (data[i].class == 2) {
-                                    html = '<li class="clearfix">'
-                                            +'<span class="fl">'
-                                            +'<span class="circle"></span>'
-                                            +'<span class="contentText sxt"><a href="'
-                                            +"/home/branch/detail/id/"
-                                            +data[i].id
-                                            +'.html">'
-                                            +data[i].title
-                                            +'</a></span>'
-                                            +'</span>'
-                                            +'<span class="fr">'
-                                            +'[ <span class="time">'
-                                            +data[i].time
-                                            +'</span> ]'
-                                            +'</span>'
-                                            +'</li>';
-                                }
-                                if ((i + 1) % 4 == 0) {
-                                    html += '<p class="h16"></p>';
+
+                                if ((i + 1) % 2 == 0) {
+                                    html += '<p class="h1 fl"></p>';
                                 }
                             }
 
@@ -268,6 +289,18 @@
                 })
             }
         });
+    }
+
+    // 首页指定跳转过来
+    var c = window.location.href.split("index/type/")[1];
+    if (c != undefined) {
+        var c1 = c.split(".html")[0];
+        $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
+         $(".content_text").removeClass("hidden").hide();
+         $(".content_text").eq(c1-1).show();
+         var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
+         $(".textTitle").html(html);
+         $(".content_title a:last-of-type").html(html);
     }
 
 </script>

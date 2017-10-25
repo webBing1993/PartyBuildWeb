@@ -2,7 +2,7 @@
     border: 1px solid #d9d9d9;
     padding: 19px 30px;
 }
-.lists .list p,.songTitle {
+.lists .list>p,.songTitle {
     padding: 14px 0;
     font-size: 15px;
     border-bottom: 1px solid #d9d9d9;
