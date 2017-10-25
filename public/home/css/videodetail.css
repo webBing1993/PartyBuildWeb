@@ -141,14 +141,14 @@ header img {
     overflow-y: scroll;
     position: relative;
     overflow-x: hidden;
-    scrollbar-base-color: #1c1c1c;
-    scrollbar-track-color: #1c1c1c;
-    scrollbar-3dlight-color: #1c1c1c;
-    scrollbar-highlight-color: #1c1c1c;
-    scrollbar-face-color: #1c1c1c;
-    scrollbar-dark-shadow-color: #1c1c1c;
-    scrollbar-shadow-color: #1c1c1c;
-    scrollbar-arrow-color: #1c1c1c;
+    scrollbar-base-color: #fff;
+    scrollbar-track-color: #fff;
+    scrollbar-3dlight-color: #fff;
+    scrollbar-highlight-color: #fff;
+    scrollbar-face-color: #fff;
+    scrollbar-dark-shadow-color: #fff;
+    scrollbar-shadow-color: #fff;
+    scrollbar-arrow-color: #fff;
 }
 .lists_content::-webkit-scrollbar {
     display: none;
