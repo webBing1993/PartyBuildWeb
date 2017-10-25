@@ -1,0 +1,35 @@
+.song {
+    border: 1px solid #d9d9d9;
+    padding: 19px 30px;
+}
+.lists .list p,.songTitle {
+    padding: 14px 0;
+    font-size: 15px;
+    border-bottom: 1px solid #d9d9d9;
+    color: #333;
+}
+.songTitle {
+    text-align: center;
+    font-weight: 600;
+}
+.songImg {
+    width: 149px;
+    height: 215px;
+    margin: 23px auto 60px;
+}
+.songImg img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.lists .list div {
+    padding-top: 15px;
+    /*text-indent: 2em;*/
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 48px;
+    line-height: 26px;
+}
+.comment_say input {
+    width: 79%;
+}

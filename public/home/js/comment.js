@@ -46,12 +46,12 @@ $(function () {
         $(".content_text").removeClass("hidden").hide();
         $(".content_text").eq($(this).index()).show();
         var html = $(this).children("a").children('span')[0].innerHTML;
-        $(".textTitle").html(html);
+        $(".textTitle").html(html).show();
         $(".content_title a:last-of-type").html(html);
         if (html == "红色音乐") {
             $(".content_text").eq($(this).index()).css("borderBottom",0);
             $(".page_div").hide();
-            $(".textTitle").css("marginBottom",0);
+            $(".textTitle").hide();
         }else {
             $(".page_div").show();
         }

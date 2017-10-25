@@ -70,4 +70,11 @@ class Redcollection extends Controller
         return $this->fetch();
     }
 
+    /*
+     *  音乐详情页
+     * */
+    public function songdetail() {
+        return $this->fetch();
+    }
+
 }
