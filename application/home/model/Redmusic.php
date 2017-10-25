@@ -28,4 +28,13 @@ class Redmusic extends Model {
         $res = $this->where($map)->order($order)->limit(6)->select();
         return $res;
     }
+
+    /**
+     * 获取详情
+     */
+    public function getDetail($id) {
+        $this->where('id',$id)->setInc('views');
+        $res = $this->get($id);
+        return $res;
+    }
 }

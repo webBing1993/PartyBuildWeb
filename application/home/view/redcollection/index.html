@@ -29,138 +29,47 @@
         <div class="col-md-9 col-lg-9  col-sm-9 col-xs-9">
             <div class="content_title">
                 <span>您的当前位置：</span>
-                <a href="/home/index/index.html">首页</a>
+                <a href="{:Url('Index/index')}">首页</a>
                 <span> > </span>
-                <a href="/home/redcollection/index.html">红色电影</a>
+                <a href="javascript:;">红色电影</a>
             </div>
             <div class="redLists">
                 <p class="textTitle">红色电影</p>
                 <div class="content_text text1 clearfix movieList">
                     <ul>
+                        {volist name="list.one" id="one"}
                         <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
+                            <a href="{:Url('Redcollection/moviedetail?id='.$one['id'])}">
+                                <div class="movie_img"><img src="{$one.front_cover|get_cover='path'}" alt=""></div>
+                                <div class="movie_name">{$one.title}</div>
                             </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
+                            <div class="movie_content">简介：{$one.introduction}</div>
                         </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
-                            </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
-                            </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
-                            </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
-                            </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
-                            </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="movie_img"><img src="/home/images/movie1.jpg" alt=""></div>
-                                <div class="movie_name">《闪闪的红星》</div>
-                            </a>
-                            <div class="movie_content">简介：《闪闪的红星》是根据李心田小说改编的电影</div>
-                        </li>
+                        {/volist}
                     </ul>
                 </div>
                 <div class="content_text text2 hidden bookList clearfix">
                     <ul>
+                        {volist name="list.two" id="two"}
                         <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
+                            <a href="{:Url('Redcollection/bookdetail?id='.$two['id'])}">
+                                <div class="book_img"><img src="{$two.front_cover|get_cover='path'}" alt=""></div>
+                                <div class="book_name">{$two.title}</div>
                             </a>
                         </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
-                            </a>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
-                            </a>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
-                            </a>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
-                            </a>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
-                            </a>
-                        </li>
-                        <li class="fl">
-                            <a href="#">
-                                <div class="book_img"><img src="/home/images/book1.jpg" alt=""></div>
-                                <div class="book_name">《闪闪的红星》</div>
-                            </a>
-                        </li>
+                        {/volist}
                     </ul>
                 </div>
                 <div class="content_text text3 hidden clearfix">
                     <div class="songLists">
+                        {volist name="list.three" id="three"}
                         <div class="list fl">
-                            <a href="">
-                                <div class="songImg"><img src="/home/images/b2.jpg" alt="\"></div>
-                                <div class="songTitle">经典红歌</div>
+                            <a href="{:Url('Redcollection/songdetail?id='.$three['id'])}">
+                                <div class="songImg"><img src="{$three.front_cover|get_cover='path'}" alt=""></div>
+                                <div class="songTitle">{$three.title}</div>
                             </a>
                         </div>
-                        <div class="list fl">
-                            <a href="">
-                                <div class="songImg"><img src="/home/images/b2.jpg" alt="\"></div>
-                                <div class="songTitle">经典红歌</div>
-                            </a>
-                        </div>
-                        <p class="h1 fl"></p>
-                        <div class="list fl">
-                            <a href="">
-                                <div class="songImg"><img src="/home/images/b2.jpg" alt="\"></div>
-                                <div class="songTitle">经典红歌</div>
-                            </a>
-                        </div>
-                        <div class="list fl">
-                            <a href="">
-                                <div class="songImg"><img src="/home/images/b2.jpg" alt="\"></div>
-                                <div class="songTitle">经典红歌</div>
-                            </a>
-                        </div>
+                        {/volist}
                     </div>
                 </div>
                 <!-- 分页-->
@@ -220,7 +129,7 @@
             callback: function(num) {
                 $.ajax({
                     type: "post",
-                    url: "{:Url('Branch/index')}",
+                    url: "{:Url('Redcollection/index')}",
                     data: {
                         p: num,
                         type: id

@@ -9,6 +9,7 @@ namespace app\home\controller;
 use app\home\model\Comment;
 use app\home\model\Redbook;
 use app\home\model\Redfilm;
+use app\home\model\Redmusic;
 use think\Controller;
 /**
  * 红色珍藏
@@ -74,6 +75,15 @@ class Redcollection extends Controller
      *  音乐详情页
      * */
     public function songdetail() {
+        $id = input('id');
+        $Model = new Redmusic();
+        $detail = $Model->getDetail($id);
+        $this->assign('detail',$detail);
+
+        //获取 评论
+        $commentModel = new Comment();
+        $comment = $commentModel->getComment(7,$id,0);
+        $this->assign('comment',$comment);
         return $this->fetch();
     }
 

@@ -33,41 +33,43 @@
                 <span> > </span>
                 <a href="{:Url('Redcollection/index?type=3')}">红色音乐</a>
                 <span> > </span>
-                <a href="">经典红歌</a>
+                <a href="">{$detail.title}</a>
             </div>
             <div class="song">
-                <p class="songTitle">经典红歌</p>
-                <div class="songImg"><img src="/home/images/b2.jpg" alt=""></div>
+                <p class="songTitle">{$detail.title}</p>
+                <!--<div class="songImg"><img src="/home/images/b2.jpg" alt=""></div>-->
                 <div class="lists">
                     <div class="list">
-                        <p>系列简介</p>
+                        <!--<p>系列简介</p>-->
                         <div>
-                            这里是系列简介的内容
+                            {$detail.content}
                         </div>
                     </div>
                     <div class="dz">
-                        <div class="dz_cl" onclick="isGood()">
+                        <div class="dz_cl" onclick="isGood(this,7,{$detail.id})">
                             <div class="dz_img">
                                 <img src="/home/images/xx.png" alt="">
                             </div>
                             <p>赞</p>
                         </div>
-                        <div class="dz_cn">共有 <span>100</span>人点赞</div>
+                        <div class="dz_cn">共有 <span>{$detail.likes}</span>人点赞</div>
                     </div>
                 </div>
                 <div class="comment">
-                    <div class="sum">共 <span>5</span>条评论</div>
+                    <div class="sum">共 <span>{$detail.comments}</span>条评论</div>
                     <div class="commentLists">
+                        {volist name="comment" id="com"}
                         <div class="list clearfix">
                             <div class="list_img fl"><img src="/home/images/grzx.png" alt=""></div>
-                            <div class="list_name fl">评论人：</div>
-                            <div class="list_content fl">评论内容</div>
+                            <div class="list_name fl">{$com.nickname}：</div>
+                            <div class="list_content fl">{$com.content}</div>
                         </div>
+                        {/volist}
                     </div>
                     <div class="comment_say">
                         <span>我来评论</span>
                         <input type="text" placeholder="点击输入您想说的内容...">
-                        <span class="comment_btn" onclick="send()">发送</span>
+                        <span class="comment_btn" onclick="send(this,7,{$detail.id})">发送</span>
                     </div>
                 </div>
             </div>

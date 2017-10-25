@@ -40,11 +40,11 @@ class Redfilm extends Model {
             'status' => 1
         );
         $order = array('create_time desc');
-        $one = $filmModel->where($map)->order($order)->limit(12)->select();
+        $one = $filmModel->where($map)->order($order)->limit(6)->select();
         $t1 = $filmModel->where($map)->count();
-        $two = $bookModel->where($map)->order($order)->limit(12)->select();
+        $two = $bookModel->where($map)->order($order)->limit(9)->select();
         $t2 = $bookModel->where($map)->count();
-        $three = $musicModel->where($map)->order($order)->limit(12)->select();
+        $three = $musicModel->where($map)->order($order)->limit(4)->select();
         $t3 = $musicModel->where($map)->count();
         $res = array(
             'one' => $one,
@@ -70,24 +70,21 @@ class Redfilm extends Model {
         );
         $order = array("create_time desc");
         if($type == 1) {
-            $map['type'] = 1;
-            $res = $filmModel->where($map)->order($order)->limit($length,12)->select();
+            $res = $filmModel->where($map)->order($order)->limit($length,6)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
                 $value['path'] = $pic['path'];
                 $value['time'] = date("Y-m-d",$value['create_time']);
             }
         }elseif($type == 2) {
-            $map['type'] = 2;
-            $res = $bookModel->where($map)->order($order)->limit($length,12)->select();
+            $res = $bookModel->where($map)->order($order)->limit($length,9)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
                 $value['path'] = $pic['path'];
                 $value['time'] = date("Y-m-d",$value['create_time']);
             }
         }else {
-            $map['type'] = 3;
-            $res = $musicModel->where($map)->order($order)->limit($length,12)->select();
+            $res = $musicModel->where($map)->order($order)->limit($length,4)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
                 $value['path'] = $pic['path'];
