@@ -24,8 +24,8 @@
             </div>
             <div class="list hidden">
                 <p class="title">友情链接</p>
-                <p>之图科技官网</p>
-                <p>之图科技官网</p>
+                <p><a href="http://www.0571ztnet.com/">之图科技官网</a></p>
+                <p><a href="http://www.cpnet.org.cn/">中国党刊网官网</a></p>
             </div>
             <div class="list hidden">
                 <p class="title">版权申明</p>
@@ -48,11 +48,19 @@
 {block name="script"}
 <script>
     // 首页指定跳转过来
-
-    var c = window.location.href.split("index/id/")[1];
+    var c = window.location.href.split("#")[1];
     if (c != undefined) {
-        var c1 = c.split(".html")[0];
-        $(".list").eq(c1-1).show().siblings(".list").hide();
+        $(".list").removeClass("hidden");
+        $(".list").eq(c-1).show().siblings(".list").hide();
     }
+
+    // 底部跳转
+    $("footer p a").on("click", function () {
+        console.log($(this).index()/2);
+        var c1 = $(this).index() / 2;
+        $(".list").removeClass("hidden");
+        $(".list").eq(c1).show().siblings(".list").hide();
+    });
+   
 </script>
 {/block}

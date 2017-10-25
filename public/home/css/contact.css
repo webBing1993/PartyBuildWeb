@@ -62,6 +62,13 @@ body {
     color: #333;
     line-height: 30px;
 }
+.lists p a {
+    color: #333;
+}
+.lists p a:hover {
+    color: #1755cc;
+    text-decoration: underline;
+}
 .lists .list:last-of-type p:nth-of-type(n+2) {
     text-indent: 0;
 }
