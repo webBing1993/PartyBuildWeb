@@ -204,6 +204,162 @@
        $(".content_title a:last-of-type").html(html);
    }
 
+    pag(0,1,7,0);
+    function pag(b,id,total,a) {
+        if (total == 0) {
+            $("#page").hide();
+        }else {
+            $("#page").show();
+        }
+        // 向上取整
+        var page = Math.ceil(total / 12);
+        $("#page").paging({
+            pageNo:1,
+            totalPage: page,
+            totalSize: 300,
+            callback: function(num) {
+                $.ajax({
+                    type: "post",
+                    url: "{:Url('Branch/index')}",
+                    data: {
+                        p: num,
+                        type: id
+                    },
+                    success: function (date) {
+                        $(".content_text").eq(a).find("li").remove();
+                        $(".content_text").eq(a).find("p").remove();
+                        var data = date.data;
+                        var html = "";
+                        var t = 11;
+                        if (data.length <= 11) {
+                            t = data.length - 1;
+                        }
+                        for (var i = 0; i <= t; i++) {
+                            if (a == 0) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText"><a href="'
+                                        +"/home/branch/detail/id/"
+                                        +data[i].id
+                                        +'.html">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if (data[i].class == 2) {
+                                    html = '<li class="clearfix">'
+                                            +'<span class="fl">'
+                                            +'<span class="circle"></span>'
+                                            +'<span class="contentText sxt"><a href="'
+                                            +"/home/branch/detail/id/"
+                                            +data[i].id
+                                            +'.html">'
+                                            +data[i].title
+                                            +'</a></span>'
+                                            +'</span>'
+                                            +'<span class="fr">'
+                                            +'[ <span class="time">'
+                                            +data[i].time
+                                            +'</span> ]'
+                                            +'</span>'
+                                            +'</li>';
+                                }
+                                if ((i + 1) % 4 == 0) {
+                                    html += '<p class="h16"></p>';
+                                }
+                            }
+                            else if (a == 1) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText"><a href="'
+                                        +"/home/branch/detail/id/"
+                                        +data[i].id
+                                        +'.html">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if (data[i].class == 2) {
+                                    html = '<li class="clearfix">'
+                                            +'<span class="fl">'
+                                            +'<span class="circle"></span>'
+                                            +'<span class="contentText sxt"><a href="'
+                                            +"/home/branch/detail/id/"
+                                            +data[i].id
+                                            +'.html">'
+                                            +data[i].title
+                                            +'</a></span>'
+                                            +'</span>'
+                                            +'<span class="fr">'
+                                            +'[ <span class="time">'
+                                            +data[i].time
+                                            +'</span> ]'
+                                            +'</span>'
+                                            +'</li>';
+                                }
+                                if ((i + 1) % 4 == 0) {
+                                    html += '<p class="h16"></p>';
+                                }
+                            }
+                            else if (a == 2) {
+                                html = '<li class="clearfix">'
+                                        +'<span class="fl">'
+                                        +'<span class="circle"></span>'
+                                        +'<span class="contentText"><a href="'
+                                        +"/home/branch/detail/id/"
+                                        +data[i].id
+                                        +'.html">'
+                                        +data[i].title
+                                        +'</a></span>'
+                                        +'</span>'
+                                        +'<span class="fr">'
+                                        +'[ <span class="time">'
+                                        +data[i].time
+                                        +'</span> ]'
+                                        +'</span>'
+                                        +'</li>';
+                                if (data[i].class == 2) {
+                                    html = '<li class="clearfix">'
+                                            +'<span class="fl">'
+                                            +'<span class="circle"></span>'
+                                            +'<span class="contentText sxt"><a href="'
+                                            +"/home/branch/detail/id/"
+                                            +data[i].id
+                                            +'.html">'
+                                            +data[i].title
+                                            +'</a></span>'
+                                            +'</span>'
+                                            +'<span class="fr">'
+                                            +'[ <span class="time">'
+                                            +data[i].time
+                                            +'</span> ]'
+                                            +'</span>'
+                                            +'</li>';
+                                }
+                                if ((i + 1) % 4 == 0) {
+                                    html += '<p class="h16"></p>';
+                                }
+                            }
+
+                            $(".content_text").eq(a).find("ul").append(html);
+                        }
+                    }
+                })
+            }
+        });
+    }
 
 </script>
 {/block}
