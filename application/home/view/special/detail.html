@@ -81,13 +81,17 @@
                     <span class="comment_btn" onclick="send(this,2,{$detail.id})">发送</span>
                 </div>
             </div>
+            <div class="tip"></div>
+            <div class="loading hidden">
+                <div class="typing_loader"></div>
+            </div>
         </div>
     </div>
 </div>
 {/block}
 {block name="script"}
 <script>
-
+    var scrollNow = true;
     $(function () {
         var len = $(".commentLists .list" ).length;
         if(len >= 7){
@@ -98,19 +102,19 @@
     });
 
     function loadScroll() {
-        $(window).on("scroll",function (e) {
+        $(window).off("scroll").on("scroll",function (e) {
             var len = $(".commentLists .list" ).length;
             var tip = $(".tip");
             var loading = $('.loading');
             var id = {$detail.id};
-            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 10 && scrollNow) {
+            if ($(document).scrollTop() >= $(document).height() - $(window).height() - 1 && scrollNow) {
                 scrollNow = false;
                 $.ajax({
                     type: "post",
                     url: "{:Url('Base/morecomment')}",
                     data: {
                         aid: id,
-                        type: 1,
+                        type: 2,
                         length: len
                     },
                     beforeSend: function(XMLHttpRequest){
@@ -122,14 +126,30 @@
                         tip.show();
                         if(data.code == 1){
                             var dataLen =data.data.length;
-                            if(data.data.length == 5){
-                                tip.text('上拉加载更多');
+                            var date = data.data;
+                            var maxLen;
+                            if (date.length >= 5) {
+                                maxLen = 5;
+                            }else {
+                                maxLen = date.length;
                             }
+                            var html = '';
+                            for (var i = 0; i < maxLen; i++) {
+                                html = '<div class="list clearfix">'+
+                                        '<div class="list_img fl">'+
+                                        '<img src="'+date[i].header+'" alt="用户头像">'+
+                                        '</div>'+
+                                        '<div class="comment_name fl">'+date[i].nickname+'：</div>'+
+                                        '<div class="comment_content fl" >'+date[i].content+'</div>'+
+                                        '</div>';
+                                $('.commentLists').append(html);
+                            }
+                            tip.text('上拉加载更多');
+                            scrollNow = true; // 请求结束
                         }else{
                             tip.text('没有更多了');
                             $(window).off("scroll");
                         }
-                        scrollNow = true; // 请求结束
                     }
                 })
             }
@@ -230,7 +250,7 @@
                             '<div class="list_img fl">'+
                             '<img src="'+data.header+'" alt="用户头像">'+
                             '</div>'+
-                            '<div class="comment_name fl">'+data.nickname+'</div>'+
+                            '<div class="comment_name fl">'+data.nickname+'：</div>'+
                             '<div class="comment_content fl" >'+it.val()+'</div>'+
                             '</div>';
                     $('.commentLists' ).append(html);
