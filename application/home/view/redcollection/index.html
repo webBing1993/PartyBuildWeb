@@ -102,7 +102,7 @@
     });
 
     // 首页指定跳转过来
-    var c = window.location.href.split("index/tag/")[1];
+    var c = window.location.href.split("index/type/")[1];
    if (c != undefined) {
        var c1 = c.split(".html")[0];
        $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
