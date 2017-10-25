@@ -1,6 +1,7 @@
 /*right_content */
 .content_text {
     padding-left: 20px;
+    height: auto;
 }
 .content_text ul {
     /*margin-bottom: 20px;*/
