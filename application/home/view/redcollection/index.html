@@ -204,7 +204,6 @@
     $(".content_tab li").eq(0).click();
 
     function pag(b,id,total,a) {
-        console.log(total);
         if (total == 0) {
             $("#page").hide();
         }else {
@@ -303,12 +302,14 @@
     var c = window.location.href.split("index/type/")[1];
     if (c != undefined) {
         var c1 = c.split(".html")[0];
-        $(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
+        /*$(".content_tab li").eq(c1-1).addClass("red").siblings("li").removeClass("red");
          $(".content_text").removeClass("hidden").hide();
          $(".content_text").eq(c1-1).show();
          var html = $(".content_tab li").eq(c1-1).children("a").children('span')[0].innerHTML;
          $(".textTitle").html(html);
-         $(".content_title a:last-of-type").html(html);
+         $(".content_title a:last-of-type").html(html);*/
+        $(".content_text").removeClass("hidden");
+        $(".content_tab li").eq(c1-1).click();
     }
 
 </script>
