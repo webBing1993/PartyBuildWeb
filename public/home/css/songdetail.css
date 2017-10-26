@@ -33,3 +33,6 @@
 .comment_say input {
     width: 79%;
 }
+iframe {
+    width: 100%;
+}

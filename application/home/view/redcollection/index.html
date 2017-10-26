@@ -138,8 +138,8 @@
                 $(".content_text").eq(index).find("p").remove();
                 var data = date.data;
                 var html = "";
-                var t = 5;
-                if (data.length <= 5) {
+                var t = 8;
+                if (data.length <= 8) {
                     t = data.length - 1;
                 }
                 for (var i = 0; i <= t; i++) {
@@ -211,7 +211,14 @@
             $("#page").show();
         }
         // 向上取整
-        var page = Math.ceil(total / 6);
+        var page;
+        if (a == 0) {
+            page = Math.ceil(total / 6);
+        }else if (a == 1) {
+            page = Math.ceil(total / 9);
+        }else {
+            page = Math.ceil(total / 4);
+        }
         $("#page").paging({
             pageNo:1,
             totalPage: page,
@@ -225,13 +232,12 @@
                         type: id
                     },
                     success: function (date) {
-                        console.log(date);
                         $(".content_text").eq(a).find("li").remove();
                         $(".content_text").eq(a).find("p").remove();
                         var data = date.data;
                         var html = "";
-                        var t = 5;
-                        if (data.length <= 5) {
+                        var t = 8;
+                        if (data.length <= 8) {
                             t = data.length - 1;
                         }
                         for (var i = 0; i <= t; i++) {
@@ -254,17 +260,17 @@
                             }
                             else if (a == 1) {
                                 html = '<li class="fl">'
-                                        +'<a href="/home/redcollection/bookdetail/id/'
-                                        +data[i].id
-                                        +'.html">'
-                                        +'<div class="book_img"><img src="'
-                                        +data[i].net_path
-                                        +'" alt=""></div>'
-                                        +'<div class="book_name">'
-                                        +data[i].title
-                                        +'</div>'
-                                        +'</a>'
-                                        +'</li>';
+                                        + '<a href="/home/redcollection/bookdetail/id/'
+                                        + data[i].id
+                                        + '.html">'
+                                        + '<div class="book_img"><img src="'
+                                        + data[i].net_path
+                                        + '" alt=""></div>'
+                                        + '<div class="book_name">'
+                                        + data[i].title
+                                        + '</div>'
+                                        + '</a>'
+                                        + '</li>';
                             }
                             else if (a == 2) {
                                 html = '<li class="list fl">'

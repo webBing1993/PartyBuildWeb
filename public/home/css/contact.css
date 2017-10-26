@@ -29,9 +29,9 @@ body {
 .contact_header .container {
     position: relative;
 }
-.contact_header .container>img {
+.contact_header .container a>img {
     width: auto;
-    margin-top: 15px;
+    margin-top: 25px;
     height: 50px;
     display: inline-block;
 }
