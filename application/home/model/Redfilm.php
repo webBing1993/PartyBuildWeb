@@ -64,12 +64,12 @@ class Redfilm extends Model {
         $filmModel = new Redfilm();
         $bookModel = new Redbook();
         $musicModel = new  Redmusic();
-        $length  = ($p-1)*12;
         $map = array(
             'status' => 1
         );
         $order = array("create_time desc");
         if($type == 1) {
+            $length  = ($p-1)*6;
             $res = $filmModel->where($map)->order($order)->limit($length,6)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
@@ -77,13 +77,15 @@ class Redfilm extends Model {
                 $value['time'] = date("Y-m-d",$value['create_time']);
             }
         }elseif($type == 2) {
-            $res = $bookModel->where($map)->order($order)->limit($length,6)->select();
+            $length  = ($p-1)*9;
+            $res = $bookModel->where($map)->order($order)->limit($length,9)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
                 $value['path'] = $pic['path'];
                 $value['time'] = date("Y-m-d",$value['create_time']);
             }
         }else {
+            $length  = ($p-1)*4;
             $res = $musicModel->where($map)->order($order)->limit($length,4)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
