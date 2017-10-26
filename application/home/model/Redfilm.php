@@ -77,7 +77,7 @@ class Redfilm extends Model {
                 $value['time'] = date("Y-m-d",$value['create_time']);
             }
         }elseif($type == 2) {
-            $res = $bookModel->where($map)->order($order)->limit($length,9)->select();
+            $res = $bookModel->where($map)->order($order)->limit($length,6)->select();
             foreach ($res as $value) {
                 $pic = Picture::get($value['front_cover']);
                 $value['path'] = $pic['path'];
