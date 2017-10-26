@@ -46,7 +46,7 @@
                             {volist name="vo->Option" id="value" key="k"}
                             <label>
                                 <input type="radio" name="" value="{$k}">
-                                <label class="option">{if condition="($k eq 1) AND ($value neq ' ')"}A{elseif condition="($k eq 2) AND ($value neq ' ')"}B{elseif condition="($k eq 3 )AND ($value neq ' ')"}C{elseif condition="($k eq 4 )AND ($value neq ' ')"/}D{/if}</label>
+                                <label class="option {eq name='$vo.right' value='$k' }active{/eq}" >{if condition="($k eq 1) AND ($value neq ' ')"}A{elseif condition="($k eq 2) AND ($value neq ' ')"}B{elseif condition="($k eq 3 )AND ($value neq ' ')"}C{elseif condition="($k eq 4 )AND ($value neq ' ')"/}D{/if}</label>
                                 <span class="opt">{$value|substr=###,'2'}</span>
                             </label>
                             {/volist}
