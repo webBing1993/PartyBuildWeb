@@ -127,7 +127,7 @@
                             <ul>
                                 {volist name="film" id="f"}
                                 <li>
-                                    <a href="{:Url('Redcollection/detail?id='.$f['id'])}"><img src="{$f.front_cover|get_cover='path'}" alt="{$f.title}"></a>
+                                    <a href="{:Url('Redcollection/moviedetail?id='.$f['id'])}"><img src="{$f.front_cover|get_cover='path'}" alt="{$f.title}"></a>
                                 </li>
                                 {/volist}
                             </ul>
@@ -135,7 +135,7 @@
                         <div class="name pull-right">
                             <ul>
                                 {volist name="film" id="f"}
-                                <li> <a href="{:Url('Redcollection/detail?id='.$f['id'])}">{$f.title}</a></li>
+                                <li> <a href="{:Url('Redcollection/moviedetail?id='.$f['id'])}">{$f.title}</a></li>
                                 {/volist}
                             </ul>
                         </div>
@@ -151,7 +151,7 @@
                             <ul>
                                 {volist name="book" id="b"}
                                 <li>
-                                    <a href="{:Url('Redcollection/detail?id='.$b['id'])}"><img src="{$b.front_cover|get_cover='path'}" alt="{$b.title}"></a>
+                                    <a href="{:Url('Redcollection/bookdetail?id='.$b['id'])}"><img src="{$b.front_cover|get_cover='path'}" alt="{$b.title}"></a>
                                 </li>
                                 {/volist}
                             </ul>
@@ -159,7 +159,7 @@
                         <div class="name pull-right">
                             <ul>
                                 {volist name="book" id="b"}
-                                <li> <a href="{:Url('Redcollection/detail?id='.$b['id'])}">{$b.title}</a></li>
+                                <li> <a href="{:Url('Redcollection/bookdetail?id='.$b['id'])}">{$b.title}</a></li>
                                 {/volist}
                             </ul>
                         </div>
@@ -173,7 +173,7 @@
                     <div class="song_content clearfix">
                         <ul>
                             {volist name="music" id="m"}
-                            <li> <a href="{:Url('Redcollection/detail?id='.$m['id'])}">{$m.title}</a></li>
+                            <li> <a href="{:Url('Redcollection/songdetail?id='.$m['id'])}">{$m.title}</a></li>
                             {/volist}
                         </ul>
                     </div>
