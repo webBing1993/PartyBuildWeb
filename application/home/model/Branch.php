@@ -38,7 +38,7 @@ class Branch extends Model {
             'status' => 1
         );
         $order = array("create_time desc");
-        $field = array("id,title,create_time");
+        $field = array("id,title,net_path,create_time");
         $map['type'] = 1;
         $one = $this->where($map)->order($order)->field($field)->limit(12)->select();
         $t1 = $this->where($map)->count();
