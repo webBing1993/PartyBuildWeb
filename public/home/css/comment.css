@@ -361,7 +361,7 @@ header {
 }
 @media screen and (min-width: 1200px){
     .comment_say input {
-        width: 84.4%;
+        width: 83.9%;
     }
 }
 .comment_say input::-webkit-input-placeholder  {

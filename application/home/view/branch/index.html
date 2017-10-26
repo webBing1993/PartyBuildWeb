@@ -74,11 +74,12 @@
                     </ul>
                 </div>
                 <div class="content_text text3 hidden">
-                    <ul> {volist name="list.three" id="vo3" key="k"}
+                    <ul>
+                        {volist name="list.three" id="vo3" key="k"}
                         <li class="clearfix">
                             <span class="fl">
                                 <span class="circle"></span>
-                                <span class="contentText"><a href="{$vo3.net_path}">{$vo3.title}</a></span>
+                                <span class="contentText"><a href="{:Url('Branch/detail?id='.$vo3['id'])}">{$vo3.title}</a></span>
                             </span>
                             <span class="fr">
                                 [ <span class="time">{$vo3.create_time|time_format='Y-m-d'}</span> ]
@@ -152,7 +153,7 @@
         }else {
             total = {$list.t3};
         }
-        $.ajax({
+        /*$.ajax({
             type: "post",
             url: "{:Url('Branch/index')}",
             data: {
@@ -290,7 +291,7 @@
                     $(".content_text").eq(index).find("ul").append(html);
                 }
             }
-        });
+        });*/
         pag(0,type,total,index);
         return false;
     });
