@@ -6,7 +6,7 @@
 {block name="body"}
 <header>
     <div class="container">
-        <img src="/home/images/logo1.png" alt="">
+        <a href="{:Url('Index/index')}"><img src="/home/images/logo1.png" alt=""></a>
     </div>
 </header>
 <div class="main">
@@ -45,7 +45,7 @@
             </div>
             <div class="introduce">
                 <div class="name">{$detail.title} <span class="fr">播放：{$detail.views}次</span></div>
-                <div class="text">内容简介：{$detail.content}</div>
+                <div class="text"><span class="fl">内容简介：</span>{$detail.content}</div>
             </div>
         </div>
     </div>

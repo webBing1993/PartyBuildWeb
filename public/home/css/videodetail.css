@@ -122,13 +122,17 @@ header img {
     font-size: 14px;color: #d1d1d1;
     margin-top: 5px;
     height: 20px;
-    line-height: 25px;
+    /*line-height: 25px;*/
+}
+.introduce .text span {
+    display: inline-block;
 }
 .introduce .text p {
     display: inline-block;
     width: 93%;
     height: 100%;
     overflow: hidden;
+    float: left;
 }
 
 /*comment*/

@@ -126,77 +126,6 @@
         }else {
             total = {$list.t3};
         }
-        $.ajax({
-            type: "post",
-            url: "{:Url('Redcollection/index')}",
-            data: {
-                p: 1,
-                type: type
-            },
-            success: function (date) {
-                $(".content_text").eq(index).find("li").remove();
-                $(".content_text").eq(index).find("p").remove();
-                var data = date.data;
-                var html = "";
-                var t = 8;
-                if (data.length <= 8) {
-                    t = data.length - 1;
-                }
-                for (var i = 0; i <= t; i++) {
-                    if (index == 0) {
-                        html = '<li class="fl">'
-                                +'<a href="/home/redcollection/moviedetail/id/'
-                                +data[i].id
-                                +'.html">'
-                                +'<div class="movie_img"><img src="'
-                                +data[i].net_path
-                                +'" alt=""></div>'
-                                +'<div class="movie_name">'
-                                +data[i].title
-                                +'</div>'
-                                +'</a>'
-                                +'<div class="movie_content"><span>简介：'
-                                +data[i].introduction
-                                +'</span></div>'
-                                +'</li>';
-                    }
-                    else if (index == 1) {
-                        html = '<li class="fl">'
-                                +'<a href="/home/redcollection/bookdetail/id/'
-                                +data[i].id
-                                +'.html">'
-                                +'<div class="book_img"><img src="'
-                                +data[i].net_path
-                                +'" alt=""></div>'
-                                +'<div class="book_name">'
-                                +data[i].title
-                                +'</div>'
-                                +'</a>'
-                                +'</li>';
-                    }
-                    else if (index == 2) {
-                        html = '<li class="list fl">'
-                                +'<a href="/home/redcollection/songdetail/id/'
-                                +data[i].id
-                                +'.html">'
-                                +'<div class="songImg"><img src="'
-                                +data[i].path
-                                +'" alt=""></div>'
-                                +'<div class="songTitle">'
-                                +data[i].title
-                                +'</div>'
-                                +'</a>'
-                                +'</li>';
-
-                            if ((i + 1) % 2 == 0) {
-                                html += '<p class="h1 fl"></p>';
-                            }
-                    }
-
-                    $(".content_text").eq(index).find("ul").append(html);
-                }
-            }
-        });
         pag(0,type,total,index);
         return false;
     });
@@ -310,6 +239,12 @@
          $(".content_title a:last-of-type").html(html);*/
         $(".content_text").removeClass("hidden");
         $(".content_tab li").eq(c1-1).click();
+    }
+    var c2 = window.location.href.split("index/tag/")[1];
+    if (c2 != undefined) {
+        var c3 = c2.split(".html")[0];
+        $(".content_text").removeClass("hidden");
+        $(".content_tab li").eq(c3-1).click();
     }
 
 </script>

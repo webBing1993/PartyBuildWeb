@@ -153,148 +153,55 @@
         }else {
             total = {$list.t3};
         }
-        /*$.ajax({
-            type: "post",
-            url: "{:Url('Branch/index')}",
-            data: {
-                p: 1,
-                type: type
-            },
-            success: function (date) {
-                $(".content_text").eq(index).find("li").remove();
-                $(".content_text").eq(index).find("p").remove();
-                var data = date.data;
-                var html = "";
-                var t = 11;
-                if (data.length <= 11) {
-                    t = data.length - 1;
-                }
-                for (var i = 0; i <= t; i++) {
-                    if (index == 0) {
-                        html = '<li class="clearfix">'
-                                +'<span class="fl">'
-                                +'<span class="circle"></span>'
-                                +'<span class="contentText"><a href="'
-                                +"/home/branch/detail/id/"
-                                +data[i].id
-                                +'.html">'
-                                +data[i].title
-                                +'</a></span>'
-                                +'</span>'
-                                +'<span class="fr">'
-                                +'[ <span class="time">'
-                                +data[i].time
-                                +'</span> ]'
-                                +'</span>'
-                                +'</li>';
-                        if (data[i].class == 2) {
-                            html = '<li class="clearfix">'
-                                    +'<span class="fl">'
-                                    +'<span class="circle"></span>'
-                                    +'<span class="contentText sxt"><a href="'
-                                    +"/home/branch/detail/id/"
-                                    +data[i].id
-                                    +'.html">'
-                                    +data[i].title
-                                    +'</a></span>'
-                                    +'</span>'
-                                    +'<span class="fr">'
-                                    +'[ <span class="time">'
-                                    +data[i].time
-                                    +'</span> ]'
-                                    +'</span>'
-                                    +'</li>';
-                        }
-                        if ((i + 1) % 4 == 0) {
-                            html += '<p class="h16"></p>';
-                        }
-                    }
-                    else if (index == 1) {
-                        html = '<li class="clearfix">'
-                                +'<span class="fl">'
-                                +'<span class="circle"></span>'
-                                +'<span class="contentText"><a href="'
-                                +"/home/branch/detail/id/"
-                                +data[i].id
-                                +'.html">'
-                                +data[i].title
-                                +'</a></span>'
-                                +'</span>'
-                                +'<span class="fr">'
-                                +'[ <span class="time">'
-                                +data[i].time
-                                +'</span> ]'
-                                +'</span>'
-                                +'</li>';
-                        if (data[i].class == 2) {
-                            html = '<li class="clearfix">'
-                                    +'<span class="fl">'
-                                    +'<span class="circle"></span>'
-                                    +'<span class="contentText sxt"><a href="'
-                                    +"/home/branch/detail/id/"
-                                    +data[i].id
-                                    +'.html">'
-                                    +data[i].title
-                                    +'</a></span>'
-                                    +'</span>'
-                                    +'<span class="fr">'
-                                    +'[ <span class="time">'
-                                    +data[i].time
-                                    +'</span> ]'
-                                    +'</span>'
-                                    +'</li>';
-                        }
-                        if ((i + 1) % 4 == 0) {
-                            html += '<p class="h16"></p>';
-                        }
-                    }
-                    else if (index == 2) {
-                        html = '<li class="clearfix">'
-                                +'<span class="fl">'
-                                +'<span class="circle"></span>'
-                                +'<span class="contentText"><a href="'
-                                +"/home/branch/detail/id/"
-                                +data[i].id
-                                +'.html">'
-                                +data[i].title
-                                +'</a></span>'
-                                +'</span>'
-                                +'<span class="fr">'
-                                +'[ <span class="time">'
-                                +data[i].time
-                                +'</span> ]'
-                                +'</span>'
-                                +'</li>';
-                        if (data[i].class == 2) {
-                            html = '<li class="clearfix">'
-                                    +'<span class="fl">'
-                                    +'<span class="circle"></span>'
-                                    +'<span class="contentText sxt"><a href="'
-                                    +"/home/branch/detail/id/"
-                                    +data[i].id
-                                    +'.html">'
-                                    +data[i].title
-                                    +'</a></span>'
-                                    +'</span>'
-                                    +'<span class="fr">'
-                                    +'[ <span class="time">'
-                                    +data[i].time
-                                    +'</span> ]'
-                                    +'</span>'
-                                    +'</li>';
-                        }
-                        if ((i + 1) % 4 == 0) {
-                            html += '<p class="h16"></p>';
-                        }
-                    }
-
-                    $(".content_text").eq(index).find("ul").append(html);
-                }
-            }
-        });*/
         pag(0,type,total,index);
+        var h = window.location.href.split(".html")[0];
+        var href =  h + "/id/" + (index + 1) + ".html";
+        setCookie("content_tab",index,"s60");
+        getCookie("content_tab");
+        /*if(!window.name){
+            /!*alert("第一次开这个窗口！name值"+ window.name);
+             window.name = 'test';*!/
+
+        }else{
+        console.log(href);
+//            window.location.href = href;
+        }*/
         return false;
     });
+
+
+    function setCookie(name,value,time)
+    {
+        var strsec = getsec(time);
+        var exp = new Date();
+        exp.setTime(exp.getTime() + strsec*1);
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    }
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
+    function getsec(str)
+    {
+        var str1=str.substring(1,str.length)*1;
+        var str2=str.substring(0,1);
+        if (str2=="s")
+        {
+            return str1*1000;
+        }
+        else if (str2=="h")
+        {
+            return str1*60*60*1000;
+        }
+        else if (str2=="d")
+        {
+            return str1*24*60*60*1000;
+        }
+    }
 
     $(".content_tab li").eq(0).click();
 

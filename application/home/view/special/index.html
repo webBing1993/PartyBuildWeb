@@ -263,17 +263,21 @@
         var c = window.location.href.split("index/id/")[1];
         if (c != undefined) {
             var c1 = c.split(".html")[0];
-            $(".content_text").removeClass("hidden").hide();
-            $(".content_text").eq($(".tabs li").eq(c1-1)).show();
-            var html = $(".tabs li").eq(c1-1).children(".tab_name")[0].innerHTML + $(".tabs li").eq(c1-1).children(".tab_content")[0].innerHTML;
-            $(".textTitle").html(html);
-            $(".content_title a:last-of-type").html(html);
-            $(".specialImg").eq(c1-1).show().siblings(".specialImg").hide();
-            $(".content_text").eq(c1-1).show().siblings(".content_text").hide();
-            // 分页操作
-            var total1 = $(".tabs li").eq(c1-1).children(".tab_total").html();
-            var id1 = $(".tabs li").eq(c1-1).children(".tab_id").html();
-            pag(0,id1,total1,c1-1);
+            for (var i = 0; i < $(".tabs li").length; i++) {
+                if ($(".tabs li").eq(i).find(".tab_id").html() == c1) {
+                    $(".content_text").removeClass("hidden").hide();
+                    $(".content_text").eq($(".tabs li").eq(i)).show();
+                    var html = $(".tabs li").eq(i).children(".tab_name")[0].innerHTML + $(".tabs li").eq(i).children(".tab_content")[0].innerHTML;
+                    $(".textTitle").html(html);
+                    $(".content_title a:last-of-type").html(html);
+                    $(".specialImg").eq(i).show().siblings(".specialImg").hide();
+                    $(".content_text").eq(i).show().siblings(".content_text").hide();
+                    // 分页操作
+                    var total1 = $(".tabs li").eq(i).children(".tab_total").html();
+                    var id1 = $(".tabs li").eq(i).children(".tab_id").html();
+                    pag(0,id1,total1,i);
+                }
+            }
         }
 
         var c2 = window.location.href.split("index/tag/")[1];
