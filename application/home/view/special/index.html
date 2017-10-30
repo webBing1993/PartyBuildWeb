@@ -12,8 +12,7 @@
                 <ul>
                     {volist name="list" id="vo"}
                     <li class="fl">
-                        <div class="tab_name">{$vo.name}</div>
-                        <div class="tab_content">{$vo.summary}</div>
+                        <div class="tab_content"><p>{$vo.summary}</p></div>
                         <span class="hidden tab_id">{$vo.id}</span>
                         <span class="hidden tab_total">{$vo.total}</span>
                     </li>
@@ -106,7 +105,7 @@
             }
             $(".tabs li").css("animation","click_ 1s ease");
             $(this).css("animation","click 1s ease");
-            var html = $(this).children(".tab_name")[0].innerHTML + $(this).children(".tab_content")[0].innerHTML;
+            var html = $(this).children(".tab_content").find("p").html();
             $(".textTitle").html(html);
             $(".content_title a:last-of-type").html(html);
             $(".specialImg").eq(index).show().siblings(".specialImg").hide();
@@ -173,7 +172,7 @@
                         $(".content_text").eq(index).find("ul").append(html);
                     }
                 }
-            })
+            });
             pag(0,id,total,index);
             return false;
         });

@@ -8,7 +8,7 @@
     height: 110px;
     text-align: center;
     color: #fff;
-    font-size: 22px;
+    font-size: 20px;
     font-family: "楷体";
     margin-right: 2px;
     margin-bottom: 2px;
@@ -27,7 +27,13 @@
 .tabs .tab_content {
     height: 110px;
     overflow: hidden;
-    line-height: 110px;
+    text-align: center;
+}
+.tabs .tab_content p {
+    display: inline-block;
+    height: 56px;
+    overflow: hidden;
+    margin-top: 27px;
 }
 .tabs li:hover {
     -moz-transform:scale(1.05,1.05);
