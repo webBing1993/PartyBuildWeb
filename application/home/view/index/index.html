@@ -1,11 +1,21 @@
 {extend name="public/common"}
 
 {block name="style"}
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
 <link rel="stylesheet" href="/home/css/index.css">
 {/block}
 
 {block name="body"}
 {include file="public/header"}
+<div class="container"><div class="mapClick">[ 收起 ]</div></div>
+<div class="map">
+    <div class="container">
+        <div id="main"></div>
+        <div id="container">
+            <div class="backClick">返回</div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 nowNew">
         <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9 nowLeft">
@@ -242,6 +252,8 @@
 {/block}
 
 {block name="script"}
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.1&key=bf37e3c5e92c130bb41f3624eee95cd9"></script>
+<script src="/home/js/echarts.js"></script>
 <script>
     /*var lr = parseInt($(".container").css("marginLeft"));
     if (lr >= 200) {
@@ -288,6 +300,257 @@
             $(".letter_content .imgs li").hide();
             $(".letter_content .imgs li").eq($(this).index()).show();
         })
-    })
+    });
+
+    // 获取一级省份
+    var province = "";
+    //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [121.465936,29.81167],
+        zoom: 8
+    });
+    // 中国地图
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+    // 使用
+    require(['echarts','echarts/chart/map'],function (ch) {
+        // 基于准备好的dom，初始化echarts图表
+        var myChart = ch.init(document.getElementById('main'));
+        option = {
+            tooltip : {
+                trigger: 'item',
+                formatter: '{b}'
+            },
+            series : [{
+                name: '中国',
+                type: 'map',
+                mapType: 'china',
+                selectedMode : 'multiple',
+                itemStyle:{
+                    normal:{label:{show:true}},
+                    emphasis:{label:{show:true}}
+                },
+                data:[
+                    {name:'浙江',selected:true}
+                ]
+            }]
+        };
+
+        var ecConfig = require('echarts/config');
+        myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param){
+            province = param.target;
+            /*$("#main").fadeOut();
+            $("#container").fadeIn();*/
+            if (province == "浙江") {
+
+                $("#main").fadeOut();
+                $("#container").fadeIn();
+            }/*else if (province == "北京") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [116.388677,39.929683],
+                    zoom: 8
+                });
+            }else if (province == "黑龙江") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [126.540044,45.992133],
+                    zoom: 8
+                });
+            }else if (province == "吉林") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [125.331548,44.003621],
+                    zoom: 8
+                });
+            }else if (province == "内蒙古") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [113.532231,42.854765],
+                    zoom: 8
+                });
+            }else if (province == "安徽") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [117.17,31.52],
+                    zoom: 8
+                });
+            }else if (province == "澳门") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [115.07,21.33],
+                    zoom: 8
+                });
+            }else if (province == "福建") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [118.06,24.27],
+                    zoom: 8
+                });
+            }else if (province == "甘肃") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [103.51,36.04],
+                    zoom: 8
+                });
+            }else if (province == "广东") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [113.45,23.02],
+                    zoom: 8
+                });
+            }else if (province == "内蒙古") {
+                map = new AMap.Map("container", {
+                    resizeEnable: true,
+                    center: [113.532231,42.854765],
+                    zoom: 8
+                });
+            }*/
+        });
+        // 为echarts对象加载数据
+        myChart.setOption(option);
+    });
+
+
+    $(".mapClick").on("click", function () {
+        $(".map").toggle();
+        if ($(".map").css("display") == "none") {
+            $(".map").css({"animation":"fadeout 1.2s ease-out","height":"0"});
+            $(this).html("[ 展开 ]");
+        }else {
+            $(".map").css({"animation":"fadein 1.2s ease-out","height":"600px"});
+            $(this).html("[ 收起 ]");
+        }
+        $(this).css("color","#d43d3d");
+    });
+
+    // 返回一级地图
+    $(".backClick").bind("click", function () {
+        $("#main").fadeIn();
+        $("#container").fadeOut();
+    });
+
+    addMarker();
+    //添加marker标记
+    function addMarker() {
+        map.clearMap();
+        var marker1 = new AMap.Marker({
+            map: map,
+            position: [120.207134,30.449505],
+            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png'
+        });
+        //鼠标点击marker弹出自定义的信息窗体
+        AMap.event.addListener(marker1, 'click', function() {
+            infoWindow1.open(map, marker1.getPosition());
+        });
+
+        var marker2 = new AMap.Marker({
+            map: map,
+            position: [120.607134,30.349505],
+            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b2.png'
+        });
+        //鼠标点击marker弹出自定义的信息窗体
+        AMap.event.addListener(marker2, 'click', function() {
+            infoWindow2.open(map, marker2.getPosition());
+        });
+
+        var marker3 = new AMap.Marker({
+            map: map,
+            position: [120.48, 32.99],
+            icon: 'http://webapi.amap.com/theme/v1.3/markers/n/mark_b3.png'
+        });
+        //鼠标点击marker弹出自定义的信息窗体
+        AMap.event.addListener(marker3, 'click', function() {
+            infoWindow3.open(map, marker3.getPosition());
+        });
+    }
+
+    //实例化信息窗体
+    var title1 = '测试1<span style="font-size:11px;color:#F00;">价格:318</span>',
+            content1 = [];
+    content1.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
+    content1.push("电话：010-64733333");
+    content1.push("<a href='http://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
+    var infoWindow1 = new AMap.InfoWindow({
+        isCustom: true,  //使用自定义窗体
+        content: createInfoWindow(title1, content1.join("<br/>")),
+        offset: new AMap.Pixel(16, -45)
+    });
+
+    //实例化信息窗体
+    var title2 = '测试2<span style="font-size:11px;color:#F00;">价格:318</span>',
+            content2 = [];
+    content2.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
+    content2.push("电话：010-64733333");
+    content2.push("<a href='http://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
+    var infoWindow2 = new AMap.InfoWindow({
+        isCustom: true,  //使用自定义窗体
+        content: createInfoWindow(title2, content2.join("<br/>")),
+        offset: new AMap.Pixel(16, -45)
+    });
+
+    //实例化信息窗体
+    var title3 = '测试3<span style="font-size:11px;color:#F00;">价格:318</span>',
+            content3 = [];
+    content3.push("<img src='http://tpc.googlesyndication.com/simgad/5843493769827749134'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
+    content3.push("电话：010-64733333");
+    content3.push("<a href='http://ditu.amap.com/detail/B000A8URXB?citycode=110105'>详细信息</a>");
+    var infoWindow3 = new AMap.InfoWindow({
+        isCustom: true,  //使用自定义窗体
+        content: createInfoWindow(title3, content3.join("<br/>")),
+        offset: new AMap.Pixel(16, -45)
+    });
+
+    //构建自定义信息窗体
+    function createInfoWindow(title, content) {
+        var info = document.createElement("div");
+        info.className = "info";
+
+        //可以通过下面的方式修改自定义窗体的宽高
+        //info.style.width = "400px";
+        // 定义顶部标题
+        var top = document.createElement("div");
+        var titleD = document.createElement("div");
+        var closeX = document.createElement("img");
+        top.className = "info-top";
+        titleD.innerHTML = title;
+        closeX.src = "http://webapi.amap.com/images/close2.gif";
+        closeX.onclick = closeInfoWindow;
+
+        top.appendChild(titleD);
+        top.appendChild(closeX);
+        info.appendChild(top);
+
+        // 定义中部内容
+        var middle = document.createElement("div");
+        middle.className = "info-middle";
+        middle.style.backgroundColor = 'white';
+        middle.innerHTML = content;
+        info.appendChild(middle);
+
+        // 定义底部内容
+        var bottom = document.createElement("div");
+        bottom.className = "info-bottom";
+        bottom.style.position = 'relative';
+        bottom.style.top = '0px';
+        bottom.style.margin = '0 auto';
+        var sharp = document.createElement("img");
+        sharp.src = "http://webapi.amap.com/images/sharp.png";
+        bottom.appendChild(sharp);
+        info.appendChild(bottom);
+        return info;
+    }
+
+    //关闭信息窗体
+    function closeInfoWindow() {
+        map.clearInfoWindow();
+    }
+
 </script>
+<script type="text/javascript" src="http://webapi.amap.com/demos/js/liteToolbar.js"></script>
 {/block}
