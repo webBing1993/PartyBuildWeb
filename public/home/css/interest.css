@@ -68,6 +68,7 @@
 .video_title span:last-of-type a {
     font-size: 15px;
     color: #333;
+    cursor: pointer;
 }
 .video_title span:last-of-type a:hover {
     color: #1755cc;
