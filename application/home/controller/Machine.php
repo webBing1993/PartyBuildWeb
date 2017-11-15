@@ -21,7 +21,7 @@ class Machine extends Base {
     public function index() {
         $Model = new MachineModel();
         $list = $Model->getDetail();
-        $this->assign('list',$list);
+        return json_encode($list);
     }
 
     /**
