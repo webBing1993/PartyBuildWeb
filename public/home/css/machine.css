@@ -68,6 +68,7 @@
 }
 #container .info {
     border: solid 1px silver;
+    min-width: 200px;
 }
 #container div.info-top {
     position: relative;
@@ -81,7 +82,7 @@
     font-size: 14px;
     font-weight: bold;
     line-height: 31px;
-    padding: 0 10px;
+    padding: 0 20px 0 10px;
 }
 #container div.info-top img {
     position: absolute;
