@@ -43,7 +43,7 @@
                                 <th><input class="i-checks check-all" type="checkbox"></th>
                                 <th>唯一识别码</th>
                                 <th>名称</th>
-                                <th>简介</th>
+                                <th>地址</th>
                                 <th>创建时间</th>
                                 <th>更新时间</th>
                                 <th>登陆状态</th>
@@ -56,7 +56,7 @@
                                 <td><input type="checkbox" class="i-checks" name="input[]"></td>
                                 <td>{$vo.mid}</td>
                                 <td>{$vo.name}</td>
-                                <td>{$vo.introduction|msubstr=0,20}</td>
+                                <td>{$vo.address|msubstr=0,30}</td>
                                 <td>{$vo.create_time|time_format='Y-m-d'}</td>
                                 <td>{empty name="vo.update_time"}无{else/}{$vo.update_time|time_format='Y-m-d H:i'}{/empty}</td>
                                 {eq name='vo.is_login' value='1'}<td style="color:green">{else/}<td style="color:red">{/eq}{$vo.is_login_text}</td>
