@@ -78,6 +78,33 @@ canvas {
 .backClick:hover {
     color: #d43d3d;
 }
+.look {
+    position: absolute;
+    right: 120px;
+    top: 15px;
+    z-index: 102;
+}
+#container .look span {
+    display: inline-block;
+    font-size: 12px;
+    float: left;
+    margin-right: 15px;
+}
+.look span:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #06ad12;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    float: left;
+    margin-top: 2px;
+}
+.look span:first-of-type:before {
+    content: "";
+    background-color: #fb053f;
+}
 #container .info {
     min-width: 450px;
     background-color: #fff;
