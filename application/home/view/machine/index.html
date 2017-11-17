@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+<link rel="stylesheet" href="/home/css/main.css"/>
 <link rel="stylesheet" href="/home/css/machine.css">
 <div class="container"><div class="mapClick">[ 收起 ]</div></div>
 <div class="map">
@@ -55,69 +55,13 @@
         var ecConfig = require('echarts/config');
         myChart.on(ecConfig.EVENT.MAP_SELECTED, function (param){
             province = param.target;
-            /*$("#main").fadeOut();
-             $("#container").fadeIn();*/
             if (province == "浙江") {
                 $("#main").hide();
-                $("#container").fadeIn();
+                $("#container").show();
             }/*else if (province == "北京") {
              map = new AMap.Map("container", {
              resizeEnable: true,
              center: [116.388677,39.929683],
-             zoom: 8
-             });
-             }else if (province == "黑龙江") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [126.540044,45.992133],
-             zoom: 8
-             });
-             }else if (province == "吉林") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [125.331548,44.003621],
-             zoom: 8
-             });
-             }else if (province == "内蒙古") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [113.532231,42.854765],
-             zoom: 8
-             });
-             }else if (province == "安徽") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [117.17,31.52],
-             zoom: 8
-             });
-             }else if (province == "澳门") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [115.07,21.33],
-             zoom: 8
-             });
-             }else if (province == "福建") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [118.06,24.27],
-             zoom: 8
-             });
-             }else if (province == "甘肃") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [103.51,36.04],
-             zoom: 8
-             });
-             }else if (province == "广东") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [113.45,23.02],
-             zoom: 8
-             });
-             }else if (province == "内蒙古") {
-             map = new AMap.Map("container", {
-             resizeEnable: true,
-             center: [113.532231,42.854765],
              zoom: 8
              });
              }*/
@@ -135,22 +79,30 @@
             map.clearMap();
             var arr = [];
             var infoWindow;
+            var icon;
             for (var i = 0; i < date.length; i++) {
+                var isLogin = date[i].is_login;
+                if (isLogin == 0) {
+                    icon = "/home/images/map.png"
+                }else {
+                    icon = "/home/images/map1.png"
+                }
                 var marker = new AMap.Marker({
                     map: map,
                     position: [date[i].lat,date[i].lng],
-                    icon: '/home/images/map1.png',
+                    icon: icon,
                     i: i
                 });
                 //实例化信息窗体
                 var title = date[i].name,
                         intro = date[i].introduction,
-                        content = [];
-                content.push(intro);
-                var status = date[i].is_login;
+                        add = date[i].address;
+                        content = [],
+                content.push("内容简介：" + intro);
+                var address = "具体地址：" + add;
                 infoWindow = new AMap.InfoWindow({
                     isCustom: true,  //使用自定义窗体
-                    content: createInfoWindow(title, content.join("<br/>"),status),
+                    content: createInfoWindow(title, content.join("<br/>"),address),
                     offset: new AMap.Pixel(16, -45)
                 });
                 arr.push(infoWindow);
@@ -164,7 +116,8 @@
     });
 
     //构建自定义信息窗体
-    function createInfoWindow(title, content,status) {
+    function createInfoWindow(title, content,address) {
+        console.log(address);
         var info = document.createElement("div");
         info.className = "info";
 
@@ -184,6 +137,13 @@
         info.appendChild(top);
 
         // 定义中部内容
+
+        var addr = document.createElement("div");
+        addr.className = "info-address";
+        addr.style.backgroundColor = 'white';
+        addr.innerHTML = address;
+        info.appendChild(addr);
+
         var middle = document.createElement("div");
         middle.className = "info-middle";
         middle.style.backgroundColor = 'white';
@@ -191,7 +151,7 @@
         info.appendChild(middle);
 
         // 状态值
-        var st = document.createElement("div");
+/*        var st = document.createElement("div");
         var st1 = document.createElement("span");
         st.className = "info-status";
         if (status == 0) {
@@ -203,7 +163,7 @@
         st1.innerHTML = status;
         st1.style.display = "none";
         st.appendChild(st1);
-        info.appendChild(st);
+        info.appendChild(st);*/
 
         // 定义底部内容
         var bottom = document.createElement("div");

@@ -21,17 +21,17 @@ class Machine extends Model {
         );
         $order = array("update_time desc");
         $res = $this->where($map)->order($order)->select();
-        foreach ($res as $value) {
-            //判断最后时间大于一小时则一体机关闭，改变状态，反之开启
-            $time = time() - $value['update_time'];
-            if($time > 3600) {
-                $map['is_login'] = 0;
-                $this->where('id',$value['id'])->update($map);
-            }else {
-                $map['is_login'] = 1;
-                $this->where('id',$value['id'])->update($map);
-            }
-        }
+//        foreach ($res as $value) {
+//            //判断最后时间大于一小时则一体机关闭，改变状态，反之开启
+//            $time = time() - $value['update_time'];
+//            if($time > 3600) {
+//                $map['is_login'] = 0;
+//                $this->where('id',$value['id'])->update($map);
+//            }else {
+//                $map['is_login'] = 1;
+//                $this->where('id',$value['id'])->update($map);
+//            }
+//        }
         return $res;
     }
 }
