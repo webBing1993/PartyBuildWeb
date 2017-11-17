@@ -44,7 +44,7 @@
                 selectedMode : 'multiple',
                 itemStyle:{
                     normal:{label:{show:true}},
-                    emphasis:{label:{show:true}}
+                    emphasis:{label:{show:true},color:"#d43d3d"}
                 },
                 data:[
                     {name:'浙江',selected:true}
@@ -117,7 +117,6 @@
 
     //构建自定义信息窗体
     function createInfoWindow(title, content,address) {
-        console.log(address);
         var info = document.createElement("div");
         info.className = "info";
 
@@ -149,21 +148,6 @@
         middle.style.backgroundColor = 'white';
         middle.innerHTML = content;
         info.appendChild(middle);
-
-        // 状态值
-/*        var st = document.createElement("div");
-        var st1 = document.createElement("span");
-        st.className = "info-status";
-        if (status == 0) {
-            st.style.backgroundColor = '#d43d3d';
-        }else {
-            st.style.backgroundColor = '#56ad58';
-        }
-        st.style.height = "25px";
-        st1.innerHTML = status;
-        st1.style.display = "none";
-        st.appendChild(st1);
-        info.appendChild(st);*/
 
         // 定义底部内容
         var bottom = document.createElement("div");
